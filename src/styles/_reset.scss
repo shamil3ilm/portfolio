@@ -1,0 +1,60 @@
+@use 'variables' as *;
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: $bg-color;
+    color: $text-color;
+    font-family: $font-family-sans;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+
+    &:hover {
+        color: $primary-color;
+    }
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+// Scrollbar
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: $bg-color;
+}
+
+::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, $bg-color, white 10%);
+    border-radius: 4px;
+
+    &:hover {
+        background: color-mix(in srgb, $bg-color, white 20%);
+    }
+}

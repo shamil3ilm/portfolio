@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'styles/variables';
+@use 'styles/mixins' as *;
+@use 'styles/reset';
+@use 'styles/typography';
+
+.container {
+    @include container;
+}
+
+section {
+    scroll-margin-top: 100px; // Prevent header overlap on scroll
+}

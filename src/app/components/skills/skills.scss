@@ -1,0 +1,78 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.skills {
+    padding: $spacing-xl 0;
+    background-color: $bg-color;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: $spacing-xl;
+    font-size: 2.5rem;
+
+    &::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 4px;
+        background-color: $primary-color;
+        margin: $spacing-sm auto 0;
+        border-radius: 2px;
+    }
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: $spacing-lg;
+    max-width: 1000px;
+    margin: 0 auto;
+    align-items: center; // Vertically center cards
+}
+
+.skill-category {
+    @include glass;
+    padding: $spacing-xl;
+    border-radius: 1rem;
+    transition: transform 0.3s ease;
+    height: 100%; // Ensure uniform height
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+
+    h3 {
+        color: $accent-color;
+        margin-bottom: $spacing-lg;
+        padding-bottom: $spacing-sm;
+        border-bottom: 1px solid rgba($accent-color, 0.2);
+        font-size: 1.5rem;
+    }
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+}
+
+.tag {
+    background: rgba($primary-color, 0.1);
+    color: color-mix(in srgb, $primary-color, white 20%);
+    padding: 0.6rem 1.2rem;
+    border-radius: 2rem;
+    font-size: 0.95rem;
+    border: 1px solid rgba($primary-color, 0.2);
+    transition: all 0.3s ease;
+    cursor: default;
+
+    &:hover {
+        background: $primary-color;
+        color: $text-color;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba($primary-color, 0.3);
+    }
+}

@@ -1,0 +1,45 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.footer {
+    padding: $spacing-xl 0;
+    border-top: 1px solid $border-subtle;
+    background-color: rgba(0, 0, 0, 0.01);
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-lg;
+}
+
+.footer-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $text-color;
+
+    .dot {
+        color: $primary-color;
+    }
+}
+
+.footer-links {
+    display: flex;
+    gap: $spacing-lg;
+
+    a {
+        color: $text-muted;
+        font-size: 0.95rem;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: $primary-color;
+        }
+    }
+}
+
+.copyright {
+    color: $text-muted;
+    font-size: 0.85rem;
+}

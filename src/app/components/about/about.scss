@@ -1,0 +1,83 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.about {
+    padding: $spacing-xl 0;
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: $spacing-xl;
+    font-size: 2.5rem;
+
+    &::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 4px;
+        background-color: $secondary-color;
+        margin: $spacing-sm auto 0;
+        border-radius: 2px;
+    }
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: $spacing-xl;
+    align-items: center;
+
+    @include mobile {
+        grid-template-columns: 1fr;
+    }
+}
+
+.bio p {
+    margin-bottom: $spacing-md;
+    color: $text-secondary;
+    font-size: 1.1rem;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+
+    @include mobile {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.stat-item {
+    @include glass;
+    padding: $spacing-lg;
+    text-align: center;
+    border-radius: 1rem;
+    transition: transform 0.3s ease;
+    height: 100%; // Ensure uniform height
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+        transform: translateY(-5px);
+        border-color: $primary-color;
+    }
+}
+
+.stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $primary-color;
+    margin-bottom: $spacing-sm;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}

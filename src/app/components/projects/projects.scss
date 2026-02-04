@@ -1,0 +1,144 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.projects {
+    padding: $spacing-xl 0;
+    background-color: rgba(0, 0, 0, 0.01);
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: $spacing-xl;
+    font-size: 2.5rem;
+
+    &::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 4px;
+        background-color: $secondary-color;
+        margin: $spacing-sm auto 0;
+        border-radius: 2px;
+    }
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: $spacing-lg;
+    padding: 0 $spacing-sm;
+    align-items: center; // Vertically center cards
+}
+
+.project-card {
+    @include glass;
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    border: 1px solid $border-subtle;
+    display: flex;
+    flex-direction: column;
+    height: 100%; // Ensure uniform height
+
+    &:hover {
+        transform: translateY(-8px);
+        border-color: rgba($primary-color, 0.3);
+
+        .img-placeholder {
+            transform: scale(1.05);
+        }
+    }
+}
+
+.project-image {
+    height: 200px;
+    overflow: hidden;
+    background-color: $border-subtle;
+}
+
+.img-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.1));
+    transition: transform 0.5s ease;
+
+    &.project-1 {
+        background: linear-gradient(135deg, #4f46e5, #818cf8);
+    }
+
+    &.project-2 {
+        background: linear-gradient(135deg, #ec4899, #f472b6);
+    }
+
+    &.project-3 {
+        background: linear-gradient(135deg, #06b6d4, #22d3ee);
+    }
+}
+
+.project-content {
+    padding: $spacing-lg;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.project-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: $spacing-sm;
+    color: $text-color;
+}
+
+.project-content p {
+    color: $text-muted;
+    margin-bottom: $spacing-md;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    flex: 1;
+}
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: $spacing-lg;
+
+    span {
+        font-size: 0.8rem;
+        color: color-mix(in srgb, $accent-color, white 10%);
+        background: rgba($accent-color, 0.1);
+        padding: 0.25rem 0.75rem;
+        border-radius: 1rem;
+    }
+}
+
+.project-links {
+    display: flex;
+    gap: $spacing-md;
+}
+
+.btn-sm {
+    padding: 0.5rem 1rem;
+    background-color: $primary-color;
+    color: $text-color;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid $primary-color;
+    transition: all 0.3s ease;
+    flex: 1;
+    text-align: center;
+
+    &:hover {
+        background-color: color-mix(in srgb, $primary-color, black 5%);
+    }
+
+    &.outline {
+        background-color: transparent;
+        border-color: rgba(255, 255, 255, 0.3);
+
+        &:hover {
+            border-color: $primary-color;
+            background-color: rgba($primary-color, 0.1);
+        }
+    }
+}

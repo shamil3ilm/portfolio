@@ -1,0 +1,98 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.header {
+    @include glass;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: $spacing-md 0;
+}
+
+.container {
+    @include container;
+    @include flex-between;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $primary-color;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+    .dot {
+        color: $secondary-color;
+    }
+}
+
+.nav-list {
+    display: flex;
+    gap: $spacing-lg;
+
+    @include mobile {
+        display: none; // Placeholder for mobile menu
+    }
+}
+
+.nav-link {
+    font-size: 1rem;
+    font-weight: 500;
+    color: $text-color;
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background-color: $accent-color;
+        transition: width 0.3s ease;
+    }
+
+    &:hover {
+        color: $accent-color;
+
+        &::after {
+            width: 100%;
+        }
+    }
+}
+
+.theme-toggle {
+    background: transparent;
+    border: 2px solid $border-medium;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: $text-color;
+
+    &:hover {
+        border-color: $primary-color;
+        background: rgba($primary-color, 0.1);
+        transform: rotate(180deg);
+    }
+
+    .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease;
+    }
+}
+
+// Light mode specific adjustments
+:root.light-mode {
+    .theme-toggle {
+        border-color: rgba(0, 0, 0, 0.2);
+    }
+}

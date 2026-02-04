@@ -1,0 +1,38 @@
+@use 'variables' as *;
+
+@mixin glass {
+    background: $glass-bg;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid $glass-border;
+    box-shadow: $glass-shadow;
+}
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin mobile {
+    @media (max-width: #{$tablet}) {
+        @content;
+    }
+}
+
+@mixin container {
+    max-width: $wide;
+    margin: 0 auto;
+    padding: 0 2rem; // Increased from 1rem to 2rem for better margin
+    width: 100%;
+
+    @media (max-width: $tablet) {
+        padding: 0 1.25rem;
+    }
+}

@@ -1,0 +1,75 @@
+:root {
+    // Base Colors (Dark Default)
+    --bg-color: #0f172a;
+    --text-color: #f8fafc;
+    --text-secondary: #cbd5e1; // Slate 300
+    --text-muted: #94a3b8; // Slate 400
+    --primary-color: #6366f1;
+    --secondary-color: #ec4899;
+    --accent-color: #38bdf8;
+
+    // Borders and backgrounds
+    --border-subtle: rgba(255, 255, 255, 0.05);
+    --border-light: rgba(255, 255, 255, 0.1);
+    --border-medium: rgba(255, 255, 255, 0.2);
+    --border-strong: rgba(255, 255, 255, 0.3);
+
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+    // Light Mode Overrides
+    &.light-mode {
+        --bg-color: #ffffff;
+        --text-color: #1e293b; // Slate 800
+        --text-secondary: #475569; // Slate 600
+        --text-muted: #64748b; // Slate 500
+        --primary-color: #6366f1;
+        --secondary-color: #ec4899;
+        --accent-color: #0ea5e9;
+
+        // Inverted borders for light mode
+        --border-subtle: rgba(0, 0, 0, 0.05);
+        --border-light: rgba(0, 0, 0, 0.1);
+        --border-medium: rgba(0, 0, 0, 0.15);
+        --border-strong: rgba(0, 0, 0, 0.2);
+
+        --glass-bg: rgba(255, 255, 255, 0.8);
+        --glass-border: rgba(0, 0, 0, 0.1);
+        --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+    }
+}
+
+// SCSS Variables mapped to CSS Variables
+$bg-color: var(--bg-color);
+$text-color: var(--text-color);
+$text-secondary: var(--text-secondary);
+$text-muted: var(--text-muted);
+$primary-color: var(--primary-color);
+$secondary-color: var(--secondary-color);
+$accent-color: var(--accent-color);
+
+$border-subtle: var(--border-subtle);
+$border-light: var(--border-light);
+$border-medium: var(--border-medium);
+$border-strong: var(--border-strong);
+
+$glass-bg: var(--glass-bg);
+$glass-border: var(--glass-border);
+$glass-shadow: var(--glass-shadow);
+
+// Typography
+$font-family-sans: 'Inter', system-ui, -apple-system, sans-serif;
+$font-family-mono: 'Fira Code', monospace;
+
+// Breakpoints
+$mobile: 480px;
+$tablet: 768px;
+$desktop: 1024px;
+$wide: 1280px;
+
+// Spacing
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 2rem;
+$spacing-xl: 4rem;
