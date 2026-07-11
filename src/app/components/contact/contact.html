@@ -4,38 +4,38 @@
             <div class="contact-info">
                 <h2 class="section-title left">Let's Connect</h2>
                 <p class="contact-text">
-                    I'm currently available for freelance work or full-time opportunities.
-                    If you have a project that needs some creative touch, let's chat!
+                    I'm open to backend and full-stack engineering opportunities. Have a role or a
+                    project in mind? Send a message and I'll get back to you.
                 </p>
                 <div class="contact-details">
                     <div class="detail-item">
                         <span class="icon">📧</span>
-                        <a href="mailto:hello@example.com">hello@example.com</a>
+                        <a [href]="'mailto:' + email">{{ email }}</a>
                     </div>
                     <div class="detail-item">
                         <span class="icon">📍</span>
-                        <span>New York, NY</span>
+                        <span>Kerala, India</span>
                     </div>
                 </div>
                 <div class="socials">
-                    <a href="#" (click)="$event.preventDefault()">LinkedIn</a>
-                    <a href="#" (click)="$event.preventDefault()">GitHub</a>
-                    <a href="#" (click)="$event.preventDefault()">Twitter</a>
+                    <a href="https://linkedin.com/in/mohamed3shamil" target="_blank" rel="noopener">LinkedIn</a>
+                    <a href="https://github.com/mohamed3shamil" target="_blank" rel="noopener">GitHub</a>
                 </div>
             </div>
 
-            <form class="contact-form" (submit)="$event.preventDefault()">
+            <form class="contact-form"
+                (submit)="onSubmit($event, nameInput.value, emailInput.value, messageInput.value)">
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" id="name" placeholder="John Doe">
+                    <input type="text" id="name" #nameInput placeholder="Your name">
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="john@example.com">
+                    <input type="email" id="email" #emailInput placeholder="you@example.com">
                 </div>
                 <div class="form-group">
                     <label for="message">Message</label>
-                    <textarea id="message" rows="5" placeholder="Your message..."></textarea>
+                    <textarea id="message" rows="5" #messageInput placeholder="Your message..."></textarea>
                 </div>
                 <button type="submit" class="btn">Send Message</button>
             </form>

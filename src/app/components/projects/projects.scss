@@ -22,12 +22,20 @@
     }
 }
 
+.projects-note {
+    text-align: center;
+    max-width: 640px;
+    margin: -#{$spacing-lg} auto $spacing-lg;
+    color: $text-muted;
+    font-size: 1rem;
+}
+
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: $spacing-lg;
     padding: 0 $spacing-sm;
-    align-items: center; // Vertically center cards
+    align-items: stretch; // Equal-height cards
 }
 
 .project-card {
@@ -72,6 +80,10 @@
 
     &.project-3 {
         background: linear-gradient(135deg, #06b6d4, #22d3ee);
+    }
+
+    &.project-4 {
+        background: linear-gradient(135deg, #6366f1, #a855f7);
     }
 }
 
