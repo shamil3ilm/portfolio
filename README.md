@@ -1,6 +1,6 @@
 # Portfolio — Mohamed Shamil
 
-Personal site at [shamil.dev](https://shamil.dev) (placeholder — update once deployed).
+Live at **[mohamed3shamil.vercel.app](https://mohamed3shamil.vercel.app/)**.
 
 Single-page Angular 21 site positioning me as a full-stack engineer with production
 backend depth. Client-facing: services, case studies, principles, and a booking flow.
