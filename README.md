@@ -1,59 +1,38 @@
-# Portfolio
+# Portfolio — Mohamed Shamil
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.2.
+Personal site at [shamil.dev](https://shamil.dev) (placeholder — update once deployed).
 
-## Development server
+Single-page Angular 21 site positioning me as a full-stack engineer with production
+backend depth. Client-facing: services, case studies, principles, and a booking flow.
 
-To start a local development server, run:
+## Stack
 
-```bash
-ng serve
-```
+- Angular 21 (standalone components, signals, control-flow syntax)
+- TypeScript 5.9
+- SCSS design system (CSS variables for dark/light theming)
+- Vitest for unit tests
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Local development
 
 ```bash
-ng generate component component-name
+npm install
+npm start          # http://localhost:4200
+npm run build      # production build to dist/
+npm test           # Vitest
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Adding testimonials
 
-```bash
-ng generate --help
-```
+Drop quotes into `readonly testimonials: Testimonial[]` in
+`src/app/components/testimonials/testimonials.ts`. The section renders itself
+only when the array is non-empty.
 
-## Building
+## Section map
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- `hero/` — outcome-first headline, availability pill, "Currently" proof card
+- `services/` — three packaged offers with pricing
+- `about/` — positioning prose + "How I work" principles
+- `projects/` — case studies (Problem / Approach / Result) + compact grid
+- `skills/` — domains I've shipped into + tools I reach for
+- `testimonials/` — client quotes (renders when populated)
+- `contact/` — email, "what happens next" ladder, form

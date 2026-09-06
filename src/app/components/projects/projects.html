@@ -1,93 +1,102 @@
 <section class="projects" id="projects">
     <div class="container">
-        <h2 class="section-title">Featured Projects</h2>
-        <p class="projects-note">A selection of personal, self-driven builds — some are active
-            works in progress that stretch beyond my day-to-day backend work.</p>
-        <div class="projects-grid">
-            <!-- Masaar -->
-            <article class="project-card">
-                <div class="project-image">
-                    <div class="img-placeholder project-1"></div>
-                </div>
-                <div class="project-content">
-                    <h3>Masaar — E-Invoicing & ERP</h3>
-                    <p>A multi-tenant, SAP-parity ERP with GCC &amp; India tax compliance built in (ZATCA, VAT, GST,
-                        GOSI). 1,000+ Eloquent models and 3,300+ API routes on a Laravel 12 backend, a React/Turborepo
-                        frontend, and 1,300+ passing tests. Active build.</p>
-                    <div class="tech-stack">
-                        <span>Laravel 12</span>
-                        <span>PHP 8.2</span>
-                        <span>React</span>
-                        <span>Turborepo</span>
-                        <span>Docker</span>
+        <div class="projects-head" appReveal>
+            <span class="eyebrow">Selected Work</span>
+            <h2 class="section-title">A few systems I've shipped.</h2>
+            <p class="projects-lede">
+                Recent, real, and honest about their edges. Every claim below is drawn from
+                shipped code — details available on request.
+            </p>
+        </div>
+
+        <div class="case-stack">
+            @for (study of caseStudies; track study.title; let idx = $index) {
+            <article class="case" [attr.data-accent]="study.accent" appReveal [revealDelay]="idx * 80">
+                <div class="case-side">
+                    <div class="case-visual" [attr.data-accent]="study.accent">
+                        @if (study.image) {
+                        <img [src]="study.image" [alt]="study.title" loading="lazy" />
+                        } @else {
+                        <div class="case-placeholder" aria-hidden="true">
+                            <div class="placeholder-chrome">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="placeholder-label">{{ study.title }}</div>
+                        </div>
+                        }
                     </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mohamed3shamil" target="_blank" rel="noopener" class="btn-sm">GitHub</a>
-                    </div>
-                </div>
-            </article>
-            <!-- Cert-Ed Academia -->
-            <article class="project-card">
-                <div class="project-image">
-                    <div class="img-placeholder project-2"></div>
-                </div>
-                <div class="project-content">
-                    <h3>Cert-Ed Academia</h3>
-                    <p>The web platform for an online 1:1 tuition service (CBSE &amp; ICSE, KG–12): enquiry flows, blog,
-                        structured academic resources, and role-based access for admin, tutor, mentor, and student.
-                        Built on Next.js + Supabase and deployed on Vercel.</p>
-                    <div class="tech-stack">
-                        <span>Next.js</span>
-                        <span>React</span>
-                        <span>Supabase</span>
-                        <span>Vercel</span>
-                        <span>TypeScript</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mohamed3shamil" target="_blank" rel="noopener" class="btn-sm">GitHub</a>
+
+                    <span class="case-kicker">{{ study.kicker }}</span>
+                    <h3 class="case-title">{{ study.title }}</h3>
+                    <p class="case-context">{{ study.context }}</p>
+                    <div class="case-meta">{{ study.meta }}</div>
+                    <div class="case-stack-tags">
+                        @for (tech of study.stack; track tech) {
+                        <span>{{ tech }}</span>
+                        }
                     </div>
                 </div>
-            </article>
-            <!-- Axiom -->
-            <article class="project-card">
-                <div class="project-image">
-                    <div class="img-placeholder project-3"></div>
-                </div>
-                <div class="project-content">
-                    <h3>Axiom — Auth & User Management</h3>
-                    <p>A full-stack demo of the Angular ↔ Laravel Sanctum token-auth flow — a Laravel 12 REST API with
-                        user CRUD, consumed by an Angular 21 SPA over Bearer tokens, in a single monorepo with PHPUnit
-                        and Vitest tests.</p>
-                    <div class="tech-stack">
-                        <span>Angular 21</span>
-                        <span>Laravel 12</span>
-                        <span>Sanctum</span>
-                        <span>TypeScript</span>
+
+                <div class="case-body">
+                    @if (study.stats) {
+                    <div class="case-stats">
+                        @for (stat of study.stats; track stat.label) {
+                        <div class="case-stat">
+                            <span class="stat-value">{{ stat.value }}</span>
+                            <span class="stat-label">{{ stat.label }}</span>
+                        </div>
+                        }
                     </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mohamed3shamil" target="_blank" rel="noopener" class="btn-sm">GitHub</a>
-                    </div>
-                </div>
-            </article>
-            <!-- Portfolio -->
-            <article class="project-card">
-                <div class="project-image">
-                    <div class="img-placeholder project-4"></div>
-                </div>
-                <div class="project-content">
-                    <h3>Developer Portfolio</h3>
-                    <p>This site — a single-page developer portfolio in Angular 21 with a custom SCSS design system,
-                        glassmorphism UI, a mouse-follower effect, and dark/light theming.</p>
-                    <div class="tech-stack">
-                        <span>Angular 21</span>
-                        <span>TypeScript</span>
-                        <span>SCSS</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/mohamed3shamil" target="_blank" rel="noopener" class="btn-sm">GitHub</a>
-                    </div>
+                    }
+
+                    <dl class="case-highlights">
+                        @for (highlight of study.highlights; track highlight.label) {
+                        <div class="highlight">
+                            <dt>{{ highlight.label }}</dt>
+                            <dd>{{ highlight.body }}</dd>
+                        </div>
+                        }
+                    </dl>
+                    <p class="case-outcome">
+                        <span class="outcome-label">Outcome</span>
+                        {{ study.outcome }}
+                    </p>
+
+                    @if (study.demoLink) {
+                    <a class="case-demo-link" [href]="study.demoLink" target="_blank" rel="noopener">
+                        Visit live
+                        <span aria-hidden="true">↗</span>
+                    </a>
+                    }
                 </div>
             </article>
+            }
+        </div>
+
+        <div class="also-built" appReveal>
+            <h3 class="also-built-title">Also built</h3>
+            <div class="small-grid">
+                @for (project of smallProjects; track project.title) {
+                <article class="small-card">
+                    <h4>
+                        @if (project.link) {
+                        <a [href]="project.link" target="_blank" rel="noopener">
+                            {{ project.title }}
+                            <span aria-hidden="true">↗</span>
+                        </a>
+                        } @else {
+                        {{ project.title }}
+                        }
+                    </h4>
+                    <p>{{ project.summary }}</p>
+                    <div class="small-stack">
+                        @for (tech of project.stack; track tech) {
+                        <span>{{ tech }}</span>
+                        }
+                    </div>
+                </article>
+                }
+            </div>
         </div>
     </div>
 </section>

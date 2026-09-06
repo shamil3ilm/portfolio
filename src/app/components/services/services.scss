@@ -1,0 +1,221 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.services {
+    padding: $spacing-xl 0;
+}
+
+.services-head {
+    max-width: 720px;
+    margin-bottom: $spacing-xl;
+}
+
+.eyebrow {
+    display: inline-block;
+    font-family: $font-family-mono;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: $accent-color;
+    margin-bottom: 0.75rem;
+}
+
+.section-title {
+    font-family: $font-family-display;
+    font-weight: 500;
+    font-size: 2.6rem;
+    line-height: 1.15;
+    margin-bottom: $spacing-md;
+    letter-spacing: -0.02em;
+
+    @include mobile {
+        font-size: 2rem;
+    }
+}
+
+.services-lede {
+    font-size: 1.15rem;
+    color: $text-secondary;
+    line-height: 1.65;
+    max-width: 640px;
+    margin: 0;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-lg;
+    margin-bottom: $spacing-lg;
+
+    @media (max-width: $desktop) {
+        grid-template-columns: 1fr;
+        max-width: 560px;
+    }
+}
+
+.service-card {
+    @include glass;
+    padding: $spacing-lg;
+    border-radius: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+
+    &:hover {
+        transform: translateY(-4px);
+        border-color: $border-strong;
+    }
+
+    &.featured {
+        border-color: rgba(99, 102, 241, 0.45);
+        box-shadow:
+            0 20px 50px -20px rgba(99, 102, 241, 0.35),
+            0 0 0 1px rgba(99, 102, 241, 0.25) inset;
+
+        .service-tag {
+            background: linear-gradient(135deg, $primary-color, $secondary-color);
+            color: #fff;
+            border-color: transparent;
+        }
+    }
+}
+
+.service-header {
+    margin-bottom: $spacing-md;
+    padding-bottom: $spacing-md;
+    border-bottom: 1px solid $border-light;
+}
+
+.service-tag {
+    display: inline-block;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-family: $font-family-mono;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: $border-subtle;
+    border: 1px solid $border-light;
+    color: $text-secondary;
+    margin-bottom: 0.85rem;
+}
+
+.service-name {
+    font-size: 1.35rem;
+    margin: 0 0 0.6rem 0;
+    color: $text-color;
+    line-height: 1.3;
+}
+
+.service-meta {
+    display: flex;
+    gap: 0.75rem;
+    align-items: baseline;
+    flex-wrap: wrap;
+}
+
+.service-timeline {
+    font-family: $font-family-mono;
+    font-size: 0.82rem;
+    color: $text-muted;
+}
+
+.service-price {
+    font-family: $font-family-mono;
+    font-size: 0.95rem;
+    color: $accent-color;
+    font-weight: 600;
+
+    &::before {
+        content: '·';
+        margin-right: 0.75rem;
+        color: $text-muted;
+    }
+}
+
+.service-summary {
+    font-size: 0.98rem;
+    color: $text-secondary;
+    line-height: 1.6;
+    margin: 0 0 $spacing-md 0;
+}
+
+.service-deliverables {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 $spacing-lg 0;
+    flex: 1;
+
+    li {
+        display: flex;
+        gap: 0.6rem;
+        align-items: flex-start;
+        font-size: 0.9rem;
+        color: $text-secondary;
+        line-height: 1.5;
+        padding: 0.4rem 0;
+
+        span {
+            flex: 1;
+        }
+    }
+
+    .check {
+        color: $accent-color;
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+}
+
+.service-footer {
+    margin-top: auto;
+    padding-top: $spacing-md;
+    border-top: 1px solid $border-light;
+}
+
+.service-best-for {
+    font-size: 0.86rem;
+    color: $text-muted;
+    line-height: 1.5;
+    margin: 0 0 $spacing-md 0;
+}
+
+.best-for-label {
+    display: block;
+    font-family: $font-family-mono;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $text-muted;
+    margin-bottom: 0.25rem;
+    opacity: 0.8;
+}
+
+.service-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: $primary-color;
+    font-size: 0.95rem;
+    transition: gap 0.2s ease, color 0.2s ease;
+
+    &:hover {
+        color: $secondary-color;
+        gap: 0.75rem;
+    }
+}
+
+.services-footnote {
+    text-align: center;
+    color: $text-muted;
+    font-size: 0.95rem;
+    margin: $spacing-lg 0 0 0;
+
+    a {
+        color: $accent-color;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+    }
+}

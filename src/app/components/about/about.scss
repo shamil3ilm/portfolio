@@ -3,81 +3,198 @@
 
 .about {
     padding: $spacing-xl 0;
-    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.about-head {
+    max-width: 780px;
+    margin-bottom: $spacing-xl;
+}
+
+.eyebrow {
+    display: inline-block;
+    font-family: $font-family-mono;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: $accent-color;
+    margin-bottom: 0.75rem;
 }
 
 .section-title {
-    text-align: center;
-    margin-bottom: $spacing-xl;
-    font-size: 2.5rem;
+    font-family: $font-family-display;
+    font-weight: 500;
+    font-size: 2.6rem;
+    line-height: 1.15;
+    margin-bottom: 0;
+    letter-spacing: -0.02em;
 
-    &::after {
-        content: '';
-        display: block;
-        width: 60px;
-        height: 4px;
-        background-color: $secondary-color;
-        margin: $spacing-sm auto 0;
-        border-radius: 2px;
+    @include mobile {
+        font-size: 2rem;
     }
 }
 
 .about-content {
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
+    grid-template-columns: 1.35fr 1fr;
     gap: $spacing-xl;
-    align-items: center;
+    align-items: start;
 
-    @include mobile {
+    @media (max-width: $desktop) {
         grid-template-columns: 1fr;
+        gap: $spacing-lg;
     }
 }
 
-.bio p {
-    margin-bottom: $spacing-md;
-    color: $text-secondary;
-    font-size: 1.1rem;
-}
+.bio {
+    p {
+        font-size: 1.1rem;
+        color: $text-secondary;
+        line-height: 1.75;
+        margin-bottom: $spacing-md;
 
-.stats {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: $spacing-md;
+        strong {
+            color: $text-color;
+            font-weight: 600;
+        }
 
-    @include mobile {
-        grid-template-columns: repeat(2, 1fr);
+        em {
+            font-family: $font-family-display;
+            font-style: italic;
+            font-weight: 500;
+            color: $text-color;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
     }
 }
 
-.stat-item {
-    @include glass;
-    padding: $spacing-lg;
-    text-align: center;
-    border-radius: 1rem;
-    transition: transform 0.3s ease;
-    height: 100%; // Ensure uniform height
+.side {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    gap: $spacing-md;
+    position: sticky;
+    top: 100px;
 
-    &:hover {
-        transform: translateY(-5px);
-        border-color: $primary-color;
+    @media (max-width: $desktop) {
+        position: static;
     }
 }
 
-.stat-number {
-    display: block;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: $primary-color;
-    margin-bottom: $spacing-sm;
+.portrait-card {
+    @include glass;
+    padding: $spacing-md;
+    border-radius: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
 }
 
-.stat-label {
-    font-size: 0.9rem;
+.portrait {
+    width: 76px;
+    height: 76px;
+    border-radius: 18px;
+    overflow: hidden;
+    flex-shrink: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px -8px rgba(76, 141, 255, 0.4);
+
+    &.has-photo {
+        background: linear-gradient(135deg, $primary-color, $secondary-color);
+    }
+
+    img {
+        display: block;
+    }
+
+    img:not(.portrait-mark) {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.portrait-mark {
+    width: 76px;
+    height: 76px;
+}
+
+.portrait-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+}
+
+.portrait-name {
+    font-family: $font-family-display;
+    font-size: 1.15rem;
+    color: $text-color;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+}
+
+.portrait-role {
+    font-family: $font-family-mono;
+    font-size: 0.72rem;
     color: $text-muted;
+    letter-spacing: 0.05em;
+    line-height: 1.3;
+}
+
+.principles {
+    @include glass;
+    padding: $spacing-lg;
+    border-radius: 1.25rem;
+}
+
+.principles-title {
+    font-family: $font-family-mono;
+    font-size: 0.85rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.12em;
+    color: $accent-color;
+    margin-bottom: $spacing-md;
+    padding-bottom: $spacing-md;
+    border-bottom: 1px solid $border-light;
+}
+
+.principle {
+    display: flex;
+    gap: $spacing-md;
+    padding: $spacing-md 0;
+    border-bottom: 1px solid $border-subtle;
+
+    &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    h4 {
+        font-size: 1rem;
+        color: $text-color;
+        margin: 0 0 0.3rem 0;
+        line-height: 1.35;
+    }
+
+    p {
+        font-size: 0.9rem;
+        color: $text-secondary;
+        line-height: 1.55;
+        margin: 0;
+    }
+}
+
+.principle-num {
+    font-family: $font-family-mono;
+    font-size: 0.78rem;
+    color: $text-muted;
+    padding-top: 4px;
+    min-width: 24px;
+    letter-spacing: 0.05em;
 }

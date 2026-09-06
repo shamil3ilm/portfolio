@@ -3,76 +3,176 @@
 
 .skills {
     padding: $spacing-xl 0;
-    background-color: $bg-color;
+}
+
+.skills-head {
+    max-width: 720px;
+    margin-bottom: $spacing-xl;
+}
+
+.eyebrow {
+    display: inline-block;
+    font-family: $font-family-mono;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: $accent-color;
+    margin-bottom: 0.75rem;
 }
 
 .section-title {
-    text-align: center;
-    margin-bottom: $spacing-xl;
-    font-size: 2.5rem;
+    font-family: $font-family-display;
+    font-weight: 500;
+    font-size: 2.6rem;
+    line-height: 1.15;
+    margin-bottom: $spacing-md;
+    letter-spacing: -0.02em;
 
-    &::after {
-        content: '';
-        display: block;
-        width: 60px;
-        height: 4px;
-        background-color: $primary-color;
-        margin: $spacing-sm auto 0;
-        border-radius: 2px;
+    @include mobile {
+        font-size: 2rem;
     }
 }
 
-.skills-grid {
+.skills-lede {
+    font-size: 1.15rem;
+    color: $text-secondary;
+    line-height: 1.65;
+    max-width: 640px;
+    margin: 0;
+}
+
+.range-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: 1fr 1fr;
     gap: $spacing-lg;
-    max-width: 1000px;
-    margin: 0 auto;
-    align-items: center; // Vertically center cards
+    margin-bottom: $spacing-lg;
+
+    @media (max-width: $desktop) {
+        grid-template-columns: 1fr;
+    }
 }
 
-.skill-category {
+.range-card {
     @include glass;
-    padding: $spacing-xl;
-    border-radius: 1rem;
-    transition: transform 0.3s ease;
-    height: 100%; // Ensure uniform height
+    padding: $spacing-lg;
+    border-radius: 1.25rem;
+}
+
+.range-title {
     display: flex;
-    flex-direction: column;
+    align-items: baseline;
+    gap: 0.75rem;
+    font-size: 1.15rem;
+    color: $text-color;
+    margin: 0 0 $spacing-md 0;
+    padding-bottom: $spacing-md;
+    border-bottom: 1px solid $border-light;
+    letter-spacing: -0.01em;
+}
 
-    &:hover {
-        transform: translateY(-5px);
-    }
+.range-num {
+    font-family: $font-family-mono;
+    font-size: 0.78rem;
+    color: $accent-color;
+    letter-spacing: 0.05em;
+}
 
-    h3 {
-        color: $accent-color;
-        margin-bottom: $spacing-lg;
-        padding-bottom: $spacing-sm;
-        border-bottom: 1px solid rgba($accent-color, 0.2);
-        font-size: 1.5rem;
+.domain-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid $border-subtle;
+
+        &:last-child {
+            border-bottom: none;
+        }
     }
 }
 
-.skill-tags {
+.domain-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: $text-color;
+}
+
+.domain-detail {
+    font-size: 0.88rem;
+    color: $text-secondary;
+    line-height: 1.55;
+}
+
+.tool-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+        display: grid;
+        grid-template-columns: 90px 1fr;
+        gap: $spacing-md;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid $border-subtle;
+        align-items: baseline;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        @include mobile {
+            grid-template-columns: 1fr;
+            gap: 0.4rem;
+        }
+    }
+}
+
+.tool-label {
+    font-family: $font-family-mono;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $text-muted;
+    padding-top: 4px;
+}
+
+.tool-items {
     display: flex;
     flex-wrap: wrap;
-    gap: $spacing-sm;
+    gap: 0.4rem;
 }
 
-.tag {
-    background: rgba($primary-color, 0.1);
-    color: color-mix(in srgb, $primary-color, white 20%);
-    padding: 0.6rem 1.2rem;
-    border-radius: 2rem;
-    font-size: 0.95rem;
-    border: 1px solid rgba($primary-color, 0.2);
-    transition: all 0.3s ease;
-    cursor: default;
+.tool-pill {
+    font-family: $font-family-mono;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    background: $border-subtle;
+    color: $text-secondary;
+    border: 1px solid $border-light;
+}
 
-    &:hover {
-        background: $primary-color;
-        color: $text-color;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 10px rgba($primary-color, 0.3);
-    }
+.skills-footnote {
+    padding: $spacing-md $spacing-lg;
+    border-radius: 0.85rem;
+    background: $border-subtle;
+    border: 1px solid $border-light;
+    color: $text-secondary;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.footnote-label {
+    display: block;
+    font-family: $font-family-mono;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: $accent-color;
+    margin-bottom: 0.35rem;
 }

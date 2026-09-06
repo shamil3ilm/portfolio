@@ -1,43 +1,92 @@
 <section class="contact" id="contact">
     <div class="container">
+        <div class="contact-head" appReveal>
+            <span class="eyebrow">Let's talk</span>
+            <h2 class="section-title">Send a note. I reply within 24 hours.</h2>
+            <p class="contact-lede">
+                Every engagement starts with a 20-minute intro call so we both know it's a
+                fit before you spend anything.
+            </p>
+        </div>
+
         <div class="contact-wrapper">
-            <div class="contact-info">
-                <h2 class="section-title left">Let's Connect</h2>
-                <p class="contact-text">
-                    I'm open to backend and full-stack engineering opportunities. Have a role or a
-                    project in mind? Send a message and I'll get back to you.
-                </p>
-                <div class="contact-details">
-                    <div class="detail-item">
-                        <span class="icon">📧</span>
-                        <a [href]="'mailto:' + email">{{ email }}</a>
-                    </div>
-                    <div class="detail-item">
-                        <span class="icon">📍</span>
-                        <span>Kerala, India</span>
-                    </div>
+            <div class="contact-info" appReveal>
+                <div class="direct-contact">
+                    <span class="direct-label">Direct email</span>
+                    <a class="direct-email" [href]="'mailto:' + email">{{ email }}</a>
                 </div>
+
+                <ol class="what-next">
+                    <li>
+                        <span class="step-num">01</span>
+                        <div>
+                            <h4>Send a rough sketch</h4>
+                            <p>A paragraph or two on what you're building, what's broken, or what you'd like reviewed.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="step-num">02</span>
+                        <div>
+                            <h4>20-min intro call</h4>
+                            <p>Zoom or Google Meet — your pick. We check fit, timeline, and constraints.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="step-num">03</span>
+                        <div>
+                            <h4>Written scope + fixed fee</h4>
+                            <p>Within 48 hours. You know exactly what you're paying for before you decide.</p>
+                        </div>
+                    </li>
+                </ol>
+
                 <div class="socials">
-                    <a href="https://linkedin.com/in/mohamed3shamil" target="_blank" rel="noopener">LinkedIn</a>
-                    <a href="https://github.com/mohamed3shamil" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://linkedin.com/in/mohamed3shamil" target="_blank" rel="noopener">
+                        LinkedIn
+                    </a>
+                    <a href="https://github.com/shamil3ilm" target="_blank" rel="noopener">
+                        GitHub
+                    </a>
                 </div>
             </div>
 
-            <form class="contact-form"
+            <form class="contact-form" appReveal [revealDelay]="120"
                 (submit)="onSubmit($event, nameInput.value, emailInput.value, messageInput.value)">
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" #nameInput placeholder="Your name">
+                    <label for="name">Your name</label>
+                    <input type="text" id="name" #nameInput placeholder="Jane Doe" required
+                        [disabled]="status() === 'submitting'">
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" #emailInput placeholder="you@example.com">
+                    <input type="email" id="email" #emailInput placeholder="jane@company.com" required
+                        [disabled]="status() === 'submitting'">
                 </div>
                 <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" rows="5" #messageInput placeholder="Your message..."></textarea>
+                    <label for="message">What are you building?</label>
+                    <textarea id="message" rows="5" #messageInput
+                        placeholder="A rough sketch is fine — problem, timeline, current stack." required
+                        [disabled]="status() === 'submitting'"></textarea>
                 </div>
-                <button type="submit" class="btn">Send Message</button>
+
+                <button type="submit" class="btn" [disabled]="status() === 'submitting'">
+                    @switch (status()) {
+                    @case ('submitting') { Sending… }
+                    @default { Send &rarr; }
+                    }
+                </button>
+
+                @if (status() === 'success') {
+                <p class="form-feedback success" role="status">
+                    Message sent — I'll reply within 24 hours.
+                </p>
+                } @else if (status() === 'error') {
+                <p class="form-feedback error" role="alert">
+                    {{ errorMessage() }}
+                </p>
+                } @else {
+                <p class="form-note">Same inbox as the direct address.</p>
+                }
             </form>
         </div>
     </div>

@@ -1,0 +1,59 @@
+<section class="services" id="services">
+    <div class="container">
+        <div class="services-head" appReveal>
+            <span class="eyebrow">Services</span>
+            <h2 class="section-title">Three ways to work together.</h2>
+            <p class="services-lede">
+                Fixed scope. Fixed fee. Shipped by the date on the invoice. Every engagement
+                starts with a 20-minute call so we both know it's a fit before you spend money.
+            </p>
+        </div>
+
+        <div class="services-grid">
+            @for (pkg of packages; track pkg.name; let idx = $index) {
+            <article class="service-card" [class.featured]="pkg.featured" appReveal
+                [revealDelay]="idx * 100">
+                <header class="service-header">
+                    <span class="service-tag">{{ pkg.tag }}</span>
+                    <h3 class="service-name">{{ pkg.name }}</h3>
+                    <div class="service-meta">
+                        <span class="service-timeline">{{ pkg.timeline }}</span>
+                        <span class="service-price">{{ pkg.startingPrice }}</span>
+                    </div>
+                </header>
+
+                <p class="service-summary">{{ pkg.summary }}</p>
+
+                <ul class="service-deliverables">
+                    @for (item of pkg.deliverables; track item) {
+                    <li>
+                        <svg class="check" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" aria-hidden="true">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                        <span>{{ item }}</span>
+                    </li>
+                    }
+                </ul>
+
+                <div class="service-footer">
+                    <p class="service-best-for">
+                        <span class="best-for-label">Best for</span>
+                        {{ pkg.bestFor }}
+                    </p>
+                    <a href="#contact" class="service-cta">
+                        {{ pkg.ctaLabel }}
+                        <span aria-hidden="true">→</span>
+                    </a>
+                </div>
+            </article>
+            }
+        </div>
+
+        <p class="services-footnote">
+            Also available: <strong>fractional backend engineer</strong> (monthly retainer,
+            minimum two months, from $2,000/mo). <a href="#contact">Ask</a>.
+        </p>
+    </div>
+</section>

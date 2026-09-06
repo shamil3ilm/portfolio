@@ -1,12 +1,12 @@
 :root {
-    // Base Colors (Dark Default)
-    --bg-color: #0f172a;
+    // Base Colors (Dark Default) — unified with brand mark palette
+    --bg-color: #0E1B2B; // Brand navy (matches logo tile)
     --text-color: #f8fafc;
     --text-secondary: #cbd5e1; // Slate 300
     --text-muted: #94a3b8; // Slate 400
-    --primary-color: #6366f1;
-    --secondary-color: #ec4899;
-    --accent-color: #38bdf8;
+    --primary-color: #6366f1; // Reserved for CTA buttons only
+    --secondary-color: #4C8DFF; // Brand blue — same as accent, kept for legacy binds
+    --accent-color: #4C8DFF; // Brand blue (from logo mark)
 
     // Borders and backgrounds
     --border-subtle: rgba(255, 255, 255, 0.05);
@@ -21,12 +21,12 @@
     // Light Mode Overrides
     &.light-mode {
         --bg-color: #ffffff;
-        --text-color: #1e293b; // Slate 800
+        --text-color: #0E1B2B; // Brand navy for max contrast
         --text-secondary: #475569; // Slate 600
         --text-muted: #64748b; // Slate 500
         --primary-color: #6366f1;
-        --secondary-color: #ec4899;
-        --accent-color: #0ea5e9;
+        --secondary-color: #2A5FD9; // Brand blue on-light variant
+        --accent-color: #2A5FD9; // Brand blue on-light variant
 
         // Inverted borders for light mode
         --border-subtle: rgba(0, 0, 0, 0.05);
@@ -58,9 +58,10 @@ $glass-bg: var(--glass-bg);
 $glass-border: var(--glass-border);
 $glass-shadow: var(--glass-shadow);
 
-// Typography
-$font-family-sans: 'Inter', system-ui, -apple-system, sans-serif;
-$font-family-mono: 'Fira Code', monospace;
+// Typography — coherent Plex + Fraunces system
+$font-family-sans: 'IBM Plex Sans', 'Inter', system-ui, -apple-system, sans-serif;
+$font-family-display: 'Fraunces', 'Georgia', serif;
+$font-family-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
 // Breakpoints
 $mobile: 480px;

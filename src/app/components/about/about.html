@@ -1,36 +1,87 @@
 <section class="about" id="about">
     <div class="container">
-        <h2 class="section-title">About Me</h2>
+        <div class="about-head" appReveal>
+            <span class="eyebrow">Why me</span>
+            <h2 class="section-title">Systems that run unattended, and don't wake anyone up.</h2>
+        </div>
+
         <div class="about-content">
-            <div class="bio">
+            <div class="bio" appReveal>
                 <p>
-                    I'm a software engineer focused on <strong>backend financial workflow systems</strong>. At
-                    Zil Money I work on production payments infrastructure — ACH operations, payroll checks,
-                    recurring-payment engines, and automated check-mailing — built on Laravel, MySQL, Redis, and
-                    asynchronous, queue-based job processing.
+                    I build production web systems end to end — from Laravel APIs and
+                    background-job pipelines to Next.js portals and Angular SPAs — for
+                    founders and product teams who need something that <em>works</em>, not
+                    something that only demos well.
                 </p>
                 <p>
-                    I like turning messy operational problems into clean, well-structured service layers, and I
-                    care about production safety: transactions with rollbacks, audit trails, and verifying a change
-                    end to end before trusting it. Outside of work I build full-stack across
-                    <strong>Angular, React, and Next.js</strong> — from a multi-tenant ERP and a GCC e-invoicing
-                    compliance API to ed-tech and desktop apps.
+                    I care about production safety in the way that only comes from watching
+                    your own code run at 3&nbsp;am — transactions with rollbacks, audit trails
+                    treated as preconditions rather than nice-to-haves, uniform errors that
+                    don't leak server detail, and purpose-built test harnesses when the UI
+                    can't reach the surface you need to verify.
+                </p>
+                <p>
+                    Recent work includes the <strong>Cert-Ed Academia</strong> tuition
+                    platform — a Next.js + Supabase app with 184 row-level-security policies
+                    and a real test suite — plus ambitious backend R&D on a GCC e-invoicing
+                    engine and a multi-tenant ERP. Production-safety instincts come from
+                    ongoing engineering in payments infrastructure. I choose the tool that
+                    fits the problem, not the tool I already know.
                 </p>
             </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <span class="stat-number">1+</span>
-                    <span class="stat-label">Years Experience</span>
+
+            <aside class="side" aria-label="About sidebar">
+                <div class="portrait-card" appReveal [revealDelay]="120">
+                    <div class="portrait" [class.has-photo]="hasPhoto">
+                        @if (hasPhoto) {
+                        <img [src]="photoSrc" [alt]="photoAlt" loading="lazy" />
+                        } @else {
+                        <img src="logo-mark.svg" alt="Mohamed Shamil monogram" class="portrait-mark" width="76"
+                            height="76" />
+                        }
+                    </div>
+                    <div class="portrait-meta">
+                        <span class="portrait-name">{{ name }}</span>
+                        <span class="portrait-role">{{ roleTag }}</span>
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <span class="stat-number">8+</span>
-                    <span class="stat-label">Projects Built</span>
+
+                <div class="principles" aria-label="How I work" appReveal [revealDelay]="220">
+                    <h3 class="principles-title">How I work</h3>
+
+                    <div class="principle">
+                        <span class="principle-num">01</span>
+                        <div>
+                            <h4>Fail closed.</h4>
+                            <p>No audit row, no request. Ambiguous state refuses rather than guesses.</p>
+                        </div>
+                    </div>
+
+                    <div class="principle">
+                        <span class="principle-num">02</span>
+                        <div>
+                            <h4>Verify at the point of use.</h4>
+                            <p>A payment's destination is re-checked at release, not trusted from approval.</p>
+                        </div>
+                    </div>
+
+                    <div class="principle">
+                        <span class="principle-num">03</span>
+                        <div>
+                            <h4>Change minimalism.</h4>
+                            <p>On a feature branch, only that feature's code moves. Backwards-compatible by construction.</p>
+                        </div>
+                    </div>
+
+                    <div class="principle">
+                        <span class="principle-num">04</span>
+                        <div>
+                            <h4>Evidence before claims.</h4>
+                            <p>No "should work" without a fresh, verified end-to-end run.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <span class="stat-number">70+</span>
-                    <span class="stat-label">PRs Shipped</span>
-                </div>
-            </div>
+            </aside>
         </div>
     </div>
 </section>

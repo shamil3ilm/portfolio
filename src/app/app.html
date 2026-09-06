@@ -1,13 +1,16 @@
-<app-mouse-follower></app-mouse-follower>
 <app-header></app-header>
 <main>
   <app-hero id="hero"></app-hero>
+  <app-services id="services"></app-services>
   <app-about id="about"></app-about>
   <!-- Experience section hidden for now — re-enable by uncommenting this line
        and the matching entries in app.ts and header.html -->
   <!-- <app-experience id="experience"></app-experience> -->
   <app-skills id="skills"></app-skills>
   <app-projects id="projects"></app-projects>
+  <!-- Testimonials renders itself only when the quotes[] array in
+       testimonials.ts is non-empty. Drop real quotes there to publish. -->
+  <app-testimonials></app-testimonials>
   <app-contact id="contact"></app-contact>
 </main>
 <app-footer></app-footer>
