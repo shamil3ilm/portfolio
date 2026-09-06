@@ -21,7 +21,7 @@ export class Contact {
   //
   //   Option B — Formspree:
   //     https://formspree.io → paste your form URL into `formEndpoint`
-  readonly formAccessKey = '';
+  readonly formAccessKey = 'b79fde32-8312-4134-9489-14b35bc152d8';
   readonly formEndpoint = '';
 
   readonly status = signal<SubmitStatus>('idle');
@@ -61,9 +61,7 @@ export class Contact {
       );
     } catch {
       this.status.set('error');
-      this.errorMessage.set(
-        'Network error. Please email me directly at ' + this.email + '.',
-      );
+      this.errorMessage.set('Network error. Please email me directly at ' + this.email + '.');
     }
   }
 
