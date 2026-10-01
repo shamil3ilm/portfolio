@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Résumé — Mohamed Shamil</title>
+  <meta name="description" content="Résumé of Mohamed Shamil Abdul Salam, backend-focused software engineer in payments, access control and compliance.">
+  <meta name="author" content="Mohamed Shamil Abdul Salam">
+  <link rel="canonical" href="https://mohamed3shamil.vercel.app/resume.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mohamed3shamil.vercel.app/resume.html">
+  <meta property="og:title" content="Résumé — Mohamed Shamil">
+  <meta property="og:description" content="Résumé of Mohamed Shamil Abdul Salam, backend-focused software engineer in payments, access control and compliance.">
+  <meta property="og:image" content="https://mohamed3shamil.vercel.app/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    try {
+      var saved = localStorage.getItem('theme');
+      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+    } catch (e) {}
+  </script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="Mohamed Shamil, home">
+        <img src="favicon.svg" alt="" width="32" height="32">
+        <span>Mohamed Shamil</span>
+      </a>
+      <nav class="nav" id="site-nav" aria-label="Sections">
+        <a href="index.html#play">Play</a>
+        <a href="index.html#help">Services</a>
+        <a href="index.html#work">Work</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="playground.html">Playground</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="resume.html" aria-current="page">Résumé</a>
+      </nav>
+      <button class="icon-btn palette-open" type="button" data-palette-open aria-label="Search the site (Ctrl+K)">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <kbd class="palette-kbd">Ctrl K</kbd>
+      </button>
+      <button class="theme-toggle" type="button" aria-label="Switch colour theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <button class="icon-btn menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="page-hero container resume-head">
+      <div class="resume-top">
+        <div>
+          <h1>Mohamed Shamil Abdul Salam</h1>
+          <p class="resume-role">Software Engineer | Backend Developer | Fintech</p>
+          <p class="resume-contact"><a href="mailto:mhmdshamil03@gmail.com">mhmdshamil03@gmail.com</a> | <a href="https://linkedin.com/in/mohamed3shamil">LinkedIn</a> | <a href="https://github.com/shamil3ilm">GitHub</a> | <a href="https://mohamed3shamil.vercel.app/">mohamed3shamil.vercel.app</a></p>
+        </div>
+        <div class="resume-actions no-print">
+          <button type="button" class="btn btn-primary" onclick="window.print()">Save as PDF</button>
+          <a class="btn btn-ghost" href="index.html">Back to the site</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="container resume">
+      <section>
+        <h2>Professional summary</h2>
+        <p>Software Engineer focused on backend systems and financial workflows, with hands-on experience in Laravel, PHP, MySQL, REST APIs, asynchronous processing, webhooks, and third-party integrations. Experience working on payment, ACH, check, recurring transaction, payroll, banking, and accounting workflows in production, with emphasis on reliability, data integrity, security, and production debugging.</p>
+      </section>
+
+      <section>
+        <h2>Professional experience</h2>
+        <div class="resume-job">
+          <p class="resume-line"><span class="resume-what"><strong>Software Engineer</strong></span><span class="resume-when">Dec 2025 – Present</span></p>
+          <p class="resume-org">Zil Money, Kerala, India</p>
+          <ul>
+            <li>Built a service-provider “act-as-customer” API layer bringing 450 existing endpoints under delegated access, spanning 7 payment services and 38 webhook event types with audit trails and controls preventing providers from approving their own payments.</li>
+            <li>Hardened multi-level payment approvals by recording a destination fingerprint at payment creation, re-checking 3 bank fields at release, locking 3 payee/bank edit paths while payments are pending, and enforcing refusal handling across 4 approval entry points.</li>
+            <li>Automated recurring-payment safeguards across 5 payment types and 4 deletion paths, preventing execution against deleted destinations and correcting bulk-cancellation behavior across selected schedules.</li>
+            <li>Instrumented 16 AI features across 18 call sites for cost, token, and latency observability, enabling feature-level tracking of LLM usage and spend.</li>
+            <li>Shifted wallet-statement exports exceeding 1,000 transactions to background processing with PDF, CSV, and XLSX delivery, while maintaining Positive Pay fraud-prevention processing across 17 banking integrations.</li>
+          </ul>
+        </div>
+        <div class="resume-job">
+          <p class="resume-line"><span class="resume-what"><strong>PHP Laravel Intern</strong></span><span class="resume-when">Jun 2025 – Nov 2025</span></p>
+          <p class="resume-org">Netplex Solutions, Dubai, UAE (Remote)</p>
+          <ul>
+            <li>Delivered Laravel backend functionality for billing automation and business-process workflows, implementing reusable service-layer components and database-driven business logic.</li>
+          </ul>
+        </div>
+        <div class="resume-job">
+          <p class="resume-line"><span class="resume-what"><strong>Web Developer Intern</strong></span><span class="resume-when">Jun 2024 – Jul 2024</span></p>
+          <p class="resume-org">Inker Robotics, Thrissur, India</p>
+          <ul>
+            <li>Supported web development, usability improvements, testing, documentation, and technology-focused educational initiatives.</li>
+          </ul>
+        </div>
+        <div class="resume-job">
+          <p class="resume-line"><span class="resume-what"><strong>Executive Manager</strong></span><span class="resume-when">Jan 2024 – May 2025</span></p>
+          <p class="resume-org">Cert-Ed Academia, Kerala, India</p>
+          <ul>
+            <li>Managed financial and operational workflows while advising on technology and digital process improvements for an education-focused organization supporting 50+ learners.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Projects</h2>
+        <div class="resume-job">
+          <p class="resume-line"><span class="resume-what"><strong>Cert-Ed Academia – Education Management Platform</strong></span><span class="resume-when resume-stack">Next.js, TypeScript, Supabase</span></p>
+          <ul>
+            <li>Developed a 5-role education platform covering classes, assignments, grading, per-session attendance, hours-based billing, receipts, payslips, messaging, and scheduling.</li>
+            <li>Enforced access through 18 application-level capabilities and 50+ PostgreSQL row-level security policies, supported by 100+ unit tests and per-role database checks in CI.</li>
+          </ul>
+        </div>
+        <div class="resume-job">
+          <p class="resume-line"><span class="resume-what"><strong>Masaar – E-Invoicing System</strong></span><span class="resume-when resume-stack">Laravel, PHP, MySQL</span></p>
+          <ul>
+            <li>Building an e-invoicing system with core functionality for electronic invoice generation, signing, QR processing, certificate management, and compliance-oriented workflows.</li>
+          </ul>
+        </div>
+        <div class="resume-job">
+          <p class="resume-line"><span class="resume-what"><strong>Athar – Application Security Runtime</strong></span><span class="resume-when resume-stack">Rust, Laravel, PHP, SQLite</span></p>
+          <ul>
+            <li>Prototyping a security runtime with a Rust service and PHP/Laravel adapter that links payment events into lifecycles, records decision reasoning, and maintains a hash-chained, signed audit log.</li>
+          </ul>
+        </div>
+        <div class="resume-job">
+          <p class="resume-line"><span class="resume-what"><strong>Time – Workplace Time &amp; Attendance Tool</strong></span><span class="resume-when resume-stack">TypeScript, SQLite, REST APIs</span></p>
+          <ul>
+            <li>Built a work-hours tracker used daily by 10+ colleagues and evolved it into a serverless multi-user service with encrypted credential storage and hourly data synchronization.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="resume-skills">
+        <h2>Technical skills</h2>
+        <p><strong>Languages:</strong> PHP, TypeScript, JavaScript, Python, SQL</p>
+        <p><strong>Backend:</strong> Laravel, REST APIs, Eloquent, MVC, Queues, Jobs, Events, Webhooks, Middleware</p>
+        <p><strong>Databases:</strong> MySQL, PostgreSQL, SQLite, Supabase</p>
+        <p><strong>Frontend:</strong> React, Next.js, Angular, Blade, Tailwind CSS</p>
+        <p><strong>Engineering:</strong> API Integration, Asynchronous Processing, Transactions, Concurrency, Idempotency, Multi-Tenancy, Authorization, Audit Trails, Production Debugging</p>
+        <p><strong>Tools:</strong> Git, Composer, Node.js, Vite, CI/CD</p>
+      </section>
+
+      <section>
+        <h2>Education</h2>
+        <div class="resume-job">
+          <p class="resume-line"><span class="resume-what"><strong>B.Tech in Computer Science and Engineering</strong></span><span class="resume-when">2021 – 2025</span></p>
+          <p class="resume-org"><em>Adi Shankara Institute of Engineering and Technology</em></p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© 2026 Mohamed Shamil Abdul Salam</span>
+      <nav class="footer-links" aria-label="Elsewhere">
+        <a href="https://github.com/shamil3ilm" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/mohamed3shamil" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:mhmdshamil03@gmail.com">Email</a>
+        <a href="#top">Back to top ↑</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="ui.js"></script>
+  <script src="palette.js"></script>
+</body>
+</html>

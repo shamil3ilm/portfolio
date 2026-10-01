@@ -1,0 +1,7 @@
+README.md
+.editorconfig
+.gitignore
+.vercelignore
+node_modules
+dist
+.angular

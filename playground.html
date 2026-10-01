@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Playground — Mohamed Shamil</title>
+  <meta name="description" content="Working demos of systems I have built: delegated account access, recurring payment safeguards, AI cost tracking, e-invoice QR codes, signed webhooks and scheduling.">
+  <meta name="author" content="Mohamed Shamil Abdul Salam">
+  <link rel="canonical" href="https://mohamed3shamil.vercel.app/playground.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mohamed3shamil.vercel.app/playground.html">
+  <meta property="og:title" content="Playground — Mohamed Shamil">
+  <meta property="og:description" content="Working demos of systems I have built: delegated account access, recurring payment safeguards, AI cost tracking and more.">
+  <meta property="og:image" content="https://mohamed3shamil.vercel.app/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://mohamed3shamil.vercel.app/og-image.png">
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    try {
+      var saved = localStorage.getItem('theme');
+      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+    } catch (e) {}
+  </script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="Mohamed Shamil, home">
+        <img src="favicon.svg" alt="" width="32" height="32">
+        <span>Mohamed Shamil</span>
+      </a>
+      <nav class="nav" id="site-nav" aria-label="Sections">
+        <a href="index.html#help">Services</a>
+        <a href="index.html#work">Work</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="playground.html" aria-current="page">Playground</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="resume.html">Résumé</a>
+      </nav>
+      <button class="icon-btn palette-open" type="button" data-palette-open aria-label="Search the site (Ctrl+K)">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <kbd class="palette-kbd">Ctrl K</kbd>
+      </button>
+      <button class="theme-toggle" type="button" aria-label="Switch colour theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <button class="icon-btn menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="container pg-intro">
+      <p class="eyebrow">Playground</p>
+      <h1>Working demos of things I've built.</h1>
+      <p class="lead">
+        Simplified, working models of real systems from my job and my own projects. Everything runs
+        in your browser: nothing is sent anywhere, and all names and data are made up.
+      </p>
+      <nav class="pg-jump" aria-label="Demos">
+        <a href="#delegated-access">Delegated access</a>
+        <a href="#recurring">Recurring safeguards</a>
+        <a href="#ai-usage">AI cost tracking</a>
+        <a href="#qr">E-invoice QR</a>
+        <a href="#webhook">Webhook signatures</a>
+        <a href="#schedule">Scheduling</a>
+        <a href="#qr-maker">QR code maker</a>
+        <a href="#crypto">Lock &amp; unlock</a>
+        <a href="#tools">Handy tools</a>
+      </nav>
+    </section>
+
+    <div class="container pg-grid">
+
+      <!-- Delegated account access -->
+      <article class="pg-card pg-wide" id="delegated-access">
+        <div class="pg-head">
+          <div class="pg-tagrow"><span class="tag">Fintech · Delegated access</span></div>
+          <h2>Delegated account access</h2>
+          <p class="pg-desc">A service provider, like a payroll company, works on its customers' accounts. Access starts with a <em>single-use key</em> from the customer, every call is logged, and every refusal gives the same answer, while the log records the real reason.</p>
+          <p class="pg-why"><strong>Why it matters:</strong> a trusted provider can help run a customer's account, every action stays traceable, and access can be cut off instantly.</p>
+          <p class="pg-try" data-provider="try"><strong>Try this:</strong> create a key, connect a provider with it, then create a payment and try to approve it.</p>
+        </div>
+        <div class="provider-layout">
+          <div class="provider-steps">
+            <div class="pg-step">
+              <span class="pg-step-num">1</span>
+              <div>
+                <p class="pg-step-title">A customer creates a connect key</p>
+                <div class="pg-row pg-row-action">
+                  <label class="pg-label">Key for<select data-provider="owner"></select></label>
+                  <button type="button" class="chip-btn" data-provider-action="mint">Create connect key</button>
+                </div>
+                <ul class="pg-keys" data-provider="keys"></ul>
+              </div>
+            </div>
+            <div class="pg-step">
+              <span class="pg-step-num">2</span>
+              <div>
+                <p class="pg-step-title">A provider connects with the key</p>
+                <div class="pg-row">
+                  <label class="pg-label">Provider<select data-provider="who"></select></label>
+                  <label class="pg-label">Connect key<input type="text" data-provider="key-input" placeholder="ck_…" autocomplete="off" spellcheck="false"></label>
+                </div>
+                <div class="demo-actions">
+                  <button type="button" class="chip-btn chip-strong" data-provider-action="connect">Connect</button>
+                </div>
+              </div>
+            </div>
+            <div class="pg-step">
+              <span class="pg-step-num">3</span>
+              <div>
+                <p class="pg-step-title">A provider calls the API as a customer</p>
+                <div class="pg-row">
+                  <label class="pg-label">Provider<select data-provider="caller"></select></label>
+                  <label class="pg-label">Act as<select data-provider="as"></select></label>
+                </div>
+                <div class="pg-row">
+                  <label class="pg-label">Request<select data-provider="call">
+                    <option value="list">View payments</option>
+                    <option value="create">Create a payment</option>
+                    <option value="approve">Approve a payment</option>
+                  </select></label>
+                  <label class="pg-label" data-provider="amount-field">Amount ($)<input type="text" data-provider="amount" inputmode="numeric" autocomplete="off"></label>
+                </div>
+                <div class="demo-actions">
+                  <button type="button" class="chip-btn chip-strong" data-provider-action="send">Send request</button>
+                </div>
+                <div class="pg-controls">
+                  <label class="pg-switch"><input type="checkbox" data-provider="provider-suspend"> <span data-provider-label="provider-suspend"></span></label>
+                  <label class="pg-switch"><input type="checkbox" data-provider="suspend"> <span data-provider-label="suspend"></span></label>
+                  <label class="pg-switch"><input type="checkbox" data-provider="subscribed"> <span data-provider-label="subscribed"></span></label>
+                </div>
+              </div>
+            </div>
+            <button type="button" class="chip-btn chip-quiet" data-provider-action="reset">New example</button>
+          </div>
+          <div class="provider-out">
+            <p class="pg-mini">What the provider sees</p>
+            <pre class="pg-response" data-provider="response">—</pre>
+            <p class="pg-mini">Activity log kept by the platform</p>
+            <ol class="pg-log" data-provider="log"></ol>
+          </div>
+        </div>
+        <p class="pg-note">A simplified model of a system I built. Names, keys and data are made up.</p>
+      </article>
+
+      <!-- Recurring payment safeguards -->
+      <article class="pg-card" id="recurring">
+        <div class="pg-head">
+          <div class="pg-tagrow"><span class="tag">Fintech · Recurring payments</span></div>
+          <h2>Recurring payment safeguards</h2>
+          <p class="pg-desc">Scheduled payments must stop when the person they pay is removed. Delete a recipient, or cancel several schedules at once, and watch what happens.</p>
+          <p class="pg-why"><strong>Why it matters:</strong> money never keeps going to someone who has been removed, and cancelling really cancels.</p>
+          <p class="pg-try" data-rec="try"><strong>Try this:</strong> delete a recipient or a bank account. Or tick two schedules and cancel them with the old bug switched on.</p>
+        </div>
+        <table class="pg-table rec-table">
+          <thead><tr><th><span class="sr-only">Select</span></th><th>Schedule</th><th>Status</th><th>Upcoming payments</th></tr></thead>
+          <tbody data-rec="rows"></tbody>
+        </table>
+        <div class="demo-actions">
+          <button type="button" class="chip-btn" data-rec-action="cancel">Cancel selected</button>
+          <label class="pg-switch"><input type="checkbox" data-rec="bug"> Show the old bug</label>
+        </div>
+        <div class="rec-deletes">
+          <div>
+            <p class="pg-mini">Recipients</p>
+            <div class="rec-payees" data-rec="payees"></div>
+          </div>
+          <div>
+            <p class="pg-mini">Bank accounts</p>
+            <div class="rec-payees" data-rec="accounts"></div>
+          </div>
+        </div>
+        <details class="rec-add">
+          <summary>Add a schedule</summary>
+          <div class="pg-row">
+            <label class="pg-label">Name<input type="text" data-rec-add="name" placeholder="e.g. Office rent" autocomplete="off"></label>
+            <label class="pg-label">Type<select data-rec-add="type">
+              <option>ACH</option>
+              <option>Mailed check</option>
+              <option>Email check</option>
+              <option>Direct deposit</option>
+              <option>Get-paid form</option>
+            </select></label>
+          </div>
+          <div class="pg-row">
+            <label class="pg-label" data-rec-add="payee-field">Recipient<input type="text" data-rec-add="payee" list="rec-payee-list" placeholder="Existing or new" autocomplete="off"></label>
+            <label class="pg-label">Bank account<select data-rec-add="account"></select></label>
+          </div>
+          <datalist id="rec-payee-list"></datalist>
+          <button type="button" class="chip-btn chip-strong" data-rec-action="add">Add schedule</button>
+        </details>
+        <div class="rec-confirm" data-rec="confirm" hidden></div>
+        <ol class="pg-log" data-rec="log"></ol>
+        <button type="button" class="chip-btn chip-quiet" data-rec-action="reset">New example</button>
+        <p class="pg-note">A simplified model of a system I built. Names and data are made up.</p>
+      </article>
+
+      <!-- AI usage tracking -->
+      <article class="pg-card" id="ai-usage">
+        <div class="pg-head">
+          <div class="pg-tagrow"><span class="tag">AI · Cost tracking</span></div>
+          <h2>AI usage and cost tracking</h2>
+          <p class="pg-desc">Every AI call is logged with its feature, model, tokens, cost and time, so spend is visible per feature instead of arriving as one surprise bill.</p>
+          <p class="pg-why"><strong>Why it matters:</strong> a company can see exactly which AI feature costs what, before the bill arrives.</p>
+          <p class="pg-try"><strong>Try this:</strong> run each feature a few times, make one fail, then switch the view to "by model".</p>
+        </div>
+        <div class="demo-actions">
+          <button type="button" class="chip-btn" data-ai-feature="receipt">Read a receipt</button>
+          <button type="button" class="chip-btn" data-ai-feature="reply">Draft a reply</button>
+          <button type="button" class="chip-btn" data-ai-feature="classify">Classify a business</button>
+          <label class="pg-switch"><input type="checkbox" data-ai="fail"> Make the next call fail</label>
+        </div>
+        <div class="ai-tiles" data-ai="tiles"></div>
+        <div class="pg-controls">
+          <div class="pg-segment" role="radiogroup" aria-label="Group the costs">
+            <label><input type="radio" name="ai-group" value="feature" data-ai="group" checked><span>By feature</span></label>
+            <label><input type="radio" name="ai-group" value="model" data-ai="group"><span>By model</span></label>
+          </div>
+        </div>
+        <div class="pg-table-wrap">
+          <table class="pg-table ai-table">
+            <thead><tr><th data-ai="group-label">Feature</th><th>Calls</th><th>Tokens</th><th>Cost</th><th>Avg time</th></tr></thead>
+            <tbody data-ai="summary"></tbody>
+          </table>
+        </div>
+        <div class="ai-bars" data-ai="bars" aria-hidden="true"></div>
+        <ol class="pg-log" data-ai="log"></ol>
+        <button type="button" class="chip-btn chip-quiet" data-ai-action="reset">Reset</button>
+        <p class="pg-note">Example rates, not real prices. Calls are simulated; the tracking logic is the point.</p>
+      </article>
+
+      <!-- E-invoice QR -->
+      <article class="pg-card pg-wide" id="qr">
+        <div class="pg-head">
+          <div class="pg-tagrow"><span class="tag">Compliance · E-invoicing</span></div>
+          <h2>Saudi e-invoice QR code</h2>
+          <p class="pg-desc">Fill in an invoice and get a QR code in the Saudi tax authority's official format, the same one Masaar produces. Scan it with any phone camera.</p>
+          <p class="pg-why"><strong>Why it matters:</strong> invoices in Saudi Arabia must carry this QR code, so anyone can check the seller, VAT number, date and totals.</p>
+          <p class="pg-try"><strong>Try this:</strong> change the total and watch the code update, then scan it with your phone or download it.</p>
+        </div>
+        <div class="qr-layout">
+          <form class="pg-form" data-qr="form" novalidate>
+            <label>Seller name<input name="seller" type="text" value="Al Noor Trading Co." maxlength="80" autocomplete="off"></label>
+            <label>VAT number<input name="vat" type="text" value="300000000000003" maxlength="15" inputmode="numeric" autocomplete="off"></label>
+            <label>Invoice date and time<input name="time" type="datetime-local"></label>
+            <div class="pg-row">
+              <label>Total incl. VAT (SAR)<input name="total" type="text" value="1,150.00" inputmode="decimal" autocomplete="off"></label>
+              <label>VAT (15%)<input name="vatAmount" type="text" value="150.00" inputmode="decimal" autocomplete="off" readonly></label>
+            </div>
+            <p class="pg-hint" data-qr="hint" role="status" aria-live="polite"></p>
+          </form>
+          <div class="qr-out">
+            <div class="qr-img" data-qr="img" role="img" aria-label="E-invoice QR code"></div>
+            <button type="button" class="chip-btn qr-download" data-qr="download">Download QR</button>
+          </div>
+        </div>
+        <details class="pg-details">
+          <summary>See what's inside the QR</summary>
+          <p class="pg-mini">The text stored inside the QR</p>
+          <code class="pg-code" data-qr="b64"></code>
+          <table class="pg-table" data-qr="decoded">
+            <thead><tr><th>Tag</th><th>Field</th><th>Bytes</th><th>Value</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </details>
+        <details class="pg-details">
+          <summary>Read an e-invoice QR</summary>
+          <p class="pg-mini">Paste the text from any Saudi e-invoice QR code (a phone's QR scanner shows it).</p>
+          <textarea class="qr-paste" data-qr="paste" aria-label="Paste the text from an e-invoice QR code" rows="2" spellcheck="false" placeholder="Paste QR text here"></textarea>
+          <div class="demo-actions"><button type="button" class="chip-btn" data-qr="read">Read it</button></div>
+          <p class="pg-hint" data-qr="read-result" role="status" aria-live="polite"></p>
+          <table class="pg-table" data-qr="read-table" hidden>
+            <thead><tr><th>Field</th><th>Value</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </details>
+        <p class="pg-note">Phase 1 fields (tags 1–5). Phase 2 adds a digital signature and certificate data (tags 6–9), which need a certificate issued by the tax authority.</p>
+      </article>
+
+      <!-- Webhook signatures -->
+      <article class="pg-card" id="webhook">
+        <div class="pg-head">
+          <div class="pg-tagrow"><span class="tag">Integrations · Webhooks</span></div>
+          <h2>Webhook signature check</h2>
+          <p class="pg-desc">Each event is signed with a secret only the sender and receiver know. Change anything in it, or use the wrong secret, and the receiver rejects it.</p>
+          <p class="pg-why"><strong>Why it matters:</strong> a fake or altered notification, like a forged "invoice paid", is never trusted.</p>
+          <p class="pg-try"><strong>Try this:</strong> change the amount, or use a wrong secret.</p>
+        </div>
+        <div class="hook-top">
+          <p class="pg-mini">Message received</p>
+          <div class="pg-segment" role="radiogroup" aria-label="How to show the message">
+            <label><input type="radio" name="hook-view" value="plain" data-hook="view" checked><span>Plain</span></label>
+            <label><input type="radio" name="hook-view" value="tech" data-hook="view"><span>Technical</span></label>
+          </div>
+        </div>
+        <div data-hook="plain-view">
+          <div class="hook-card" data-hook="summary"></div>
+          <label class="pg-label">Amount in the message (SAR)<input type="text" data-hook="amount" inputmode="decimal" autocomplete="off"></label>
+        </div>
+        <div data-hook="tech-view" hidden>
+          <label class="pg-label">Raw message<textarea class="hook-payload" data-hook="payload" rows="7" spellcheck="false"></textarea></label>
+          <label class="pg-label">Signature sent with it<input type="text" data-hook="header" readonly></label>
+        </div>
+        <label class="pg-label">Shared secret (the receiver's copy)<input type="text" data-hook="secret" autocomplete="off" spellcheck="false"></label>
+        <div class="demo-actions">
+          <button type="button" class="chip-btn" data-hook-action="tamper">Change the amount</button>
+          <button type="button" class="chip-btn" data-hook-action="secret">Use a wrong secret</button>
+          <button type="button" class="chip-btn chip-quiet" data-hook-action="reset">Send a fresh event</button>
+        </div>
+        <p class="demo-result" data-hook="result" role="status" aria-live="polite"></p>
+        <p class="pg-note">Modelled on the signed webhooks in Masaar.</p>
+      </article>
+
+      <!-- Scheduling -->
+      <article class="pg-card" id="schedule">
+        <div class="pg-head">
+          <div class="pg-tagrow"><span class="tag">Scheduling · Time zones</span></div>
+          <h2>Schedule and time-zone preview</h2>
+          <p class="pg-desc">A monthly payment on a set day and time. When does it really run? Short months and time zones are where scheduling bugs hide.</p>
+          <p class="pg-why"><strong>Why it matters:</strong> a payment set for the 31st still runs in shorter months, and a time-zone mix-up never silently skips a run.</p>
+          <p class="pg-try"><strong>Try this:</strong> keep the 31st at 9:00 PM in New York, then try 10:00 AM.</p>
+        </div>
+        <div class="pg-row pg-row-3">
+          <label class="pg-label">Day of month<select data-sched="day"></select></label>
+          <label class="pg-label">Time<input type="time" data-sched="time" value="21:00"></label>
+          <label class="pg-label">Time zone<select data-sched="tz">
+            <option value="America/New_York">New York</option>
+            <option value="America/Chicago">Chicago</option>
+            <option value="America/Los_Angeles">Los Angeles</option>
+            <option value="Europe/London">London</option>
+            <option value="Asia/Riyadh">Riyadh</option>
+            <option value="Asia/Dubai">Dubai</option>
+            <option value="Asia/Kolkata">India</option>
+            <option value="UTC">UTC</option>
+          </select></label>
+        </div>
+        <div class="pg-table-wrap">
+          <table class="pg-table" data-sched="table">
+            <thead><tr><th>Local time</th><th>UTC</th><th>Note</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p class="demo-result" data-sched="naive"></p>
+        <p class="pg-note">Month-end handling matches the recurring payments I work on. The time-zone check shows a scheduling bug I fixed.</p>
+      </article>
+
+    </div>
+
+    <section class="container pg-tools" id="tools">
+      <p class="eyebrow">Handy tools</p>
+      <h2>Small free tools</h2>
+      <p class="section-sub">Useful on their own. They run in your browser and nothing is saved.</p>
+      <div class="pg-grid pg-grid-tools">
+        <article class="pg-card pg-wide" id="qr-maker">
+          <div class="pg-head">
+            <div class="pg-tagrow"><span class="tag">Tool · QR codes</span></div>
+            <h2>QR code maker</h2>
+            <p class="pg-desc">Make a QR code for a website, Wi-Fi, a contact card and more. Add your logo if you like. Everything stays on your device.</p>
+          </div>
+          <div class="qrm-types" role="radiogroup" aria-label="What should the QR code do?">
+            <button type="button" class="chip-btn" role="radio" aria-checked="true" data-qrm-type="link">Link</button>
+            <button type="button" class="chip-btn" role="radio" aria-checked="false" data-qrm-type="text">Text</button>
+            <button type="button" class="chip-btn" role="radio" aria-checked="false" data-qrm-type="wifi">Wi-Fi</button>
+            <button type="button" class="chip-btn" role="radio" aria-checked="false" data-qrm-type="contact">Contact card</button>
+            <button type="button" class="chip-btn" role="radio" aria-checked="false" data-qrm-type="whatsapp">WhatsApp</button>
+            <button type="button" class="chip-btn" role="radio" aria-checked="false" data-qrm-type="email">Email</button>
+            <button type="button" class="chip-btn" role="radio" aria-checked="false" data-qrm-type="phone">Phone call</button>
+            <button type="button" class="chip-btn" role="radio" aria-checked="false" data-qrm-type="sms">Text message</button>
+          </div>
+          <div class="qr-layout">
+            <div>
+              <form class="pg-form" data-qrm="fields" novalidate></form>
+              <div class="qrm-style">
+                <label class="qrm-color">Colour <input type="color" data-qrm="color" value="#0e1b2b"></label>
+                <label class="chip-btn qrm-upload">Add a logo<input type="file" data-qrm="logo" accept="image/png,image/jpeg,image/svg+xml,image/webp"></label>
+                <button type="button" class="chip-btn chip-quiet" data-qrm="logo-clear" hidden>Remove logo</button>
+              </div>
+              <p class="pg-hint" data-qrm="hint" role="status" aria-live="polite"></p>
+            </div>
+            <div class="qr-out">
+              <div class="qr-img" data-qrm="img" role="img" aria-label="Your QR code"></div>
+              <div class="demo-actions">
+                <button type="button" class="chip-btn chip-strong" data-qrm="png">Download PNG</button>
+                <button type="button" class="chip-btn" data-qrm="svg">Download SVG</button>
+              </div>
+            </div>
+          </div>
+          <p class="pg-note">A QR code can't hold a picture itself, only a link to one. To share a photo, put it online and use a Link. Your logo is never uploaded.</p>
+        </article>
+        <article class="pg-card pg-wide" id="crypto">
+          <div class="pg-head">
+            <div class="pg-tagrow"><span class="tag">Tool · Encryption</span></div>
+            <h2>Lock &amp; unlock text</h2>
+            <p class="pg-desc">Lock a message with a password, or encode, fingerprint and scramble text in other common ways. Each type says honestly what it protects.</p>
+          </div>
+          <div class="qrm-types" role="radiogroup" aria-label="Type">
+            <button type="button" class="chip-btn" role="radio" aria-checked="true" data-cr-type="lock">Password lock</button>
+            <button type="button" class="chip-btn" role="radio" aria-checked="false" data-cr-type="base64">Base64</button>
+            <button type="button" class="chip-btn" role="radio" aria-checked="false" data-cr-type="hex">Hex</button>
+            <button type="button" class="chip-btn" role="radio" aria-checked="false" data-cr-type="url">URL</button>
+            <button type="button" class="chip-btn" role="radio" aria-checked="false" data-cr-type="sha256">SHA-256 fingerprint</button>
+            <button type="button" class="chip-btn" role="radio" aria-checked="false" data-cr-type="caesar">Caesar / ROT13</button>
+          </div>
+          <p class="cr-info" data-cr="info"></p>
+          <div class="cr-controls">
+            <div class="pg-segment" role="radiogroup" aria-label="Direction" data-cr="direction">
+              <label><input type="radio" name="cr-dir" value="0" checked><span>Lock</span></label>
+              <label><input type="radio" name="cr-dir" value="1"><span>Unlock</span></label>
+            </div>
+            <label class="pg-label cr-inline" data-cr="password-field">Password<input type="text" data-cr="password" value="correct horse battery" autocomplete="off" spellcheck="false"></label>
+            <label class="pg-label cr-inline" data-cr="shift-field" hidden>Shift<input type="text" data-cr="shift" value="13" inputmode="numeric" autocomplete="off"></label>
+          </div>
+          <div class="cr-panes">
+            <label class="pg-label"><span data-cr="input-label">Your text</span><textarea data-cr="input" rows="5" spellcheck="false">Meet at the bakery on Cedar Street at 4.</textarea></label>
+            <label class="pg-label"><span data-cr="output-label">Result</span><textarea data-cr="output" rows="5" readonly spellcheck="false"></textarea></label>
+          </div>
+          <div class="demo-actions">
+            <button type="button" class="chip-btn chip-strong" data-cr="copy" disabled>Copy result</button>
+            <button type="button" class="chip-btn" data-cr="swap">Use result as input ⇄</button>
+          </div>
+          <p class="demo-result" data-cr="result" role="status" aria-live="polite"></p>
+          <p class="pg-note">Everything happens in your browser; nothing is sent anywhere. The password lock uses AES-256 with a key stretched from your password, the same kind of protection used for saved passwords in real systems.</p>
+        </article>
+        <article class="pg-card" id="routing">
+          <div class="pg-head">
+            <div class="pg-tagrow"><span class="tag">Tool · US banking</span></div>
+            <h2>Routing number checker</h2>
+            <p class="pg-desc">Every US bank routing number has a built-in check digit. This tells you whether a number is valid before you use it.</p>
+          </div>
+          <label class="pg-label">Routing number<input type="text" data-routing="input" inputmode="numeric" maxlength="9" placeholder="9 digits, e.g. 011000015" autocomplete="off"></label>
+          <p class="demo-result" data-routing="result" role="status" aria-live="polite">Type a 9-digit routing number.</p>
+          <p class="pg-note">Checks the number's format and check digit only. It can't tell you which bank it belongs to.</p>
+        </article>
+        <article class="pg-card" id="words">
+          <div class="pg-head">
+            <div class="pg-tagrow"><span class="tag">Tool · Checks</span></div>
+            <h2>Check amount in words</h2>
+            <p class="pg-desc">Checks show the amount in words as well as numbers. Type an amount to get the wording.</p>
+          </div>
+          <label class="pg-label">Amount ($)<input type="text" data-words="input" inputmode="decimal" value="1,250.75" autocomplete="off"></label>
+          <p class="pg-words" data-words="result" role="status" aria-live="polite"></p>
+          <div class="demo-actions"><button type="button" class="chip-btn" data-words="copy">Copy text</button></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="container pg-back">
+      <p>There are three more demos on the home page: approval lock, tamper check and role-based access.</p>
+      <a href="index.html" class="btn btn-ghost">← Back to the portfolio</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© 2026 Mohamed Shamil Abdul Salam</span>
+      <nav class="footer-links" aria-label="Elsewhere">
+        <a href="https://github.com/shamil3ilm" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/mohamed3shamil" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:mhmdshamil03@gmail.com">Email</a>
+        <a href="#top">Back to top ↑</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js" integrity="sha384-mZT2gIty7ZDdOGkxfP6joZcYdMW1Jvj9dRlfpTmaJAKKXTqzygtB22k7FLe+KZC1" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+  <script src="sample-data.js"></script>
+  <script src="playground.js"></script>
+  <script src="picker.js"></script>
+  <script src="playground-work.js"></script>
+  <script src="tools.js"></script>
+  <script src="qr-maker.js"></script>
+  <script src="crypto-tool.js"></script>
+  <script src="select.js"></script>
+  <script src="achievements.js"></script>
+  <script src="ui.js"></script>
+  <script src="palette.js"></script>
+</body>
+</html>

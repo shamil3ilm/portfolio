@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Case study: delegated account access — Mohamed Shamil</title>
+  <meta name="description" content="How I let service providers act for their customers safely: one-time keys, 450 existing API endpoints, full logging and one identical refusal.">
+  <meta name="author" content="Mohamed Shamil Abdul Salam">
+  <link rel="canonical" href="https://mohamed3shamil.vercel.app/case-delegated-access.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://mohamed3shamil.vercel.app/case-delegated-access.html">
+  <meta property="og:title" content="Case study: delegated account access — Mohamed Shamil">
+  <meta property="og:description" content="How I let service providers act for their customers safely: one-time keys, 450 existing API endpoints, full logging and one identical refusal.">
+  <meta property="og:image" content="https://mohamed3shamil.vercel.app/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    try {
+      var saved = localStorage.getItem('theme');
+      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+    } catch (e) {}
+  </script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="Mohamed Shamil, home">
+        <img src="favicon.svg" alt="" width="32" height="32">
+        <span>Mohamed Shamil</span>
+      </a>
+      <nav class="nav" id="site-nav" aria-label="Sections">
+        <a href="index.html#play">Play</a>
+        <a href="index.html#help">Services</a>
+        <a href="index.html#work">Work</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="playground.html">Playground</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="resume.html">Résumé</a>
+      </nav>
+      <button class="icon-btn palette-open" type="button" data-palette-open aria-label="Search the site (Ctrl+K)">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <kbd class="palette-kbd">Ctrl K</kbd>
+      </button>
+      <button class="theme-toggle" type="button" aria-label="Switch colour theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <button class="icon-btn menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="page-hero container">
+      <a class="demo-link" href="index.html#work">← Back to my work</a>
+      <p class="eyebrow" style="margin-top:18px">Case study · Payments API</p>
+      <h1>Letting providers act for their customers, without handing over the keys</h1>
+      <p class="lead">Payroll and bookkeeping companies run payments for many small businesses. They need to work inside each customer's account, but the customer has to stay in control, and every action has to be traceable.</p>
+      <div class="case-meta"><span>Software Engineer, Zil Money</span><span>2026</span><span>PHP · Laravel · MySQL</span></div>
+    </section>
+
+    <div class="case container">
+      <article class="case-body">
+        <section>
+          <h2>The problem</h2>
+          <p>A service provider, such as a payroll company, manages payments for many businesses. Asking each customer to share a password is unsafe. Giving the provider broad access is worse: one mistake, or one bad actor, could move money in any of those accounts.</p>
+          <p>The platform needed a way for a provider to act <strong>as</strong> a customer, with limits the customer can trust and a record of everything the provider does.</p>
+        </section>
+
+        <section>
+          <h2>What I built</h2>
+          <ol class="case-steps">
+            <li><strong>The customer creates a one-time connect key.</strong> It is valid for a year and works once. Asking again returns the same unused key, so spare keys never pile up.</li>
+            <li><strong>The provider redeems the key to connect.</strong> A used, expired or unknown key is refused, and so is a customer who is already connected to another provider, or a provider trying to connect to itself.</li>
+            <li><strong>The provider then uses the same API the customer's own software uses</strong>, on the customer's behalf. Instead of building a second, separate API, I added an "acting for this customer" layer to <strong>450 existing endpoints</strong> across 7 payment services, so providers get the same features and the same checks.</li>
+            <li><strong>Every call is checked and recorded.</strong> Allowed calls are logged. Refused calls all get the same short reply, "Access denied", whatever the reason, while the real reason is written to the log.</li>
+            <li><strong>Payment updates are copied to the provider only if it subscribes.</strong> Up to 38 kinds of update, such as "payment created", can be mirrored.</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>The guardrails that mattered</h2>
+          <ul>
+            <li><strong>The customer's approvals stay the customer's.</strong> A provider can create a payment, but it can't approve one that is waiting for the customer's own approvers.</li>
+            <li><strong>No record, no action.</strong> If a call can't be attributed and logged, it is refused rather than allowed through unrecorded.</li>
+            <li><strong>One answer for every refusal.</strong> Six different reasons sit behind the same reply, so nobody can probe which customers exist or why they were turned away. The log keeps the detail.</li>
+            <li><strong>Suspension works both ways.</strong> Suspending a customer's connection, or the provider itself, stops its requests straight away.</li>
+          </ul>
+          <p class="case-note"><strong>Why reuse the existing API?</strong> A separate provider API would drift from the main one: new features would arrive late, and every rule would exist twice. Layering access on top keeps one set of rules for everyone.</p>
+        </section>
+
+        <section>
+          <h2>What I'd point out</h2>
+          <p>Most of the work wasn't the happy path; it was deciding what happens when something is off: an old key, a suspended account, a payment that belongs to someone else's approval process. Each of those has one clear outcome, and each is recorded.</p>
+        </section>
+
+        <div class="case-next">
+          <a href="index.html#work">← All my work</a>
+          <a href="case-recurring-safeguards.html">Next case study: recurring payment safeguards →</a>
+        </div>
+      </article>
+      <aside class="case-side" aria-label="Key numbers">
+        <div class="case-stat"><strong>450</strong><span>existing API endpoints opened to providers</span></div>
+        <div class="case-stat"><strong>7</strong><span>payment services covered</span></div>
+        <div class="case-stat"><strong>38</strong><span>kinds of update mirrored to subscribers</span></div>
+        <div class="case-stat"><strong>6 → 1</strong><span>refusal reasons behind one identical reply</span></div>
+        <a class="btn btn-primary" href="playground.html#delegated-access">Try the working demo</a>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© 2026 Mohamed Shamil Abdul Salam</span>
+      <nav class="footer-links" aria-label="Elsewhere">
+        <a href="https://github.com/shamil3ilm" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/mohamed3shamil" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:mhmdshamil03@gmail.com">Email</a>
+        <a href="#top">Back to top ↑</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="ui.js"></script>
+  <script src="palette.js"></script>
+</body>
+</html>
