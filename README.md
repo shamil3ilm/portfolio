@@ -79,7 +79,7 @@ Site-specific data lives in `meta.x-portfolio`. JSON Resume allows extra `meta` 
 ```bash
 node scripts/build-resume.mjs           # validate profile.json, then write resume.html and the 60-second view
 node scripts/build-resume.mjs --check   # validate, and fail if the committed pages don't match profile.json
-node --test scripts/test/               # unit and CLI tests
+node --test "scripts/test/*.test.mjs"  # unit and CLI tests
 ```
 
 It needs Node 18+ and no packages. The build checks `profile.json` against `scripts/profile.schema.json` with a small hand-written JSON Schema validator (`scripts/lib/validate.mjs`). Then it cross-checks that keys in `order` and `caseStudies` exist, names are unique, and no end date comes before its start date.
