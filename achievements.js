@@ -8,7 +8,7 @@
     { id: 'chain-break', group: 'Home page', text: 'Secretly change a past invoice', href: 'index.html#demo-chain' },
     { id: 'chain-add', group: 'Home page', text: 'Add a new record to the invoice chain', href: 'index.html#demo-chain' },
     { id: 'access-roles', group: 'Home page', text: 'See the app as all 5 roles', href: 'index.html#demo-access' },
-    { id: 'patrol-score', group: 'Home page', text: 'Finish a Risk Review Desk shift with 8+ correct calls', href: 'index.html#play' },
+    { id: 'patrol-score', group: 'Playground', text: 'Finish a Risk Review Desk shift with 8+ correct calls', href: 'playground.html#play' },
     { id: 'provider-connect', group: 'Playground', text: 'Connect a provider with a one-time key', href: 'playground.html#delegated-access' },
     { id: 'provider-denied', group: 'Playground', text: 'Get refused without learning why', href: 'playground.html#delegated-access' },
     { id: 'provider-approve', group: 'Playground', text: 'Try to approve a payment as the provider', href: 'playground.html#delegated-access' },

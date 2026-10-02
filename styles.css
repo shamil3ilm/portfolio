@@ -5106,3 +5106,54 @@ dialog.palette[open] {
 .offer .offer-tag {
   color: var(--accent);
 }
+
+/* Home: one-line teaser for the game, which now lives on the Playground */
+
+.play-teaser {
+  padding-top: 40px;
+}
+
+.play-teaser-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text-soft);
+  font-size: 0.95rem;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.play-teaser-link:hover {
+  text-decoration: none;
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.play-teaser-link strong {
+  color: var(--text);
+}
+
+.play-teaser-tag {
+  flex: 0 0 auto;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.play-teaser-go {
+  margin-left: auto;
+  color: var(--accent);
+  font-size: 1.1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .play-teaser-link:hover {
+    transform: none;
+  }
+}

@@ -67,6 +67,7 @@
         in your browser: nothing is sent anywhere, and all names and data are made up.
       </p>
       <nav class="pg-jump" aria-label="Demos">
+        <a href="#play">Risk Review Desk</a>
         <a href="#delegated-access">Delegated access</a>
         <a href="#recurring">Recurring safeguards</a>
         <a href="#ai-usage">AI cost tracking</a>
@@ -77,6 +78,22 @@
         <a href="#crypto">Lock &amp; unlock</a>
         <a href="#tools">Handy tools</a>
       </nav>
+    </section>
+
+    <section id="play" class="section container">
+      <div class="section-head">
+        <p class="eyebrow">Play · a game</p>
+        <h2>Risk Review Desk</h2>
+        <p class="section-sub">Take a shift as a reviewer. Ten items, two and a half minutes: release the safe ones, hold the risky ones and say why. Every risky case is one my real systems stop automatically.</p>
+      </div>
+      <div class="desk" data-desk="root">
+        <div class="desk-bar">
+          <span data-desk="progress">Item 0 of 10</span>
+          <span class="desk-clock">Shift <strong data-desk="clock">2:30</strong></span>
+          <span>Score <strong data-desk="score">0</strong> · Best <strong data-desk="best">0</strong></span>
+        </div>
+        <div class="desk-stage" data-desk="stage" aria-live="polite"></div>
+      </div>
     </section>
 
     <div class="container pg-grid">
@@ -479,6 +496,7 @@
   <script src="playground.js"></script>
   <script src="picker.js"></script>
   <script src="playground-work.js"></script>
+  <script src="patrol.js"></script>
   <script src="tools.js"></script>
   <script src="qr-maker.js"></script>
   <script src="crypto-tool.js"></script>

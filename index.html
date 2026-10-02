@@ -40,7 +40,6 @@
         <span>Mohamed Shamil</span>
       </a>
       <nav class="nav" id="site-nav" aria-label="Sections">
-        <a href="#play">Play</a>
         <a href="#help">Services</a>
         <a href="#work">Work</a>
         <a href="#projects">Projects</a>
@@ -171,20 +170,12 @@
       </div>
     </section>
 
-    <section id="play" class="section container">
-      <div class="section-head">
-        <p class="eyebrow">Play</p>
-        <h2>Risk Review Desk</h2>
-        <p class="section-sub">Take a shift as a reviewer. Ten items, two and a half minutes: release the safe ones, hold the risky ones and say why. Every risky case is one my real systems stop automatically.</p>
-      </div>
-      <div class="desk" data-desk="root">
-        <div class="desk-bar">
-          <span data-desk="progress">Item 0 of 10</span>
-          <span class="desk-clock">Shift <strong data-desk="clock">2:30</strong></span>
-          <span>Score <strong data-desk="score">0</strong> · Best <strong data-desk="best">0</strong></span>
-        </div>
-        <div class="desk-stage" data-desk="stage" aria-live="polite"></div>
-      </div>
+    <section class="container play-teaser">
+      <a class="play-teaser-link" href="playground.html#play">
+        <span class="play-teaser-tag">Play</span>
+        <span><strong>Risk Review Desk:</strong> take a 2½-minute shift as a payments reviewer and try to catch what my systems catch.</span>
+        <span class="play-teaser-go" aria-hidden="true">→</span>
+      </a>
     </section>
 
     <section id="help" class="section container">
@@ -201,7 +192,7 @@
           <p>Payment and banking providers, accounting tools, tax authorities and AI services, wired in so failures are retried, signed and visible instead of silent.</p>
           <ul>
             <li>Signed webhooks and safe retries</li>
-            <li>QuickBooks, payroll and tax-authority integrations</li>
+            <li>Accounting, payroll and tax-authority integrations</li>
             <li>Clear errors your support team can act on</li>
           </ul>
           <a class="offer-proof" href="playground.html#webhook">See a signed-update demo →</a>
@@ -358,8 +349,8 @@
           </article>
           <article class="fix">
             <p class="fix-tag">Integrations</p>
-            <h4>QuickBooks and Trustbooks</h4>
-            <p class="fix-row"><span class="fix-k" data-k="before">Before</span><span>QuickBooks imports finished silently, and Trustbooks payroll checks were created before the user had confirmed them.</span></p>
+            <h4>Accounting and payroll integrations</h4>
+            <p class="fix-row"><span class="fix-k" data-k="before">Before</span><span>Imports from third-party accounting software finished silently, and checks from a third-party payroll tool were created before the user had confirmed them.</span></p>
             <p class="fix-row"><span class="fix-k" data-k="after">After</span><span>Imports of bills, expenses, refund receipts and checks now <strong>email the user when done</strong> and record who ran them; payroll checks are created <strong>only on confirmation</strong>.</span></p>
           </article>
         </div>
@@ -401,7 +392,6 @@
             <li>Invoices pass the tax authority's <strong>official validator</strong> (26 checks)</li>
             <li>Invoice chain stays correct under simultaneous requests</li>
             <li>Offline queue and circuit breaker for when the tax portal is down</li>
-            <li><strong>904</strong> automated tests</li>
           </ul>
           <p class="stack">PHP · Laravel · MySQL · OpenSSL</p>
           <a class="code-link" href="https://github.com/shamil3ilm/masaar" target="_blank" rel="noopener">View code on GitHub ↗</a>
@@ -412,7 +402,7 @@
             <h3>Time</h3>
             <span class="status status-live">In daily use</span>
           </div>
-          <p class="domain">Workplace tools</p>
+          <p class="domain">Work-hours tracker</p>
           <p>A work-hours tracker that calculates working time, shows weekly and monthly pace, and warns about long sessions. Later rebuilt as a hosted multi-user service.</p>
           <ul class="facts">
             <li>Used daily by <strong>10+</strong> colleagues</li>
@@ -443,7 +433,7 @@
         <ul>
           <li><strong><a href="https://github.com/shamil3ilm/lee" target="_blank" rel="noopener">Employ ↗</a></strong> — an AI tool that collects jobs from 9 sites, ranks them, and writes a tailored CV and cover letter for each (181 tests).</li>
           <li><strong><a href="https://github.com/shamil3ilm/domain" target="_blank" rel="noopener">Private DNS server ↗</a></strong> — a single-binary DNS server in Go with an admin API and rate limiting, released for 7 platforms.</li>
-          <li><strong><a href="https://github.com/shamil3ilm/mail-service" target="_blank" rel="noopener">Mail server ↗</a></strong> — a single-binary mail server in Go with SMTP, DKIM signing and full-text search.</li>
+          <li><strong><a href="https://github.com/shamil3ilm/mail-service" target="_blank" rel="noopener">Mail server ↗</a></strong> — a single-binary mail server in Go that captures mail over SMTP, with a web dashboard and full-text search.</li>
           <li><strong><a href="https://github.com/shamil3ilm/masaar-erp-backend" target="_blank" rel="noopener">ERP API ↗</a></strong> — a multi-company business API with automatic data isolation between companies (3,840 tests).</li>
           <li><strong>Jira Dashboard</strong> — a command-line tool that fills in quality checklists from real code evidence and refuses to tick sign-offs.</li>
         </ul>
@@ -572,7 +562,6 @@
   <script src="sample-data.js"></script>
   <script src="demos.js"></script>
   <script src="achievements.js"></script>
-  <script src="patrol.js"></script>
   <script src="ui.js"></script>
   <script src="work.js"></script>
   <script src="quick-view.js"></script>

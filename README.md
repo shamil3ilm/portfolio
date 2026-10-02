@@ -13,7 +13,7 @@ A static site: plain HTML, CSS and JavaScript. Every page is committed ready to 
 - `scripts/build-resume.mjs` — validates `profile.json`, then renders `resume.html` and the 60-second view in `index.html`. `scripts/lib/` holds the validator and the renderer, `scripts/*.template.html` the page templates, `scripts/profile.schema.json` the schema and `scripts/test/` the tests
 - `styles.css` — layout, light/dark themes, responsive rules
 - `script.js` — theme toggle and contact form (Web3Forms)
-- `patrol.js` — Risk Review Desk, the home page game (review ten items, release or hold each with a reason, get a shift report)
+- `patrol.js` — Risk Review Desk, the game at the top of the Playground (review ten items, release or hold each with a reason, get a shift report)
 - `demos.js` — the three interactive "Try it" demos on the home page
 - `sample-data.js` — fresh example data on every visit (businesses, providers, amounts, valid routing numbers, dates), shared by all demos
 - `playground.html` — six working demos of my work; everything runs in the browser

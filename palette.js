@@ -11,10 +11,9 @@
 
   const ITEMS = [
     { group: 'Home', title: 'Top of the page', url: 'index.html#top', keys: 'start hero intro' },
-    { group: 'Home', title: 'Risk Review Desk (game)', url: 'index.html#play', keys: 'play game shift review' },
     { group: 'Home', title: 'Work with me (services)', url: 'index.html#help', keys: 'services hire freelance offers process skills help' },
     { group: 'Home', title: 'Work at Zil Money', url: 'index.html#work', keys: 'experience job role payments' },
-    { group: 'Home', title: 'Smaller fixes, before and after', url: 'index.html#work-also', keys: 'fixes bugs positive pay statements quickbooks trustbooks' },
+    { group: 'Home', title: 'Smaller fixes, before and after', url: 'index.html#work-also', keys: 'fixes bugs positive pay statements accounting payroll imports' },
     { group: 'Home', title: 'Projects', url: 'index.html#projects', keys: 'cert-ed masaar time athar built' },
     { group: 'Home', title: 'How I work', url: 'index.html#about', keys: 'about education timeline principles' },
     { group: 'Home', title: 'Contact', url: 'index.html#contact', keys: 'hire message form talk' },
@@ -22,6 +21,7 @@
     { group: 'Case studies', title: 'Delegated account access', url: 'case-delegated-access.html', keys: 'provider payroll api act as customer' },
     { group: 'Case studies', title: 'Recurring payment safeguards', url: 'case-recurring-safeguards.html', keys: 'schedule cancel delete recipient' },
 
+    { group: 'Demos', title: 'Risk Review Desk (game)', url: 'playground.html#play', keys: 'play game shift review patrol' },
     { group: 'Demos', title: 'Approval lock', url: 'index.html#demo-lock', keys: 'approve bank details payment' },
     { group: 'Demos', title: 'Tamper check', url: 'index.html#demo-chain', keys: 'invoice seal chain records' },
     { group: 'Demos', title: 'Who sees what', url: 'index.html#demo-access', keys: 'roles access permissions cert-ed' },
