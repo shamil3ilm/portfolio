@@ -96,7 +96,7 @@
       "description": "Workplace Time & Attendance Tool",
       "keywords": ["TypeScript", "SQLite", "REST APIs"],
       "highlights": [
-        "Built a work-hours tracker used daily by 10+ colleagues and evolved it into a serverless multi-user service with encrypted credential storage and hourly data synchronization."
+        "Built a work-hours tracker used daily by 10+ colleagues and evolved it into a serverless multi-user service with scheduled data synchronization."
       ]
     }
   ],
