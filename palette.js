@@ -12,7 +12,7 @@
   const ITEMS = [
     { group: 'Home', title: 'Top of the page', url: 'index.html#top', keys: 'start hero intro' },
     { group: 'Home', title: 'Risk Review Desk (game)', url: 'index.html#play', keys: 'play game shift review' },
-    { group: 'Home', title: 'What I do well', url: 'index.html#help', keys: 'services skills help' },
+    { group: 'Home', title: 'Work with me (services)', url: 'index.html#help', keys: 'services hire freelance offers process skills help' },
     { group: 'Home', title: 'Work at Zil Money', url: 'index.html#work', keys: 'experience job role payments' },
     { group: 'Home', title: 'Smaller fixes, before and after', url: 'index.html#work-also', keys: 'fixes bugs positive pay statements quickbooks trustbooks' },
     { group: 'Home', title: 'Projects', url: 'index.html#projects', keys: 'cert-ed masaar time athar built' },

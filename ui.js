@@ -12,7 +12,7 @@
 
   /* Reveal: cards and headings fade up as they enter the screen */
 
-  const REVEAL = '.section-head, .card, .project, .more, .help article, .principle, .contact, .pg-card, .pg-tools > h2, .pg-back';
+  const REVEAL = '.section-head, .card, .project, .more, .offer, .process, .principle, .contact, .pg-card, .pg-tools > h2, .pg-back';
   if (!reduceMotion && 'IntersectionObserver' in window) {
     const revealer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {

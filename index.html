@@ -189,40 +189,59 @@
 
     <section id="help" class="section container">
       <div class="section-head">
-        <p class="eyebrow">What I can help with</p>
-        <h2>What I do well</h2>
+        <p class="eyebrow">Work with me</p>
+        <h2>How I can help your product</h2>
+        <p class="section-sub">Freelance and contract work on backends that handle money, access or compliance. Each offer below is something I already do, with the proof one click away.</p>
       </div>
-      <div class="help">
-        <article>
-          <span class="help-num">01</span>
-          <h3>Backends and APIs</h3>
-          <p>Laravel and Node/TypeScript services, REST APIs, queues and scheduled jobs, built to be maintained.</p>
+
+      <div class="offers">
+        <article class="offer">
+          <p class="offer-tag">01 · Integrations</p>
+          <h3>Connect your product to the outside world</h3>
+          <p>Payment and banking providers, accounting tools, tax authorities and AI services, wired in so failures are retried, signed and visible instead of silent.</p>
+          <ul>
+            <li>Signed webhooks and safe retries</li>
+            <li>QuickBooks, payroll and tax-authority integrations</li>
+            <li>Clear errors your support team can act on</li>
+          </ul>
+          <a class="offer-proof" href="playground.html#webhook">See a signed-update demo →</a>
         </article>
-        <article>
-          <span class="help-num">02</span>
-          <h3>Integrations</h3>
-          <p>Payments and banking, tax authorities, HR systems and AI providers, connected with retries and clear error handling.</p>
+        <article class="offer">
+          <p class="offer-tag">02 · Hardening</p>
+          <h3>Fix the parts that fail quietly</h3>
+          <p>A review and fix of a Laravel or PHP backend where mistakes cost money or trust: who can access what, approvals, scheduled jobs and audit trails.</p>
+          <ul>
+            <li>Access control and approval flows that can't be bypassed</li>
+            <li>Scheduled jobs that run on time and stop when they should</li>
+            <li>Production bugs traced to the real cause, with proof</li>
+          </ul>
+          <a class="offer-proof" href="case-recurring-safeguards.html">Read a case study →</a>
         </article>
-        <article>
-          <span class="help-num">03</span>
-          <h3>Security and access control</h3>
-          <p>Role and permission models, database-level access rules, audit trails and protection against tampering.</p>
+        <article class="offer">
+          <p class="offer-tag">03 · AI features</p>
+          <h3>Add AI you can afford to run</h3>
+          <p>AI added to a real workflow, like reading documents, drafting replies or classifying records, with cost, tokens and speed tracked per feature from day one.</p>
+          <ul>
+            <li>Document reading and drafting features</li>
+            <li>Per-feature cost and latency dashboard</li>
+            <li>Failures logged, never hidden</li>
+          </ul>
+          <a class="offer-proof" href="playground.html#ai-usage">See the cost-tracking demo →</a>
         </article>
-        <article>
-          <span class="help-num">04</span>
-          <h3>Reliability and automation</h3>
-          <p>Background work that fails loudly instead of silently, safeguards on money and data, and internal tools that save time.</p>
-        </article>
-        <article>
-          <span class="help-num">05</span>
-          <h3>Production debugging</h3>
-          <p>Tracing live issues across services, background jobs and third-party APIs to the real root cause, and proving the fix before it ships.</p>
-        </article>
-        <article>
-          <span class="help-num">06</span>
-          <h3>AI features and cost tracking</h3>
-          <p>Adding AI to real workflows, like reading documents or drafting content, with per-feature tracking of usage, cost and speed.</p>
-        </article>
+      </div>
+
+      <div class="process">
+        <h3 class="process-title">How a project runs</h3>
+        <ol class="process-steps">
+          <li><strong>A short call</strong><span>You explain the problem; I ask the questions that shape the scope.</span></li>
+          <li><strong>A written plan</strong><span>Scope, timeline and cost in writing before any work starts.</span></li>
+          <li><strong>Small, reviewed steps</strong><span>Work lands in small pieces you can see and check as it goes.</span></li>
+          <li><strong>A clean handover</strong><span>Tests, notes and a walkthrough, so your team can own it.</span></li>
+        </ol>
+        <div class="process-cta">
+          <a href="#contact" class="btn btn-primary">Tell me about your project</a>
+          <span>Fixed-scope projects, monthly support, or a one-off review.</span>
+        </div>
       </div>
     </section>
 
@@ -385,6 +404,7 @@
             <li><strong>904</strong> automated tests</li>
           </ul>
           <p class="stack">PHP · Laravel · MySQL · OpenSSL</p>
+          <a class="code-link" href="https://github.com/shamil3ilm/masaar" target="_blank" rel="noopener">View code on GitHub ↗</a>
         </article>
 
         <article class="project">
@@ -393,11 +413,10 @@
             <span class="status status-live">In daily use</span>
           </div>
           <p class="domain">Workplace tools</p>
-          <p>A work-hours tracker that syncs attendance, calculates working time and warns about long sessions. Later rebuilt as a hosted multi-user service.</p>
+          <p>A work-hours tracker that calculates working time, shows weekly and monthly pace, and warns about long sessions. Later rebuilt as a hosted multi-user service.</p>
           <ul class="facts">
             <li>Used daily by <strong>10+</strong> colleagues</li>
-            <li>Credentials encrypted at rest (AES-256)</li>
-            <li>Hourly sync with a backup scheduler if the main one stalls</li>
+            <li>Runs on its own schedule, with a backup if the main one stalls</li>
           </ul>
           <p class="stack">TypeScript · SQLite · REST APIs</p>
         </article>
@@ -415,16 +434,17 @@
             <li>Plugs into PHP and Laravel apps</li>
           </ul>
           <p class="stack">Rust · Laravel · PHP · SQLite</p>
+          <a class="code-link" href="https://github.com/shamil3ilm/athar" target="_blank" rel="noopener">View code on GitHub ↗</a>
         </article>
       </div>
 
       <div class="more">
         <h3>Also built</h3>
         <ul>
-          <li><strong>Employ</strong> — an AI tool that collects jobs from 9 sites, ranks them, and writes a tailored CV and cover letter for each (181 tests).</li>
-          <li><strong>Private DNS server</strong> — a single-binary DNS server in Go with an admin API and rate limiting, released for 7 platforms.</li>
-          <li><strong>Mail server</strong> — a single-binary mail server in Go with SMTP, DKIM signing and full-text search.</li>
-          <li><strong>ERP API</strong> — a multi-company business API with automatic data isolation between companies (3,840 tests).</li>
+          <li><strong><a href="https://github.com/shamil3ilm/lee" target="_blank" rel="noopener">Employ ↗</a></strong> — an AI tool that collects jobs from 9 sites, ranks them, and writes a tailored CV and cover letter for each (181 tests).</li>
+          <li><strong><a href="https://github.com/shamil3ilm/domain" target="_blank" rel="noopener">Private DNS server ↗</a></strong> — a single-binary DNS server in Go with an admin API and rate limiting, released for 7 platforms.</li>
+          <li><strong><a href="https://github.com/shamil3ilm/mail-service" target="_blank" rel="noopener">Mail server ↗</a></strong> — a single-binary mail server in Go with SMTP, DKIM signing and full-text search.</li>
+          <li><strong><a href="https://github.com/shamil3ilm/masaar-erp-backend" target="_blank" rel="noopener">ERP API ↗</a></strong> — a multi-company business API with automatic data isolation between companies (3,840 tests).</li>
           <li><strong>Jira Dashboard</strong> — a command-line tool that fills in quality checklists from real code evidence and refuses to tick sign-offs.</li>
         </ul>
       </div>
@@ -503,7 +523,6 @@
 
   </main>
 
-  <!-- profile:quick-view:start (generated from profile.json by scripts/build-resume.mjs; edit the profile, not this block) -->
   <dialog class="quick" id="quick-view" aria-labelledby="quick-title">
     <div class="quick-inner">
       <div class="quick-head">
@@ -534,7 +553,6 @@
       </div>
     </div>
   </dialog>
-  <!-- profile:quick-view:end -->
 
   <footer class="site-footer">
     <div class="container footer-inner">
