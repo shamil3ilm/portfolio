@@ -1,0 +1,26 @@
+  <dialog class="quick" id="quick-view" aria-labelledby="quick-title">
+    <div class="quick-inner">
+      <div class="quick-head">
+        <div>
+          <h2 id="quick-title">{{displayName}} in 60 seconds</h2>
+          <p class="quick-role">{{role}}</p>
+        </div>
+        <button type="button" class="icon-btn" data-quick-close aria-label="Close">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+      <p class="quick-line">{{line}}</p>
+      <h3>Best results</h3>
+      <ol class="quick-list">
+{{{results}}}
+      </ol>
+      <h3>Works with</h3>
+      <p class="quick-skills">{{{skills}}}</p>
+      <div class="quick-actions">
+        <a class="btn btn-primary" href="mailto:{{email}}">Email me</a>
+        <a class="btn btn-ghost" href="resume.html">Résumé</a>
+{{{profiles}}}
+        <button type="button" class="btn btn-ghost" data-quick-close>See the full site</button>
+      </div>
+    </div>
+  </dialog>
