@@ -73,7 +73,7 @@
       "name": "Cert-Ed Academia",
       "description": "Education Management Platform",
       "url": "https://www.certedacademia.com",
-      "keywords": ["Next.js", "TypeScript", "Supabase"],
+      "keywords": ["Next.js", "TypeScript", "Supabase", "PostgreSQL"],
       "highlights": [
         "Developed a 5-role education platform covering classes, assignments, grading, per-session attendance, hours-based billing, receipts, payslips, messaging, and scheduling.",
         "Enforced access through 18 application-level capabilities and 50+ PostgreSQL row-level security policies, supported by 100+ unit tests and per-role database checks in CI."
@@ -111,7 +111,7 @@
     },
     {
       "name": "Backend",
-      "keywords": ["Laravel", "REST APIs", "Eloquent", "Queues", "Jobs", "Events", "Webhooks", "Middleware"]
+      "keywords": ["Laravel", "REST APIs", "Eloquent", "Queues", "Jobs", "Events", "Webhooks", "Middleware", "LLM APIs"]
     },
     {
       "name": "Databases",
