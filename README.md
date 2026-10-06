@@ -7,7 +7,8 @@ A static site: plain HTML, CSS and JavaScript. Every page is committed ready to 
 ## Files
 
 - `index.html` — home page (hero, game, work, projects, contact) and the 60-second view
-- `case-delegated-access.html`, `case-recurring-safeguards.html` — case studies
+- `case-delegated-access.html`, `case-recurring-safeguards.html`, `case-llm-observability.html`, `case-zatca-einvoicing.html` — case studies
+- `404.html` — page shown for unknown addresses (Vercel serves it automatically)
 - `profile.json` — **the source of truth for my public profile details** (JSON Resume format), served at `/profile.json`
 - `resume.html` — résumé page, **generated from `profile.json`**; "Save as PDF" prints a one-page résumé
 - `scripts/build-resume.mjs` — validates `profile.json`, then renders `resume.html` and the 60-second view in `index.html`. `scripts/lib/` holds the validator and the renderer, `scripts/*.template.html` the page templates, `scripts/profile.schema.json` the schema and `scripts/test/` the tests

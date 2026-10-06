@@ -5157,3 +5157,101 @@ dialog.palette[open] {
     transform: none;
   }
 }
+
+/* Work cards: problem, then approach */
+
+.card .fix-row {
+  margin-top: 10px;
+  grid-template-columns: 72px minmax(0, 1fr);
+  font-size: 0.93rem;
+}
+
+.card .fix-row + .fix-row {
+  margin-top: 8px;
+}
+
+.fix-k[data-k="problem"] {
+  color: var(--warn);
+  background: var(--warn-soft);
+}
+
+.fix-k[data-k="approach"] {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* Netplex */
+
+.np-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.np-grid .card {
+  display: flex;
+  flex-direction: column;
+}
+
+.np-grid .card .card-links {
+  margin-top: auto;
+  padding-top: 14px;
+}
+
+.np-stack {
+  margin-top: 18px;
+}
+
+/* Skills, grouped like the résumé */
+
+.skill-groups {
+  display: grid;
+  gap: 14px;
+  margin-top: 40px;
+}
+
+.skill-group {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+}
+
+.skill-label {
+  padding-top: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.skill-group .skills {
+  margin-top: 0;
+}
+
+@media (max-width: 860px) {
+  .np-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .card .fix-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+  }
+
+  .skill-group {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+  }
+
+  .skill-label {
+    padding-top: 0;
+  }
+}
+
+.np-grid .tag {
+  align-self: flex-start;
+}

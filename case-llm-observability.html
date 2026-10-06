@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Case study: recurring payment safeguards — Mohamed Shamil</title>
-  <meta name="description" content="How I made scheduled payments stop when a recipient or bank account is deleted, and fixed bulk cancel.">
+  <title>Case study: AI observability — Mohamed Shamil</title>
+  <meta name="description" content="How I made every AI call visible: one record per request, failures included, and a dashboard by feature, model and provider account.">
   <meta name="author" content="Mohamed Shamil Abdul Salam">
-  <link rel="canonical" href="https://mohamed3shamil.vercel.app/case-recurring-safeguards.html">
+  <link rel="canonical" href="https://mohamed3shamil.vercel.app/case-llm-observability.html">
   <meta property="og:type" content="article">
-  <meta property="og:url" content="https://mohamed3shamil.vercel.app/case-recurring-safeguards.html">
-  <meta property="og:title" content="Case study: recurring payment safeguards — Mohamed Shamil">
-  <meta property="og:description" content="How I made scheduled payments stop when a recipient or bank account is deleted, and fixed bulk cancel.">
+  <meta property="og:url" content="https://mohamed3shamil.vercel.app/case-llm-observability.html">
+  <meta property="og:title" content="Case study: AI observability — Mohamed Shamil">
+  <meta property="og:description" content="How I made every AI call visible: one record per request, failures included, and a dashboard by feature, model and provider account.">
   <meta property="og:image" content="https://mohamed3shamil.vercel.app/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -58,9 +58,9 @@
   <main id="top">
     <section class="page-hero container">
       <a class="demo-link" href="index.html#work">← Back to my work</a>
-      <p class="eyebrow" style="margin-top:18px">Case study · Payments reliability</p>
-      <h1>Making scheduled payments stop when they should</h1>
-      <p class="lead">Businesses schedule rent, payroll and supplier payments to repeat on their own. Two gaps meant a schedule could outlive the thing it was paying.</p>
+      <p class="eyebrow" style="margin-top:18px">Case study · AI observability</p>
+      <h1>Seeing what every AI call costs, and when it fails</h1>
+      <p class="lead">A payments platform used AI in many places, from reading receipts and payroll PDFs to drafting analyses. The spend arrived as one provider bill, and a failed call was easy to miss.</p>
       <div class="case-meta"><span>Software Engineer, Zil Money</span><span>2026</span><span>PHP · Laravel · MySQL</span></div>
     </section>
 
@@ -69,37 +69,38 @@
         <section>
           <h2>The problem</h2>
           <ul>
-            <li><strong>Deleting a recipient or bank account didn't stop its schedules.</strong> The next run would still try to pay a destination the customer had removed.</li>
-            <li><strong>Cancelling several schedules at once only looked finished.</strong> The schedules showed as cancelled, but their upcoming payments stayed queued. No money moved, but the records said one thing and the queue said another.</li>
+            <li><strong>One bill, no breakdown.</strong> There was no way to tell which feature or which model the cost came from.</li>
+            <li><strong>Failures were quiet.</strong> A call that failed showed up, at best, somewhere in the logs, so nobody could say how often each feature was failing.</li>
+            <li><strong>Speed was a guess.</strong> Slow calls were noticed by users before they were noticed by the team.</li>
           </ul>
         </section>
 
         <section>
           <h2>What I built</h2>
           <ol class="case-steps">
-            <li><strong>A plain warning before the delete.</strong> If the recipient or bank account still has active schedules, the user sees: "This recipient has active recurring or scheduled payments. Proceeding will cancel them. Do you want to continue?"</li>
-            <li><strong>On confirm, every schedule tied to it is cancelled</strong>, across every recurring payment type, from bank transfers to mailed checks. Deleting a bank account also stops payment-request forms that pay into it.</li>
-            <li><strong>Each cancellation says why.</strong> The schedule's history gets a note like "Auto-canceled: associated recipient 'Harbor Realty' was deleted", so support and the customer can see exactly what happened.</li>
-            <li><strong>The delete and the cancellations succeed or fail together.</strong> On these paths, if a cancellation fails, the delete is undone too, rather than leaving a deleted recipient with live schedules.</li>
-            <li><strong>Bulk actions got the same protection.</strong> Deleting many recipients at once used a shortcut that skipped the per-record safeguards, so I changed it to delete them one by one, only within the customer's own account. Bulk cancel now clears the upcoming payments of every selected schedule, and mailed checks that were held for a schedule are released for use again.</li>
+            <li><strong>One record for every AI request.</strong> Each record holds the feature, model and provider, the tokens in and out, the cost, how long it took, whether it succeeded, and the error if it did not.</li>
+            <li><strong>Failures are recorded by design.</strong> The record is written in a step that runs whether the call succeeds or fails, so a failure can never skip the log. Records are only ever added, never edited.</li>
+            <li><strong>Tracking lives in the shared AI client</strong>, not in each feature, so every feature that calls an AI model is tracked without extra code.</li>
+            <li><strong>Each group of features runs under its own provider account</strong>, so spend is separated at the source as well as in the log.</li>
+            <li><strong>A dashboard on top:</strong> filter by date, status, feature, model and provider account; totals for calls, tokens, cost and average response time; breakdowns by feature and by model; and a 24-hour health view per provider account with its call count, error rate and last successful call.</li>
           </ol>
         </section>
 
         <section>
           <h2>The lesson</h2>
-          <p class="case-note"><strong>Bulk operations are where safeguards go missing.</strong> Frameworks often skip per-record hooks when many records change in one statement. The single-item path was safe; the "select all and delete" path was not. I now check every bulk path whenever a safeguard lives in a per-record hook.</p>
-          <p>The safeguard covers every way the web app deletes them: recipients and bank accounts, one at a time and in bulk.</p>
+          <p class="case-note"><strong>Put observability in the shared path.</strong> Instrumenting the one client every feature uses, instead of each feature, meant the next AI feature got cost and failure tracking for free, and nobody had to remember to add it.</p>
         </section>
 
         <div class="case-next">
-          <a href="case-delegated-access.html">← Previous: delegated account access</a>
-          <a href="case-llm-observability.html">Next: AI observability →</a>
+          <a href="case-llm-observability.html">← Previous: recurring payment safeguards</a>
+          <a href="case-zatca-einvoicing.html">Next: ZATCA e-invoicing →</a>
         </div>
       </article>
       <aside class="case-side" aria-label="Key ideas">
-        <div class="case-stat"><strong>Warn</strong><span>before anything is cancelled</span></div>
-        <div class="case-stat"><strong>All or nothing</strong><span>the delete and its cancellations succeed or fail together</span></div>
-        <a class="btn btn-primary" href="playground.html#recurring">Try the working demo</a>
+        <div class="case-stat"><strong>Every call</strong><span>recorded, success or failure</span></div>
+        <div class="case-stat"><strong>By feature</strong><span>and by model, with cost, tokens and speed</span></div>
+        <div class="case-stat"><strong>24 h</strong><span>health per provider account: calls, error rate, last success</span></div>
+        <a class="btn btn-primary" href="playground.html#ai-usage">Try the working demo</a>
       </aside>
     </div>
   </main>

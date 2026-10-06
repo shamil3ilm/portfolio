@@ -103,7 +103,7 @@ test('optional fields render sensibly', () => {
   assert.ok(r.projects.includes('<strong>Cert-Ed Academia</strong>'));
   assert.ok(r.education.includes('2021 – Present'));
   assert.ok(quickViewValues(profile).blocks.results.includes(
-    '<li><strong>Delegated access for service providers.</strong> 450 existing API endpoints opened to providers, every call logged, every refusal identical.</li>',
+    '<li><strong>Delegated access for service providers.</strong> Providers work through the existing payment APIs with single-use keys, every call audited and every refusal identical.</li>',
   ));
 });
 

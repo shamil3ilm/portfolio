@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Case study: delegated account access — Mohamed Shamil</title>
-  <meta name="description" content="How I let service providers act for their customers safely: one-time keys, 450 existing API endpoints, full logging and one identical refusal.">
+  <meta name="description" content="How I let service providers act for their customers safely: one-time keys, the existing payment APIs, full logging and one identical refusal.">
   <meta name="author" content="Mohamed Shamil Abdul Salam">
   <link rel="canonical" href="https://mohamed3shamil.vercel.app/case-delegated-access.html">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://mohamed3shamil.vercel.app/case-delegated-access.html">
   <meta property="og:title" content="Case study: delegated account access — Mohamed Shamil">
-  <meta property="og:description" content="How I let service providers act for their customers safely: one-time keys, 450 existing API endpoints, full logging and one identical refusal.">
+  <meta property="og:description" content="How I let service providers act for their customers safely: one-time keys, the existing payment APIs, full logging and one identical refusal.">
   <meta property="og:image" content="https://mohamed3shamil.vercel.app/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -34,9 +34,9 @@
         <span>Mohamed Shamil</span>
       </a>
       <nav class="nav" id="site-nav" aria-label="Sections">
-        <a href="index.html#help">Services</a>
         <a href="index.html#work">Work</a>
         <a href="index.html#projects">Projects</a>
+        <a href="index.html#help">Services</a>
         <a href="playground.html">Playground</a>
         <a href="index.html#contact">Contact</a>
         <a href="resume.html">Résumé</a>
@@ -68,7 +68,7 @@
       <article class="case-body">
         <section>
           <h2>The problem</h2>
-          <p>A service provider, such as a payroll company, manages payments for many businesses. Asking each customer to share a password is unsafe. Giving the provider broad access is worse: one mistake, or one bad actor, could move money in any of those accounts.</p>
+          <p>A service provider, such as a payroll company, manages payments for many businesses. Asking each customer to share their login is unsafe. Giving the provider broad access is worse: one mistake, or one bad actor, could move money in any of those accounts.</p>
           <p>The platform needed a way for a provider to act <strong>as</strong> a customer, with limits the customer can trust and a record of everything the provider does.</p>
         </section>
 
@@ -77,9 +77,9 @@
           <ol class="case-steps">
             <li><strong>The customer creates a one-time connect key.</strong> It is valid for a year and works once. Asking again returns the same unused key, so spare keys never pile up.</li>
             <li><strong>The provider redeems the key to connect.</strong> A used, expired or unknown key is refused, and so is a customer who is already connected to another provider, or a provider trying to connect to itself.</li>
-            <li><strong>The provider then uses the same API the customer's own software uses</strong>, on the customer's behalf. Instead of building a second, separate API, I added an "acting for this customer" layer to <strong>450 existing endpoints</strong> across 7 payment services, so providers get the same features and the same checks.</li>
+            <li><strong>The provider then uses the same API the customer's own software uses</strong>, on the customer's behalf. Instead of building a second, separate API, I added an "acting for this customer" layer to <strong>the existing endpoints</strong> across the payment services, so providers get the same features and the same checks.</li>
             <li><strong>Every call is checked and recorded.</strong> Allowed calls are logged. Refused calls all get the same short reply, "Access denied", whatever the reason, while the real reason is written to the log.</li>
-            <li><strong>Payment updates are copied to the provider only if it subscribes.</strong> Up to 38 kinds of update, such as "payment created", can be mirrored.</li>
+            <li><strong>Payment updates are copied to the provider only if it subscribes.</strong> Updates such as "payment created" can be mirrored to the provider as well as the customer.</li>
           </ol>
         </section>
 
@@ -88,7 +88,7 @@
           <ul>
             <li><strong>The customer's approvals stay the customer's.</strong> A provider can create a payment, but it can't approve one that is waiting for the customer's own approvers.</li>
             <li><strong>No record, no action.</strong> If a call can't be attributed and logged, it is refused rather than allowed through unrecorded.</li>
-            <li><strong>One answer for every refusal.</strong> Six different reasons sit behind the same reply, so nobody can probe which customers exist or why they were turned away. The log keeps the detail.</li>
+            <li><strong>One answer for every refusal.</strong> Several different reasons sit behind the same reply, so nobody can probe which customers exist or why they were turned away. The log keeps the detail.</li>
             <li><strong>Suspension works both ways.</strong> Suspending a customer's connection, or the provider itself, stops its requests straight away.</li>
           </ul>
           <p class="case-note"><strong>Why reuse the existing API?</strong> A separate provider API would drift from the main one: new features would arrive late, and every rule would exist twice. Layering access on top keeps one set of rules for everyone.</p>
@@ -104,11 +104,11 @@
           <a href="case-recurring-safeguards.html">Next case study: recurring payment safeguards →</a>
         </div>
       </article>
-      <aside class="case-side" aria-label="Key numbers">
-        <div class="case-stat"><strong>450</strong><span>existing API endpoints opened to providers</span></div>
-        <div class="case-stat"><strong>7</strong><span>payment services covered</span></div>
-        <div class="case-stat"><strong>38</strong><span>kinds of update mirrored to subscribers</span></div>
-        <div class="case-stat"><strong>6 → 1</strong><span>refusal reasons behind one identical reply</span></div>
+      <aside class="case-side" aria-label="Key ideas">
+        <div class="case-stat"><strong>1 key</strong><span>single-use and expiring, created by the customer</span></div>
+        <div class="case-stat"><strong>1 API</strong><span>providers use the same endpoints as customers, so every rule exists once</span></div>
+        <div class="case-stat"><strong>Every call</strong><span>attributed to the provider and recorded, allowed or refused</span></div>
+        <div class="case-stat"><strong>1 reply</strong><span>for every refusal; the real reason stays in the audit log</span></div>
         <a class="btn btn-primary" href="playground.html#delegated-access">Try the working demo</a>
       </aside>
     </div>

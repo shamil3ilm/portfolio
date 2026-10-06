@@ -40,7 +40,9 @@
       "startDate": "2025-06",
       "endDate": "2025-11",
       "highlights": [
-        "Delivered Laravel backend functionality for billing automation and business-process workflows, implementing reusable service-layer components and database-driven business logic."
+        "Analysed a legacy Laravel and PostgreSQL business-management and e-invoicing platform (routes, controllers, models, Blade views, roles and database structure) and contributed to its modular redesign on Inertia, Vue, TypeScript and Vite.",
+        "Gathered requirements from new clients across Qatar, Saudi Arabia and the UAE and worked on their accounting workflows.",
+        "Independently developed and investigated the ZATCA e-invoicing workflow up to handover: XML generation, signing, hashing, TLV QR codes, certificate handling, validation and compliance-error investigation."
       ]
     },
     {
@@ -107,7 +109,7 @@
     },
     {
       "name": "Backend",
-      "keywords": ["Laravel", "REST APIs", "Eloquent", "MVC", "Queues", "Jobs", "Events", "Webhooks", "Middleware"]
+      "keywords": ["Laravel", "REST APIs", "Eloquent", "Queues", "Jobs", "Events", "Webhooks", "Middleware"]
     },
     {
       "name": "Databases",
@@ -119,7 +121,7 @@
     },
     {
       "name": "Engineering",
-      "keywords": ["API Integration", "Asynchronous Processing", "Transactions", "Concurrency", "Idempotency", "Multi-Tenancy", "Authorization", "Audit Trails", "Production Debugging"]
+      "keywords": ["Transactions", "Authorization", "Background Processing", "API Integration", "Audit Trails", "Production Debugging"]
     },
     {
       "name": "Tools",
@@ -162,15 +164,29 @@
           "url": "https://mohamed3shamil.vercel.app/case-recurring-safeguards.html",
           "work": "Zil Money",
           "highlight": 2
+        },
+        {
+          "id": "llm-observability",
+          "title": "Seeing what every AI call costs, and when it fails",
+          "url": "https://mohamed3shamil.vercel.app/case-llm-observability.html",
+          "work": "Zil Money",
+          "highlight": 3
+        },
+        {
+          "id": "zatca-einvoicing",
+          "title": "Saudi e-invoicing on an existing business platform",
+          "url": "https://mohamed3shamil.vercel.app/case-zatca-einvoicing.html",
+          "work": "Netplex Solutions",
+          "highlight": 2
         }
       ],
       "quickView": {
-        "role": "Software Engineer · Backend · Fintech",
-        "line": "I build backends where a mistake costs money or trust: payments, access control and compliance. Laravel and TypeScript, with the tests and logs to prove it works.",
+        "role": "Software Engineer · Backend systems · Financial workflows",
+        "line": "I build backend systems for financial workflows, where a mistake costs money or trust: who can act on an account, payments that must go where they were approved, and compliance. Laravel and TypeScript, with tests and logs to prove it works.",
         "results": [
           {
             "lead": "Delegated access for service providers.",
-            "text": "450 existing API endpoints opened to providers, every call logged, every refusal identical.",
+            "text": "Providers work through the existing payment APIs with single-use keys, every call audited and every refusal identical.",
             "link": { "label": "Case study", "href": "case-delegated-access.html" }
           },
           {
@@ -179,9 +195,9 @@
             "link": { "label": "Demo", "href": "index.html#demo-lock", "closesDialog": true }
           },
           {
-            "lead": "Recurring payments that stop when they should.",
-            "text": "Auto-cancel across 5 payment types and 4 delete paths.",
-            "link": { "label": "Case study", "href": "case-recurring-safeguards.html" }
+            "lead": "ZATCA e-invoicing at Netplex.",
+            "text": "XML generation, signing, hashing, QR codes and compliance-error investigation, developed up to handover.",
+            "link": { "label": "Details", "href": "index.html#netplex", "closesDialog": true }
           },
           {
             "lead": "Cert-Ed, a live education platform I built.",
@@ -189,7 +205,7 @@
             "link": { "label": "Visit ↗", "href": "https://www.certedacademia.com" }
           }
         ],
-        "skills": ["PHP · Laravel", "TypeScript · Next.js", "MySQL · PostgreSQL", "Queues · webhooks", "LLM APIs"]
+        "skills": ["PHP · Laravel", "TypeScript · Next.js", "MySQL · PostgreSQL", "Queues · webhooks", "Authorization · audit trails"]
       }
     }
   }

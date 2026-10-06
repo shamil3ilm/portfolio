@@ -4,19 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mohamed Shamil — Software Engineer</title>
-  <meta name="description" content="Backend-focused software engineer. I build software that has to be right: secure access, trustworthy records and reliable automation, across fintech, education and compliance.">
+  <meta name="description" content="Software engineer focused on backend systems, financial workflows and reliable application architecture.">
   <meta name="author" content="Mohamed Shamil Abdul Salam">
   <link rel="canonical" href="https://mohamed3shamil.vercel.app/">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mohamed3shamil.vercel.app/">
   <meta property="og:title" content="Mohamed Shamil — Software Engineer">
-  <meta property="og:description" content="I build software that has to be right: secure access, trustworthy records and reliable automation.">
+  <meta property="og:description" content="Software engineer focused on backend systems, financial workflows and reliable application architecture.">
   <meta property="og:image" content="https://mohamed3shamil.vercel.app/og-image.png">
   <meta property="og:site_name" content="Mohamed Shamil">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Mohamed Shamil — Software Engineer">
-  <meta name="twitter:description" content="I build software that has to be right: secure access, trustworthy records and reliable automation.">
+  <meta name="twitter:description" content="Software engineer focused on backend systems, financial workflows and reliable application architecture.">
   <meta name="twitter:image" content="https://mohamed3shamil.vercel.app/og-image.png">
 
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -40,9 +40,9 @@
         <span>Mohamed Shamil</span>
       </a>
       <nav class="nav" id="site-nav" aria-label="Sections">
-        <a href="#help">Services</a>
         <a href="#work">Work</a>
         <a href="#projects">Projects</a>
+        <a href="#help">Services</a>
         <a href="playground.html">Playground</a>
         <a href="#contact">Contact</a>
         <a href="resume.html">Résumé</a>
@@ -68,9 +68,10 @@
         <p class="eyebrow">Software Engineer | Backend Developer | Fintech</p>
         <h1>I build software that has to be right.</h1>
         <p class="lead">
-          Backend-focused engineer working across fintech, education and compliance. I specialise
-          in the parts that can't fail quietly: who can access what, records nobody can alter,
-          and automation that keeps running correctly when no one is watching.
+          Software engineer focused on backend systems, financial workflows and reliable application
+          architecture. I work on the parts that can't fail quietly: who can act on an account,
+          payments that must go where they were approved, and automation that keeps running
+          correctly when no one is watching.
         </p>
         <div class="cta">
           <a href="#contact" class="btn btn-primary">Work with me</a>
@@ -78,10 +79,10 @@
           <a href="resume.html" class="btn btn-ghost">Résumé</a>
         </div>
         <ul class="proof" aria-label="At a glance">
-          <li><a href="#work"><strong>90</strong><span>pull requests merged at Zil Money</span></a></li>
-          <li><a href="case-delegated-access.html"><strong>450</strong><span>API endpoints opened safely to service providers</span></a></li>
-          <li><a href="#work-also"><strong>17</strong><span>banks' fraud-check files kept running</span></a></li>
-          <li><a href="#work" data-work-filter="ai"><strong>16</strong><span>AI features tracked for cost, tokens and speed</span></a></li>
+          <li><a href="#netplex"><strong>3</strong><span>GCC countries served by the e-invoicing platform I worked on</span></a></li>
+          <li><a href="#project-certed"><strong>50+</strong><span>database security policies in Cert-Ed, a live platform I built</span></a></li>
+          <li><a href="#project-masaar"><strong>26</strong><span>tax-authority validator checks passed by Masaar</span></a></li>
+          <li><a href="#project-time"><strong>10+</strong><span>colleagues use Time, my work-hours tracker, every day</span></a></li>
         </ul>
       </div>
 
@@ -178,6 +179,256 @@
       </a>
     </section>
 
+    <section id="work" class="section section-band container">
+      <div class="section-head">
+        <p class="eyebrow">Experience · Zil Money</p>
+        <h2>Production backend engineering</h2>
+        <p class="section-sub">Software Engineer, Dec 2025 – present, at a US payments platform for checks, ACH and digital payments. Each card shows the problem and how I approached it.</p>
+      </div>
+
+      <div class="work-filters" role="group" aria-label="Filter work by topic">
+        <button type="button" class="chip-btn" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" class="chip-btn" data-filter="payments" aria-pressed="false">Payments</button>
+        <button type="button" class="chip-btn" data-filter="security" aria-pressed="false">Security</button>
+        <button type="button" class="chip-btn" data-filter="ai" aria-pressed="false">AI</button>
+        <button type="button" class="chip-btn" data-filter="reliability" aria-pressed="false">Reliability</button>
+        <span class="work-count" data-work="count" aria-live="polite"></span>
+      </div>
+
+      <div class="grid-2 work-grid" data-work="grid">
+        <article class="card card-featured" id="work-delegated" data-topics="payments security">
+          <div class="featured-main">
+            <span class="tag">Delegated access · Featured</span>
+            <h3>Acting for customers, safely</h3>
+            <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>Payroll and bookkeeping providers needed to work inside their customers' accounts through the existing payment APIs, without sharing logins and without being able to sign off the customer's own payments.</span></p>
+            <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>An authorization layer on top of the existing APIs rather than a second API, so every rule exists once. Access is granted by the customer, every call is attributed and audited, and payments that need the customer's own approvers stay theirs.</span></p>
+            <div class="card-links"><a href="case-delegated-access.html">Read the case study →</a><a href="playground.html#delegated-access">Try the demo →</a></div>
+          </div>
+          <ul class="featured-facts">
+            <li><strong>Key</strong><span>Access starts with a single-use, expiring key the customer creates</span></li>
+            <li><strong>Log</strong><span>Every call is attributed to the provider and recorded, allowed or refused</span></li>
+            <li><strong>Deny</strong><span>Every refusal looks the same from outside; the real reason goes to the audit log</span></li>
+          </ul>
+        </article>
+        <article class="card" id="work-approvals" data-topics="payments security">
+          <span class="tag">Payment approvals</span>
+          <h3>Approved means unchanged</h3>
+          <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>In a multi-level approval flow, a recipient's bank details could change after a payment was submitted, so approvers could sign off one destination while the money went to another.</span></p>
+          <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>The details that decide where money lands are fingerprinted at submission and re-checked at release. Recipient and bank-account edits are blocked while a payment is pending, and every refused approval returns a specific reason instead of a generic failure.</span></p>
+          <div class="card-links"><a href="index.html#demo-lock">Try the demo →</a></div>
+        </article>
+        <article class="card" id="work-recurring" data-topics="payments reliability">
+          <span class="tag">Recurring payments</span>
+          <h3>Schedules that stop when they should</h3>
+          <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>Deleting a recipient or bank account didn't stop the recurring payments tied to it, and cancelling several schedules at once left their upcoming payments queued.</span></p>
+          <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>Deleting now warns first, then cancels every linked schedule with an audit note, as one all-or-nothing change. Bulk deletes go through the same per-record path, and bulk cancel clears every selected schedule.</span></p>
+          <div class="card-links"><a href="case-recurring-safeguards.html">Read the case study →</a><a href="playground.html#recurring">Try the demo →</a></div>
+        </article>
+        <article class="card" data-topics="payments ai">
+          <span class="tag">Payment imports</span>
+          <h3>Spreadsheets that map themselves</h3>
+          <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>Customers upload payment spreadsheets in any column order and naming, sometimes without a header row, and had to match every column by hand before importing.</span></p>
+          <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>Columns are matched in layers: header rules first, then the sample values themselves, then an AI model for whatever is still unmatched, with a position-based fallback. The user only reviews the result.</span></p>
+        </article>
+        <article class="card card-featured" id="work-ai" data-topics="ai reliability">
+          <div class="featured-main">
+            <span class="tag">AI observability · Featured</span>
+            <h3>Knowing what every AI call costs</h3>
+            <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>AI usage arrived as one provider bill. Nobody could see which feature or model the cost came from, how often calls failed, or how slow they were.</span></p>
+            <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>Tracking built into the shared AI client: one record per request, written even when the call fails, with feature, model, tokens, cost and response time. A dashboard breaks it down by feature, model and provider account, with a 24-hour health view.</span></p>
+            <div class="card-links"><a href="case-llm-observability.html">Read the case study →</a><a href="playground.html#ai-usage">Try the demo →</a></div>
+          </div>
+          <ul class="featured-facts">
+            <li><strong>Log</strong><span>Every AI request recorded, success or failure</span></li>
+            <li><strong>Split</strong><span>Cost, tokens and speed by feature and by model</span></li>
+            <li><strong>Watch</strong><span>24-hour health per provider account: error rate and last success</span></li>
+          </ul>
+        </article>
+        <article class="card is-extra" data-topics="ai">
+          <span class="tag">AI + documents</span>
+          <h3>Payroll PDFs into checks</h3>
+          <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>Payroll arrives as PDFs, and each page had to be typed in as a check by hand.</span></p>
+          <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>Worked on a feature that reads each page with AI and turns it into a ready-to-print check, with one background job per page so printing stays instant.</span></p>
+        </article>
+        <article class="card is-extra" data-topics="reliability">
+          <span class="tag">Heavy exports</span>
+          <h3>Large statements built in the background</h3>
+          <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>Large account statements were built while the customer waited on the page.</span></p>
+          <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>Big statements are now built by a background job and emailed as PDF, CSV or Excel, while small ones stay instant.</span></p>
+        </article>
+        <article class="card is-extra" data-topics="security payments">
+          <span class="tag">Bank verification</span>
+          <h3>An embeddable verification widget</h3>
+          <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>Other websites needed to verify a visitor's bank account instantly, without building that flow themselves.</span></p>
+          <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>An embeddable widget with short-lived, single-use sessions. The visitor's network is checked at every step, so a hand-off gets flagged, and errors never reveal server details.</span></p>
+        </article>
+        <article class="card is-extra" data-topics="reliability">
+          <span class="tag">Production debugging</span>
+          <h3>Finding the real cause</h3>
+          <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>Live failures across payment flows, background jobs and third-party integrations, often with misleading symptoms.</span></p>
+          <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>Trace each one to its root cause from logs and data, then ship a fix with evidence that it works.</span></p>
+        </article>
+        <article class="card is-extra" data-topics="reliability">
+          <span class="tag">Testing tools</span>
+          <h3>Testing what you can't click</h3>
+          <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>Scheduled payments and embedded widgets can't be tested by clicking through the normal app.</span></p>
+          <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>On-demand tools that run those flows end to end, so fixes are tested the way they run in production.</span></p>
+        </article>
+      </div>
+      <button type="button" class="btn btn-ghost work-more" data-work="more" aria-expanded="false">Show all 10</button>
+
+      <details class="more more-fixes" id="work-also">
+        <summary>
+          <span><strong>Also in this role</strong><span class="more-sum">5 smaller fixes, each shown before and after</span></span>
+          <span class="more-chev" aria-hidden="true"></span>
+        </summary>
+        <p class="more-sub">Each one a real problem that customers or the operations team ran into.</p>
+        <div class="fix-grid">
+          <article class="fix">
+            <p class="fix-tag">Fraud review</p>
+            <h4>Shared bank accounts, visible at a glance</h4>
+            <p class="fix-row"><span class="fix-k" data-k="before">Before</span><span>The screen staff use to vet new customers showed documents and risk scores, but not the bank accounts the customer had linked.</span></p>
+            <p class="fix-row"><span class="fix-k" data-k="after">After</span><span>Every linked account is listed with <strong>how it was verified</strong> (instant, micro-deposit, pending or manual) and <strong>how many other customers use the same account</strong>, one click from their details. Searchable by routing number, account number, phone or email.</span></p>
+          </article>
+          <article class="fix">
+            <p class="fix-tag">Scheduling</p>
+            <h4>Evening fraud-check files that never ran</h4>
+            <p class="fix-row"><span class="fix-k" data-k="before">Before</span><span>A daily Positive Pay file (the list banks use to catch forged checks) set for after about 8 PM US Eastern was matched against the next day in UTC, and <strong>silently skipped</strong>.</span></p>
+            <p class="fix-row"><span class="fix-k" data-k="after">After</span><span>The run time is now read against today's date in the account's own time zone, so evening runs go out on the right day.</span></p>
+          </article>
+          <article class="fix">
+            <p class="fix-tag">Clear errors</p>
+            <h4>A failure message that said the wrong thing</h4>
+            <p class="fix-row"><span class="fix-k" data-k="before">Before</span><span>"Your recurring payment of $500.00 failed due to insufficient funds." The payment money was fine; it was the <strong>mailing fee</strong> that could not be charged.</span></p>
+            <p class="fix-row"><span class="fix-k" data-k="after">After</span><span>"…could not be processed because the <strong>$2.50 mailing fee</strong> could not be charged", plus which balance to top up. The same detail goes into the audit trail. (Example amounts.)</span></p>
+          </article>
+          <article class="fix">
+            <p class="fix-tag">Approvals</p>
+            <h4>A real reason instead of "failed"</h4>
+            <p class="fix-row"><span class="fix-k" data-k="before">Before</span><span>When a payment could not be approved, the approver got a generic failure and no way to know what to do next.</span></p>
+            <p class="fix-row"><span class="fix-k" data-k="after">After</span><span>A specific reason every time, such as <strong>"You are not an approver for this payment"</strong> or <strong>"This payment is no longer awaiting approval"</strong>, and a clear note when only part of a batch went through.</span></p>
+          </article>
+          <article class="fix">
+            <p class="fix-tag">Integrations</p>
+            <h4>Accounting and payroll integrations</h4>
+            <p class="fix-row"><span class="fix-k" data-k="before">Before</span><span>Imports from third-party accounting software finished silently, and checks from a third-party payroll tool were created before the user had confirmed them.</span></p>
+            <p class="fix-row"><span class="fix-k" data-k="after">After</span><span>Imports of bills, expenses, refund receipts and checks now <strong>email the user when done</strong> and record who ran them; payroll checks are created <strong>only on confirmation</strong>.</span></p>
+          </article>
+        </div>
+      </details>
+    </section>
+
+    <section id="netplex" class="section container">
+      <div class="section-head">
+        <p class="eyebrow">Experience · Netplex Solutions</p>
+        <h2>Business platform &amp; ZATCA e-invoicing</h2>
+        <p class="section-sub">PHP Laravel Intern, Jun – Nov 2025, remote for a Dubai company. A business-management and e-invoicing product (Taxfly) used by customers in Qatar, Saudi Arabia and the UAE.</p>
+      </div>
+      <div class="np-grid">
+        <article class="card">
+          <span class="tag">Legacy analysis</span>
+          <h3>Understanding the system before changing it</h3>
+          <p>Mapped the existing Laravel and PostgreSQL application end to end: routes, controllers, models, Blade views, roles and the database structure. Then contributed to its redesign into modules on Inertia, Vue, TypeScript and Vite.</p>
+        </article>
+        <article class="card">
+          <span class="tag">Clients &amp; accounting</span>
+          <h3>From client requirements to workflows</h3>
+          <p>Gathered requirements from new clients across Qatar, Saudi Arabia and the UAE, and worked on the accounting workflows their businesses run on.</p>
+        </article>
+        <article class="card">
+          <span class="tag">ZATCA e-invoicing</span>
+          <h3>Saudi e-invoicing, up to handover</h3>
+          <p>Independently developed and investigated the ZATCA e-invoicing workflow: XML invoice generation, signing, hashing, TLV-encoded QR codes, certificate handling, validation, and tracing compliance errors to their cause. It was still in progress when I left, and I handed it over at that point.</p>
+          <div class="card-links"><a href="case-zatca-einvoicing.html">Read the case study →</a><a href="#project-masaar">See Masaar →</a></div>
+        </article>
+      </div>
+      <p class="stack np-stack">Laravel · PHP · PostgreSQL · Inertia · Vue · TypeScript · Vite</p>
+    </section>
+
+    <section id="projects" class="section container">
+      <div class="section-head">
+        <p class="eyebrow">Projects</p>
+        <h2>Things I've built</h2>
+        <p class="section-sub">Independent work across education, tax compliance, security, infrastructure and developer tools.</p>
+      </div>
+
+      <div class="projects">
+        <article class="project project-featured" id="project-certed">
+          <div class="project-top">
+            <h3><a href="https://www.certedacademia.com" target="_blank" rel="noopener">Cert-Ed Academia ↗</a></h3>
+            <span class="status status-live">Live</span>
+          </div>
+          <p class="domain">Education</p>
+          <p>A live platform for an online tuition academy, across 5 user roles: classes, assignments, grading, per-session attendance, hours-based billing, receipts, payslips, messaging and scheduling.</p>
+          <ul class="facts">
+            <li><strong>50+</strong> database-level security policies, plus <strong>18</strong> app-level capabilities</li>
+            <li>Every role's access tested against a real database in CI</li>
+            <li>Billed hours locked by the database once invoiced</li>
+            <li><strong>100+</strong> unit tests</li>
+          </ul>
+          <p class="stack">Next.js · TypeScript · Supabase · PostgreSQL</p>
+        </article>
+
+        <article class="project" id="project-masaar">
+          <div class="project-top">
+            <h3>Masaar</h3>
+            <span class="status">In development</span>
+          </div>
+          <p class="domain">Tax compliance</p>
+          <p>An e-invoicing system for Saudi tax rules: digitally signed invoices, tamper-evident invoice chains, QR codes and certificate management.</p>
+          <ul class="facts">
+            <li>Invoices pass the tax authority's <strong>official validator</strong> (26 checks)</li>
+            <li>Invoice chain stays correct under simultaneous requests</li>
+            <li>Offline queue and circuit breaker for when the tax portal is down</li>
+          </ul>
+          <p class="stack">PHP · Laravel · MySQL · OpenSSL</p>
+          <a class="code-link" href="https://github.com/shamil3ilm/masaar" target="_blank" rel="noopener">View code on GitHub ↗</a>
+        </article>
+
+
+        <article class="project">
+          <div class="project-top">
+            <h3>Athar</h3>
+            <span class="status">Prototype</span>
+          </div>
+          <p class="domain">Security</p>
+          <p>A security runtime for web apps that links related events into one story, records why each decision was made, and keeps a signed, tamper-evident log.</p>
+          <ul class="facts">
+            <li>Hash-chained, signed audit log with verification</li>
+            <li>Never breaks the host app: checks fail open within 5 ms</li>
+            <li>Plugs into PHP and Laravel apps</li>
+          </ul>
+          <p class="stack">Rust · Laravel · PHP · SQLite</p>
+          <a class="code-link" href="https://github.com/shamil3ilm/athar" target="_blank" rel="noopener">View code on GitHub ↗</a>
+        </article>
+
+        <article class="project" id="project-time">
+          <div class="project-top">
+            <h3>Time</h3>
+            <span class="status status-live">In daily use</span>
+          </div>
+          <p class="domain">Workplace time &amp; attendance</p>
+          <p>A work-hours tracker that calculates working time, shows weekly and monthly pace, and warns about long sessions. Later rebuilt as a hosted multi-user service.</p>
+          <ul class="facts">
+            <li>Used daily by <strong>10+</strong> colleagues</li>
+            <li>Hourly sync, with a backup if the main schedule stalls</li>
+          </ul>
+          <p class="stack">TypeScript · SQLite · REST APIs</p>
+        </article>
+      </div>
+
+      <div class="more">
+        <h3>Other experiments</h3>
+        <ul>
+          <li><strong><a href="https://github.com/shamil3ilm/domain" target="_blank" rel="noopener">Private DNS server ↗</a></strong> — a single-binary DNS server in Go with an admin API and rate limiting, released for 7 platforms.</li>
+          <li><strong><a href="https://github.com/shamil3ilm/mail-service" target="_blank" rel="noopener">Mail server ↗</a></strong> — a single-binary mail server in Go that captures mail over SMTP, with a web dashboard and full-text search.</li>
+          <li><strong><a href="https://github.com/shamil3ilm/masaar-erp-backend" target="_blank" rel="noopener">ERP API ↗</a></strong> — a multi-company business API with automatic data isolation between companies (3,840 tests).</li>
+          <li><strong>Jira Dashboard</strong> — a command-line tool that fills in quality checklists from real code evidence and refuses to tick sign-offs.</li>
+          <li><strong><a href="https://github.com/shamil3ilm/lee" target="_blank" rel="noopener">Employ ↗</a></strong> — an AI tool that collects jobs from 9 sites, ranks them, and writes a tailored CV and cover letter for each (181 tests).</li>
+        </ul>
+      </div>
+    </section>
+
     <section id="help" class="section container">
       <div class="section-head">
         <p class="eyebrow">Work with me</p>
@@ -236,210 +487,6 @@
       </div>
     </section>
 
-    <section id="work" class="section section-band container">
-      <div class="section-head">
-        <p class="eyebrow">Experience</p>
-        <h2>Software Engineer at Zil Money</h2>
-        <p class="section-sub">A US payments platform for checks, ACH and digital payments. Dec 2025 – present · 90 pull requests merged.</p>
-      </div>
-
-      <div class="work-filters" role="group" aria-label="Filter work by topic">
-        <button type="button" class="chip-btn" data-filter="all" aria-pressed="true">All</button>
-        <button type="button" class="chip-btn" data-filter="payments" aria-pressed="false">Payments</button>
-        <button type="button" class="chip-btn" data-filter="security" aria-pressed="false">Security</button>
-        <button type="button" class="chip-btn" data-filter="ai" aria-pressed="false">AI</button>
-        <button type="button" class="chip-btn" data-filter="reliability" aria-pressed="false">Reliability</button>
-        <span class="work-count" data-work="count" aria-live="polite"></span>
-      </div>
-
-      <div class="grid-2 work-grid" data-work="grid">
-        <article class="card card-featured" id="work-delegated" data-topics="payments security">
-          <div class="featured-main">
-            <span class="tag">Delegated access · Featured</span>
-            <h3>Acting for customers, safely</h3>
-            <p>Built the system that lets approved service providers, like payroll companies, work on their customers' accounts. Access starts with a single-use key the customer creates, every call is logged, and providers can't approve payments that need the customer's own approvers.</p>
-            <div class="card-links">
-              <a href="case-delegated-access.html">Read the case study →</a>
-              <a href="playground.html#delegated-access">Try the demo →</a>
-            </div>
-          </div>
-          <ul class="featured-facts">
-            <li><strong>450</strong><span>existing API endpoints opened to providers</span></li>
-            <li><strong>38</strong><span>kinds of update copied to providers who subscribe</span></li>
-            <li><strong>1</strong><span>identical "Access denied" for every refusal, each logged with its real reason</span></li>
-          </ul>
-        </article>
-        <article class="card" id="work-approvals" data-topics="payments security">
-          <span class="tag">Payment approvals</span>
-          <h3>Approved means unchanged</h3>
-          <p>Made sure a payment's bank details can't be swapped after it's submitted for approval: they are locked in, re-checked before the money moves, and can't be edited while approval is pending.</p>
-          <div class="card-links"><a href="index.html#demo-lock">Try the demo →</a></div>
-        </article>
-        <article class="card" id="work-recurring" data-topics="payments reliability">
-          <span class="tag">Recurring payments</span>
-          <h3>Schedules that stop when they should</h3>
-          <p>Recurring payments now cancel automatically when their recipient or bank account is removed, after the user confirms. Cancelling several schedules at once now clears all of their upcoming payments, and held checks are released for use again.</p>
-          <div class="card-links"><a href="case-recurring-safeguards.html">Read the case study →</a><a href="playground.html#recurring">Try the demo →</a></div>
-        </article>
-        <article class="card" data-topics="security payments">
-          <span class="tag">Bank verification</span>
-          <h3>An embeddable verification widget</h3>
-          <p>Built a widget other websites embed to verify a bank account instantly. Each session is short-lived and single-use, the visitor's network is recorded at every step so a change gets flagged, and errors never expose server details.</p>
-        </article>
-        <article class="card" data-topics="ai">
-          <span class="tag">AI + documents</span>
-          <h3>Payroll PDFs into checks</h3>
-          <p>Worked on a feature that uses AI to read payroll PDFs and turn each page into a ready-to-print check, billed per page, with printing kept instant.</p>
-        </article>
-        <article class="card is-extra" data-topics="ai reliability">
-          <span class="tag">AI observability</span>
-          <h3>Knowing what AI costs</h3>
-          <p>Added cost, token and latency tracking to the platform's AI features, with separate credentials per feature group and a dashboard that shows spend by feature and model.</p>
-          <div class="card-links"><a href="playground.html#ai-usage">Try the demo →</a></div>
-        </article>
-        <article class="card is-extra" data-topics="reliability">
-          <span class="tag">Production debugging</span>
-          <h3>Finding the real cause</h3>
-          <p>Investigated live failures across payment flows, background jobs and third-party integrations, traced each to its root cause, and shipped fixes backed by evidence.</p>
-        </article>
-        <article class="card is-extra" data-topics="reliability">
-          <span class="tag">Testing tools</span>
-          <h3>Testing what you can't click</h3>
-          <p>Built on-demand tools to run scheduled payments and embedded widgets end to end, for flows that can't be tested through the normal app.</p>
-        </article>
-      </div>
-      <button type="button" class="btn btn-ghost work-more" data-work="more" aria-expanded="false">Show all 8</button>
-
-      <details class="more more-fixes" id="work-also">
-        <summary>
-          <span><strong>Also in this role</strong><span class="more-sum">6 smaller fixes, each shown before and after</span></span>
-          <span class="more-chev" aria-hidden="true"></span>
-        </summary>
-        <p class="more-sub">Each one a real problem that customers or the operations team ran into.</p>
-        <div class="fix-grid">
-          <article class="fix">
-            <p class="fix-tag">Fraud review</p>
-            <h4>Shared bank accounts, visible at a glance</h4>
-            <p class="fix-row"><span class="fix-k" data-k="before">Before</span><span>The screen staff use to vet new customers showed documents and risk scores, but not the bank accounts the customer had linked.</span></p>
-            <p class="fix-row"><span class="fix-k" data-k="after">After</span><span>Every linked account is listed with <strong>how it was verified</strong> (instant, micro-deposit, pending or manual) and <strong>how many other customers use the same account</strong>, one click from their details. Searchable by routing number, account number, phone or email.</span></p>
-          </article>
-          <article class="fix">
-            <p class="fix-tag">Scheduling</p>
-            <h4>Evening fraud-check files that never ran</h4>
-            <p class="fix-row"><span class="fix-k" data-k="before">Before</span><span>A daily Positive Pay file (the list banks use to catch forged checks) set for after about 8 PM US Eastern was matched against the next day in UTC, and <strong>silently skipped</strong>.</span></p>
-            <p class="fix-row"><span class="fix-k" data-k="after">After</span><span>The run time is now read against today's date in the account's own time zone, so evening runs go out on the right day.</span></p>
-          </article>
-          <article class="fix">
-            <p class="fix-tag">Clear errors</p>
-            <h4>A failure message that said the wrong thing</h4>
-            <p class="fix-row"><span class="fix-k" data-k="before">Before</span><span>"Your recurring payment of $500.00 failed due to insufficient funds." The payment money was fine; it was the <strong>mailing fee</strong> that could not be charged.</span></p>
-            <p class="fix-row"><span class="fix-k" data-k="after">After</span><span>"…could not be processed because the <strong>$2.50 mailing fee</strong> could not be charged", plus which balance to top up. The same detail goes into the audit trail. (Example amounts.)</span></p>
-          </article>
-          <article class="fix">
-            <p class="fix-tag">Performance</p>
-            <h4>Big statements built in the background</h4>
-            <p class="fix-row"><span class="fix-k" data-k="before">Before</span><span>Account statements were built while the customer waited on the page, however many transactions they held.</span></p>
-            <p class="fix-row"><span class="fix-k" data-k="after">After</span><span>Statements over <strong>1,000 transactions</strong> are built by a background job and emailed as PDF, CSV or Excel.</span></p>
-          </article>
-          <article class="fix">
-            <p class="fix-tag">Approvals</p>
-            <h4>Six real reasons instead of "failed"</h4>
-            <p class="fix-row"><span class="fix-k" data-k="before">Before</span><span>When a payment could not be approved, the approver got a generic failure and no way to know what to do next.</span></p>
-            <p class="fix-row"><span class="fix-k" data-k="after">After</span><span>A specific reason every time, such as <strong>"You are not an approver for this payment"</strong> or <strong>"This payment is no longer awaiting approval"</strong>, and a clear note when only part of a batch went through.</span></p>
-          </article>
-          <article class="fix">
-            <p class="fix-tag">Integrations</p>
-            <h4>Accounting and payroll integrations</h4>
-            <p class="fix-row"><span class="fix-k" data-k="before">Before</span><span>Imports from third-party accounting software finished silently, and checks from a third-party payroll tool were created before the user had confirmed them.</span></p>
-            <p class="fix-row"><span class="fix-k" data-k="after">After</span><span>Imports of bills, expenses, refund receipts and checks now <strong>email the user when done</strong> and record who ran them; payroll checks are created <strong>only on confirmation</strong>.</span></p>
-          </article>
-        </div>
-      </details>
-    </section>
-
-    <section id="projects" class="section container">
-      <div class="section-head">
-        <p class="eyebrow">Projects</p>
-        <h2>Things I've built</h2>
-        <p class="section-sub">Independent work across education, tax compliance, security, infrastructure and developer tools.</p>
-      </div>
-
-      <div class="projects">
-        <article class="project project-featured" id="project-certed">
-          <div class="project-top">
-            <h3><a href="https://www.certedacademia.com" target="_blank" rel="noopener">Cert-Ed Academia ↗</a></h3>
-            <span class="status status-live">Live</span>
-          </div>
-          <p class="domain">Education</p>
-          <p>A live platform for an online tuition academy, across 5 user roles: classes, assignments, grading, per-session attendance, hours-based billing, receipts, payslips, messaging and scheduling.</p>
-          <ul class="facts">
-            <li><strong>50+</strong> database-level security policies, plus <strong>18</strong> app-level capabilities</li>
-            <li>Every role's access tested against a real database in CI</li>
-            <li>Billed hours locked by the database once invoiced</li>
-            <li><strong>100+</strong> unit tests</li>
-          </ul>
-          <p class="stack">Next.js · TypeScript · Supabase · PostgreSQL</p>
-        </article>
-
-        <article class="project" id="project-masaar">
-          <div class="project-top">
-            <h3>Masaar</h3>
-            <span class="status">In development</span>
-          </div>
-          <p class="domain">Tax compliance</p>
-          <p>An e-invoicing system for Saudi tax rules: digitally signed invoices, tamper-evident invoice chains, QR codes and certificate management.</p>
-          <ul class="facts">
-            <li>Invoices pass the tax authority's <strong>official validator</strong> (26 checks)</li>
-            <li>Invoice chain stays correct under simultaneous requests</li>
-            <li>Offline queue and circuit breaker for when the tax portal is down</li>
-          </ul>
-          <p class="stack">PHP · Laravel · MySQL · OpenSSL</p>
-          <a class="code-link" href="https://github.com/shamil3ilm/masaar" target="_blank" rel="noopener">View code on GitHub ↗</a>
-        </article>
-
-        <article class="project">
-          <div class="project-top">
-            <h3>Time</h3>
-            <span class="status status-live">In daily use</span>
-          </div>
-          <p class="domain">Work-hours tracker</p>
-          <p>A work-hours tracker that calculates working time, shows weekly and monthly pace, and warns about long sessions. Later rebuilt as a hosted multi-user service.</p>
-          <ul class="facts">
-            <li>Used daily by <strong>10+</strong> colleagues</li>
-            <li>Runs on its own schedule, with a backup if the main one stalls</li>
-          </ul>
-          <p class="stack">TypeScript · SQLite · REST APIs</p>
-        </article>
-
-        <article class="project">
-          <div class="project-top">
-            <h3>Athar</h3>
-            <span class="status">Prototype</span>
-          </div>
-          <p class="domain">Security</p>
-          <p>A security runtime for web apps that links related events into one story, records why each decision was made, and keeps a signed, tamper-evident log.</p>
-          <ul class="facts">
-            <li>Hash-chained, signed audit log with verification</li>
-            <li>Never breaks the host app: checks fail open within 5 ms</li>
-            <li>Plugs into PHP and Laravel apps</li>
-          </ul>
-          <p class="stack">Rust · Laravel · PHP · SQLite</p>
-          <a class="code-link" href="https://github.com/shamil3ilm/athar" target="_blank" rel="noopener">View code on GitHub ↗</a>
-        </article>
-      </div>
-
-      <div class="more">
-        <h3>Also built</h3>
-        <ul>
-          <li><strong><a href="https://github.com/shamil3ilm/lee" target="_blank" rel="noopener">Employ ↗</a></strong> — an AI tool that collects jobs from 9 sites, ranks them, and writes a tailored CV and cover letter for each (181 tests).</li>
-          <li><strong><a href="https://github.com/shamil3ilm/domain" target="_blank" rel="noopener">Private DNS server ↗</a></strong> — a single-binary DNS server in Go with an admin API and rate limiting, released for 7 platforms.</li>
-          <li><strong><a href="https://github.com/shamil3ilm/mail-service" target="_blank" rel="noopener">Mail server ↗</a></strong> — a single-binary mail server in Go that captures mail over SMTP, with a web dashboard and full-text search.</li>
-          <li><strong><a href="https://github.com/shamil3ilm/masaar-erp-backend" target="_blank" rel="noopener">ERP API ↗</a></strong> — a multi-company business API with automatic data isolation between companies (3,840 tests).</li>
-          <li><strong>Jira Dashboard</strong> — a command-line tool that fills in quality checklists from real code evidence and refuses to tick sign-offs.</li>
-        </ul>
-      </div>
-    </section>
-
     <section id="about" class="section section-band container">
       <div class="about">
         <div>
@@ -447,8 +494,8 @@
           <h2>How I work</h2>
           <p class="about-text">
             I studied Computer Science at Adi Shankara Institute of Engineering and Technology (2021–2025),
-            interned in Laravel development, and now build payment backends full time. Outside work
-            I build my own products in education, compliance and developer tooling.
+            worked on a Laravel business and e-invoicing platform at Netplex, and now build payment
+            backends full time. Outside work I build my own products in education, compliance and security.
           </p>
           <ol class="timeline">
             <li><span>Dec 2025 – present</span> Software Engineer, Zil Money</li>
@@ -478,12 +525,27 @@
         </div>
       </div>
 
-      <div class="skills">
-        <span>PHP</span><span>TypeScript</span><span>JavaScript</span><span>Python</span><span>SQL</span>
-        <span>Laravel</span><span>REST APIs</span><span>Queues &amp; jobs</span><span>Webhooks</span><span>Middleware</span>
-        <span>MySQL</span><span>PostgreSQL</span><span>SQLite</span><span>Supabase</span>
-        <span>React</span><span>Next.js</span><span>Angular</span><span>Tailwind CSS</span>
-        <span>Git</span><span>CI/CD</span><span>LLM APIs</span><span>Go</span>
+      <div class="skill-groups">
+        <div class="skill-group">
+          <p class="skill-label">Languages</p>
+          <div class="skills"><span>PHP</span><span>TypeScript</span><span>JavaScript</span><span>Python</span><span>SQL</span></div>
+        </div>
+        <div class="skill-group">
+          <p class="skill-label">Backend</p>
+          <div class="skills"><span>Laravel</span><span>REST APIs</span><span>Eloquent</span><span>Queues</span><span>Jobs</span><span>Events</span><span>Webhooks</span><span>Middleware</span></div>
+        </div>
+        <div class="skill-group">
+          <p class="skill-label">Databases</p>
+          <div class="skills"><span>MySQL</span><span>PostgreSQL</span><span>SQLite</span><span>Supabase</span></div>
+        </div>
+        <div class="skill-group">
+          <p class="skill-label">Frontend</p>
+          <div class="skills"><span>React</span><span>Next.js</span><span>Angular</span><span>Blade</span><span>Tailwind CSS</span></div>
+        </div>
+        <div class="skill-group">
+          <p class="skill-label">Engineering</p>
+          <div class="skills"><span>Transactions</span><span>Authorization</span><span>Background Processing</span><span>API Integration</span><span>Audit Trails</span><span>Production Debugging</span></div>
+        </div>
       </div>
     </section>
 
@@ -519,22 +581,22 @@
       <div class="quick-head">
         <div>
           <h2 id="quick-title">Mohamed Shamil in 60 seconds</h2>
-          <p class="quick-role">Software Engineer · Backend · Fintech</p>
+          <p class="quick-role">Software Engineer · Backend systems · Financial workflows</p>
         </div>
         <button type="button" class="icon-btn" data-quick-close aria-label="Close">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
         </button>
       </div>
-      <p class="quick-line">I build backends where a mistake costs money or trust: payments, access control and compliance. Laravel and TypeScript, with the tests and logs to prove it works.</p>
+      <p class="quick-line">I build backend systems for financial workflows, where a mistake costs money or trust: who can act on an account, payments that must go where they were approved, and compliance. Laravel and TypeScript, with tests and logs to prove it works.</p>
       <h3>Best results</h3>
       <ol class="quick-list">
-        <li><strong>Delegated access for service providers.</strong> 450 existing API endpoints opened to providers, every call logged, every refusal identical. <a href="case-delegated-access.html">Case study</a></li>
+        <li><strong>Delegated access for service providers.</strong> Providers work through the existing payment APIs with single-use keys, every call audited and every refusal identical. <a href="case-delegated-access.html">Case study</a></li>
         <li><strong>Approved means unchanged.</strong> Bank details are locked in at submission and re-checked before money moves. <a href="index.html#demo-lock" data-quick-close>Demo</a></li>
-        <li><strong>Recurring payments that stop when they should.</strong> Auto-cancel across 5 payment types and 4 delete paths. <a href="case-recurring-safeguards.html">Case study</a></li>
+        <li><strong>ZATCA e-invoicing at Netplex.</strong> XML generation, signing, hashing, QR codes and compliance-error investigation, developed up to handover. <a href="index.html#netplex" data-quick-close>Details</a></li>
         <li><strong>Cert-Ed, a live education platform I built.</strong> 18 app-level capabilities, 50+ database security policies and 100+ unit tests. <a href="https://www.certedacademia.com" target="_blank" rel="noopener">Visit ↗</a></li>
       </ol>
       <h3>Works with</h3>
-      <p class="quick-skills"><span>PHP · Laravel</span><span>TypeScript · Next.js</span><span>MySQL · PostgreSQL</span><span>Queues · webhooks</span><span>LLM APIs</span></p>
+      <p class="quick-skills"><span>PHP · Laravel</span><span>TypeScript · Next.js</span><span>MySQL · PostgreSQL</span><span>Queues · webhooks</span><span>Authorization · audit trails</span></p>
       <div class="quick-actions">
         <a class="btn btn-primary" href="mailto:mhmdshamil03@gmail.com">Email me</a>
         <a class="btn btn-ghost" href="resume.html">Résumé</a>
