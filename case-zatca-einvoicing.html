@@ -41,7 +41,7 @@
         <a href="index.html#contact">Contact</a>
         <a href="resume.html">Résumé</a>
       </nav>
-      <button class="icon-btn palette-open" type="button" data-palette-open aria-label="Search the site (Ctrl+K)">
+      <button class="icon-btn palette-open" type="button" data-palette-open aria-label="Search the site (Ctrl K)">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
         <kbd class="palette-kbd">Ctrl K</kbd>
       </button>
@@ -60,7 +60,7 @@
       <a class="demo-link" href="index.html#netplex">← Back to my work</a>
       <p class="eyebrow" style="margin-top:18px">Case study · Compliance</p>
       <h1>Saudi e-invoicing on an existing business platform</h1>
-      <p class="lead">A business-management and e-invoicing product served customers in Qatar, Saudi Arabia and the UAE. Saudi customers needed invoices that meet ZATCA's e-invoicing rules, and I developed and investigated that workflow independently, up to the point I handed it over.</p>
+      <p class="lead"><a href="https://taxfly.qa" target="_blank" rel="noopener">Taxfly ↗</a>, Netplex's billing, inventory and accounting platform, served customers in Qatar, Saudi Arabia and the UAE. Saudi customers needed invoices that meet ZATCA's e-invoicing rules, and I developed and investigated that workflow independently, up to the point I handed it over.</p>
       <div class="case-meta"><span>PHP Laravel Intern, Netplex Solutions</span><span>Jun – Nov 2025</span><span>Laravel · PHP · PostgreSQL</span></div>
     </section>
 
@@ -75,6 +75,19 @@
         <section>
           <h2>The ZATCA workflow I worked on</h2>
           <p>ZATCA, the Saudi tax authority, requires electronic invoices in a set format, protected so they can't be quietly changed. The workflow covered:</p>
+          <figure class="flow" aria-label="The e-invoicing workflow, step by step">
+            <ol class="flow-steps" style="--steps: 4">
+            <li class="flow-step"><span class="flow-kicker">1</span><strong>Invoice XML</strong><span>in the format ZATCA requires</span></li>
+            <li class="flow-step"><span class="flow-kicker">2</span><strong>Hash and sign</strong><span>so later changes can be detected</span></li>
+            <li class="flow-step"><span class="flow-kicker">3</span><strong>QR code</strong><span>invoice details in TLV format</span></li>
+            <li class="flow-step"><span class="flow-kicker">4</span><strong>Validate</strong><span>against the rules, using the certificate</span></li>
+            </ol>
+            <div class="flow-outcomes">
+            <div class="flow-out" data-tone="ok"><strong>Passes</strong><span>The invoice is ready for the next stage.</span></div>
+            <div class="flow-out" data-tone="bad"><strong>Compliance error</strong><span>Traced back to the field or value that caused it.</span></div>
+            </div>
+            <figcaption>This was the workflow as it stood when I handed it over. It was still in progress.</figcaption>
+          </figure>
           <ol class="case-steps">
             <li><strong>XML generation:</strong> turning the platform's invoices into the XML format ZATCA requires.</li>
             <li><strong>Hashing and signing:</strong> fingerprinting each invoice and signing it, so any later change can be detected.</li>
@@ -91,7 +104,7 @@
 
         <section>
           <h2>The lesson</h2>
-          <p>Compliance work fails in the details. A rejected invoice usually comes down to one field, one encoding choice or one byte inside a hash, so most of the work is tracing an error message back to the exact cause. I later took the same standard further in my own project, <a href="index.html#project-masaar">Masaar</a>.</p>
+          <p>A rejected invoice usually comes down to one wrong field or one byte that changed the hash, so most of the time goes into tracing an error message back to its exact cause. I later took the same standard further in my own project, <a href="index.html#project-masaar">Masaar</a>.</p>
         </section>
 
         <div class="case-next">

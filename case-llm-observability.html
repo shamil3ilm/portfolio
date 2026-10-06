@@ -41,7 +41,7 @@
         <a href="index.html#contact">Contact</a>
         <a href="resume.html">Résumé</a>
       </nav>
-      <button class="icon-btn palette-open" type="button" data-palette-open aria-label="Search the site (Ctrl+K)">
+      <button class="icon-btn palette-open" type="button" data-palette-open aria-label="Search the site (Ctrl K)">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
         <kbd class="palette-kbd">Ctrl K</kbd>
       </button>
@@ -77,6 +77,19 @@
 
         <section>
           <h2>What I built</h2>
+          <figure class="flow" aria-label="How each AI call is tracked">
+            <ol class="flow-steps" style="--steps: 4">
+            <li class="flow-step"><span class="flow-kicker">1 · Feature</span><strong>Asks for an AI result</strong><span>reading a receipt, drafting a reply…</span></li>
+            <li class="flow-step"><span class="flow-kicker">2 · Shared client</span><strong>Sends the request</strong><span>one client used by every feature</span></li>
+            <li class="flow-step"><span class="flow-kicker">3 · Shared client</span><strong>Records the call</strong><span>whether it succeeded or failed</span></li>
+            <li class="flow-step"><span class="flow-kicker">4 · Dashboard</span><strong>Shows the picture</strong><span>by feature, model and provider account</span></li>
+            </ol>
+            <div class="flow-outcomes">
+            <div class="flow-out" data-tone="ok"><strong>Succeeded</strong><span>Tokens, cost and response time recorded.</span></div>
+            <div class="flow-out" data-tone="bad"><strong>Failed</strong><span>The error and response time are recorded too, so failures are counted.</span></div>
+            </div>
+            <figcaption>Because recording happens in the shared client, a new AI feature is tracked from its first call.</figcaption>
+          </figure>
           <ol class="case-steps">
             <li><strong>One record for every AI request.</strong> Each record holds the feature, model and provider, the tokens in and out, the cost, how long it took, whether it succeeded, and the error if it did not.</li>
             <li><strong>Failures are recorded by design.</strong> The record is written in a step that runs whether the call succeeds or fails, so a failure can never skip the log. Records are only ever added, never edited.</li>
@@ -88,7 +101,7 @@
 
         <section>
           <h2>The lesson</h2>
-          <p class="case-note"><strong>Put observability in the shared path.</strong> Instrumenting the one client every feature uses, instead of each feature, meant the next AI feature got cost and failure tracking for free, and nobody had to remember to add it.</p>
+          <p class="case-note">Because the tracking sits in the one client every feature already uses, a new AI feature is tracked from its first call. Nobody has to remember to add it.</p>
         </section>
 
         <div class="case-next">

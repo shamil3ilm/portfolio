@@ -55,10 +55,24 @@
 
   const HASH_TABS = { '#demo-lock': 'tab-lock', '#demo-chain': 'tab-chain', '#demo-access': 'tab-access' };
 
+  // Phones show the demo on request; links to a demo tab open it too.
+  const demoOpenButton = document.querySelector('[data-demo-open]');
+  function openDemo() {
+    document.querySelector('.demo').classList.add('is-open');
+    if (demoOpenButton) demoOpenButton.hidden = true;
+  }
+  if (demoOpenButton) {
+    demoOpenButton.addEventListener('click', function () {
+      openDemo();
+      document.querySelector('.demo').scrollIntoView({ block: 'start', behavior: 'smooth' });
+    });
+  }
+
   function openTabFromHash() {
     const tabId = HASH_TABS[location.hash];
     if (!tabId) return;
     selectTab(document.getElementById(tabId));
+    openDemo();
     document.querySelector('.demo').scrollIntoView({ block: 'center' });
   }
 
@@ -66,9 +80,12 @@
   openTabFromHash();
 
   /* Demo 1: approval lock. The bank details are fingerprinted when the payment is submitted:
-     normal edits are blocked while it waits, and any other change is caught when it is sent. */
+     normal edits are blocked while it waits, and any other change is caught when it is sent.
+     Plain wording by default; "Show how it works" reveals the fingerprints and bank fields. */
 
   const EDIT_BLOCKED = "There is a payment currently being processed for this recipient's account. You can't modify these details at this time";
+  const demoBox = document.querySelector('.demo');
+  function showTech() { return demoBox.classList.contains('show-tech'); }
   const lockRoot = document.getElementById('panel-lock');
   const lockEl = {
     fields: {
@@ -78,6 +95,10 @@
       account: lockRoot.querySelector('[data-lock-field="account"]'),
     },
     types: Array.from(lockRoot.querySelectorAll('[data-lock-field="type"]')),
+    guide: lockRoot.querySelector('[data-lock="guide"]'),
+    plainAccount: lockRoot.querySelector('[data-lock="plain-account"]'),
+    approved: lockRoot.querySelector('[data-lock="approved"]'),
+    nowPlain: lockRoot.querySelector('[data-lock="now-plain"]'),
     fp: lockRoot.querySelector('[data-lock="fp"]'),
     now: lockRoot.querySelector('[data-lock="now"]'),
     status: lockRoot.querySelector('[data-lock="status"]'),
@@ -91,7 +112,7 @@
     swapAccount: lockRoot.querySelector('[data-swap="account"]'),
   };
   // stage: draft → submitted → approved → sent; held is set when a send is refused.
-  const lock = { stage: 'draft', locked: null, held: false };
+  const lock = { stage: 'draft', locked: null, lockedEnding: '', held: false };
 
   function validRouting(value) {
     if (!/^\d{9}$/.test(value)) return false;
@@ -105,6 +126,8 @@
     const checked = lockEl.types.find(function (r) { return r.checked; });
     return checked ? checked.value : 'checking';
   }
+
+  function ending() { return lockEl.fields.account.value.slice(-4); }
 
   function bankDetails() {
     return lockEl.fields.routing.value + '|' + lockEl.fields.account.value + '|' + currentType();
@@ -125,23 +148,40 @@
     lockRoot.querySelector('[data-lock="form"]').classList.toggle('is-locked', locked);
   }
 
+  const GUIDE = {
+    draft: 'Step 1 of 3 · Submit the payment for approval.',
+    submitted: 'Step 2 of 3 · Approve it. You can also try editing the bank account first.',
+    approved: 'Step 3 of 3 · Press "Change it another way" to swap the bank account, then press Send.',
+    changed: 'Step 3 of 3 · The bank account was swapped after approval. Now press Send.',
+    held: 'Done: the payment was stopped. Press "New example" to try again.',
+    sent: 'Done: the money went to the approved account. Press "New example" to try again.',
+  };
+
   async function renderLock() {
     const now = await fingerprint(bankDetails());
+    const match = lock.locked ? now === lock.locked : null;
     lockEl.now.textContent = short(now);
-    lockEl.now.dataset.match = lock.locked ? String(now === lock.locked) : '';
+    lockEl.now.dataset.match = lock.locked ? String(match) : '';
     lockEl.fp.textContent = lock.locked ? short(lock.locked) : 'not yet';
+    lockEl.plainAccount.textContent = (currentType() === 'savings' ? 'Savings' : 'Checking') + ' account ending ' + ending();
+    lockEl.approved.textContent = lock.locked ? 'ending ' + lock.lockedEnding : 'not locked yet';
+    lockEl.nowPlain.textContent = 'ending ' + ending() + (lock.locked ? (match ? '  ✓ same' : '  ✕ changed') : '');
+    lockEl.nowPlain.dataset.match = lock.locked ? String(match) : '';
     lockEl.status.textContent = {
-      draft: 'Draft',
+      draft: 'Not submitted yet',
       submitted: 'Waiting for approval',
-      approved: lock.held ? 'Held: bank details changed' : 'Approved, not sent yet',
+      approved: lock.held ? 'Stopped: bank account changed' : 'Approved, not sent yet',
       sent: 'Sent',
     }[lock.stage];
     lockEl.steps.dataset.stage = lock.stage;
     lockEl.steps.dataset.held = String(lock.held);
-    lockEl.lastStep.textContent = lock.held ? 'Held' : 'Sent';
+    lockEl.lastStep.textContent = lock.held ? 'Stopped' : 'Sent';
     lockEl.next.textContent = { draft: 'Submit for approval', submitted: 'Approve', approved: 'Send', sent: 'Sent' }[lock.stage];
-    lockEl.next.disabled = lock.stage === 'sent';
-    lockEl.swapButton.disabled = lock.stage === 'draft' || lock.stage === 'sent';
+    lockEl.next.disabled = lock.stage === 'sent' || lock.held;
+    lockEl.guide.textContent = lock.held ? GUIDE.held
+      : lock.stage === 'approved' && match === false ? GUIDE.changed
+      : GUIDE[lock.stage];
+    lockEl.swapButton.disabled = lock.stage === 'draft' || lock.stage === 'sent' || lock.held;
     if (lockEl.swapButton.disabled) closeSwap();
   }
 
@@ -151,8 +191,23 @@
   }
 
   function blockedEdit() {
-    setResult(lockEl.result, '✕ ' + EDIT_BLOCKED + '.', 'bad');
+    setResult(lockEl.result, "✕ Blocked. While a payment waits for approval, its bank details can't be edited." +
+      (showTech() ? ' The system replies: "' + EDIT_BLOCKED + '."' : ''), 'bad');
     achieve('lock-edit');
+  }
+
+  async function changeAccountTo(routing, account) {
+    lockEl.fields.routing.value = routing;
+    lockEl.fields.account.value = account;
+    closeSwap();
+    await renderLock();
+    if (lockEl.nowPlain.dataset.match === 'true') {
+      setResult(lockEl.result, 'Changed to the same details that were approved, so nothing really changed.', '');
+    } else {
+      setResult(lockEl.result, 'Someone swapped the bank account to one ending ' + ending() +
+        ', for example through a bulk import that skips the edit screen. ' +
+        (lock.stage === 'approved' ? 'Now press Send.' : 'Approve it, then press Send.'), 'warn');
+    }
   }
 
   const lockActions = {
@@ -160,26 +215,29 @@
       if (lock.stage === 'draft') {
         const problem = detailsProblem();
         if (problem) {
+          if (!showTech() && (problem[0] === 'routing' || problem[0] === 'account')) demoBox.classList.add('show-tech');
           setResult(lockEl.result, problem[1], 'warn');
           lockEl.fields[problem[0]].focus();
           return;
         }
         lock.locked = await fingerprint(bankDetails());
+        lock.lockedEnding = ending();
         lock.stage = 'submitted';
         setLocked(true);
-        setResult(lockEl.result, 'Submitted. The bank details are now locked in: ' + short(lock.locked) + '. Try editing them, or approve.', 'ok');
+        setResult(lockEl.result, 'Submitted. The bank account (ending ' + lock.lockedEnding + ') is now locked for this payment' +
+          (showTech() ? ', fingerprint ' + short(lock.locked) : '') + '. Next: approve it.', 'ok');
       } else if (lock.stage === 'submitted') {
         lock.stage = 'approved';
-        setResult(lockEl.result, 'Approved. Now try changing where it goes before you send it.', 'ok');
-      } else if (lock.stage === 'approved') {
+        setResult(lockEl.result, 'Approved. Next: try sending the money somewhere else before it goes out.', 'ok');
+      } else if (lock.stage === 'approved' && !lock.held) {
         const now = await fingerprint(bankDetails());
         if (now === lock.locked) {
           lock.stage = 'sent';
-          lock.held = false;
-          setResult(lockEl.result, '✓ Sent. The bank details match what was locked in when it was submitted.', 'ok');
+          setResult(lockEl.result, '✓ Sent to the account that was approved (ending ' + lock.lockedEnding + ').', 'ok');
         } else {
           lock.held = true;
-          setResult(lockEl.result, '✕ Held. The bank details (' + short(now) + ') no longer match what was locked in (' + short(lock.locked) + '), so the money is not sent.', 'bad');
+          setResult(lockEl.result, '✕ Stopped. The bank account changed after approval, so nothing was sent to the new account (ending ' + ending() + ').' +
+            (showTech() ? ' Fingerprint now ' + short(now) + ', approved ' + short(lock.locked) + '.' : ''), 'bad');
           achieve('lock-held');
         }
       }
@@ -187,8 +245,8 @@
     },
     edit: function () {
       if (lock.stage === 'draft') {
-        lockEl.fields.account.focus();
-        setResult(lockEl.result, 'It is still a draft, so you can edit anything. Submit it when ready.', '');
+        if (showTech()) lockEl.fields.account.focus();
+        setResult(lockEl.result, "It's still a draft, so the bank account can change freely. Submit it to lock it.", '');
       } else if (lock.stage === 'sent') {
         setLocked(false);
         setResult(lockEl.result, 'The payment has already been sent, so the details can be edited again. The sent payment is not affected.', '');
@@ -197,6 +255,10 @@
       }
     },
     swap: function () {
+      if (!showTech()) {
+        changeAccountTo(Sample.routing(), Sample.account());
+        return;
+      }
       const open = lockEl.swapForm.hidden;
       lockEl.swapForm.hidden = !open;
       lockEl.swapButton.setAttribute('aria-expanded', String(open));
@@ -206,7 +268,7 @@
         lockEl.swapAccount.focus();
       }
     },
-    apply: async function () {
+    apply: function () {
       if (!validRouting(lockEl.swapRouting.value)) {
         setResult(lockEl.result, "That routing number isn't valid (9 digits with a matching check digit).", 'warn');
         return;
@@ -215,18 +277,12 @@
         setResult(lockEl.result, 'Account numbers are 4 to 17 digits.', 'warn');
         return;
       }
-      lockEl.fields.routing.value = lockEl.swapRouting.value;
-      lockEl.fields.account.value = lockEl.swapAccount.value;
-      closeSwap();
-      await renderLock();
-      const same = lockEl.now.dataset.match === 'true';
-      setResult(lockEl.result, same
-        ? 'Changed another way, but to the same details that were locked in, so nothing really changed.'
-        : 'The bank details were changed another way, to account ending ' + lockEl.fields.account.value.slice(-4) + '. ' + (lock.stage === 'approved' ? 'Now try sending.' : 'Approve it, then try sending.'), same ? '' : 'warn');
+      changeAccountTo(lockEl.swapRouting.value, lockEl.swapAccount.value);
     },
     reset: function () {
       lock.stage = 'draft';
       lock.locked = null;
+      lock.lockedEnding = '';
       lock.held = false;
       setLocked(false);
       closeSwap();
@@ -235,7 +291,7 @@
       lockEl.fields.routing.value = Sample.routing();
       lockEl.fields.account.value = Sample.account();
       lockEl.types[Sample.int(0, 1)].checked = true;
-      setResult(lockEl.result, 'A draft payment. Edit anything you like, then submit it for approval.', '');
+      setResult(lockEl.result, 'A new payment, not submitted yet. Follow the steps above.', '');
       renderLock();
     },
   };
@@ -285,7 +341,8 @@
   const MAX_DIGITS = 9;
   const chainList = document.querySelector('[data-chain="list"]');
   const chainResult = document.querySelector('[data-chain="result"]');
-  const INTRO = "Each record's seal depends on the one before it. Change any line or amount.";
+  const INTRO = 'Each saved record is sealed together with the one before it. Change any description or amount and see what happens.';
+  const SEAL_LABEL = { '': '✓ sealed', ok: '✓ unchanged', edited: '✕ edited', broken: '⚠ no longer checks out' };
   let sealed = [];
   let touched = false;
   let runId = 0;
@@ -340,21 +397,21 @@
     items.forEach(function (item, i) {
       const broken = now[i] !== sealed[i];
       if (broken && firstBroken === -1) firstBroken = i;
-      item.querySelector('.seal').textContent = short(now[i]);
       item.dataset.state = !touched ? '' : broken ? (i === firstBroken ? 'edited' : 'broken') : 'ok';
+      item.querySelector('.seal').textContent = showTech() ? short(now[i]) : SEAL_LABEL[item.dataset.state];
     });
 
     if (!touched) {
       setResult(chainResult, INTRO, '');
     } else if (firstBroken === -1) {
-      setResult(chainResult, '✓ All ' + items.length + ' records match their original seals.', 'ok');
+      setResult(chainResult, '✓ All ' + items.length + ' records are exactly as they were saved.', 'ok');
     } else {
       achieve('chain-break');
       const after = items.length - firstBroken - 1;
       setResult(
         chainResult,
-        '✕ Record ' + (firstBroken + 1) + ' was changed, so its seal no longer matches' +
-          (after ? ', and the ' + after + ' record' + (after > 1 ? 's' : '') + ' after it break too.' : '.'),
+        '✕ Caught: record ' + (firstBroken + 1) + ' was changed after it was saved' +
+          (after ? ', and the ' + after + ' record' + (after > 1 ? 's' : '') + ' after it no longer check out either.' : '.'),
         'bad'
       );
     }
@@ -416,13 +473,30 @@
     await refreshChain();
     achieve('chain-add');
     if (chainResult.dataset.tone !== 'bad') {
-      setResult(chainResult, '✓ Record ' + chainList.children.length + ' added. Its seal builds on the one before it.', 'ok');
+      setResult(chainResult, '✓ Record ' + chainList.children.length + ' added and sealed onto the end.', 'ok');
     }
   }
 
   document.querySelector('[data-chain-action="add"]').addEventListener('click', addRecord);
   document.querySelector('[data-chain-action="reset"]').addEventListener('click', buildChain);
   buildChain();
+
+  /* "Show how it works": reveals fingerprints, seals and bank fields */
+
+  const techToggle = document.querySelector('[data-demo-tech]');
+  function syncTechToggle() {
+    const on = showTech();
+    techToggle.setAttribute('aria-pressed', String(on));
+    techToggle.textContent = on ? 'Hide technical details' : 'Show how it works';
+  }
+  techToggle.addEventListener('click', function () {
+    demoBox.classList.toggle('show-tech');
+    syncTechToggle();
+    if (!showTech()) closeSwap();
+    renderLock();
+    refreshChain();
+  });
+  new MutationObserver(syncTechToggle).observe(demoBox, { attributes: true, attributeFilter: ['class'] });
 
   /* Demo 3: who sees what */
 

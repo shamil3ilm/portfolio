@@ -116,3 +116,16 @@
     setInterval(tick, 30000);
   }
 })();
+
+(function () {
+  /* Phones: a Contact button appears after the hero and hides once Contact is on screen */
+  const button = document.querySelector('[data-mobile-contact]');
+  const hero = document.querySelector('.hero');
+  const contact = document.getElementById('contact');
+  if (!button || !hero || !contact || !('IntersectionObserver' in window)) return;
+  let pastHero = false;
+  let atContact = false;
+  function update() { button.hidden = !pastHero || atContact; }
+  new IntersectionObserver(function (e) { pastHero = !e[0].isIntersecting; update(); }).observe(hero);
+  new IntersectionObserver(function (e) { atContact = e[0].isIntersecting; update(); }, { threshold: 0.15 }).observe(contact);
+})();

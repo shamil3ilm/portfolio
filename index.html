@@ -47,7 +47,7 @@
         <a href="#contact">Contact</a>
         <a href="resume.html">Résumé</a>
       </nav>
-      <button class="icon-btn palette-open" type="button" data-palette-open aria-label="Search the site (Ctrl+K)">
+      <button class="icon-btn palette-open" type="button" data-palette-open aria-label="Search the site (Ctrl K)">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
         <kbd class="palette-kbd">Ctrl K</kbd>
       </button>
@@ -65,13 +65,12 @@
 
     <section class="hero container">
       <div class="hero-text">
-        <p class="eyebrow">Software Engineer | Backend Developer | Fintech</p>
+        <p class="eyebrow">Software Engineer · Backend systems · Financial workflows</p>
         <h1>I build software that has to be right.</h1>
         <p class="lead">
-          Software engineer focused on backend systems, financial workflows and reliable application
-          architecture. I work on the parts that can't fail quietly: who can act on an account,
-          payments that must go where they were approved, and automation that keeps running
-          correctly when no one is watching.
+          Software engineer working on backend systems for payments and finance. Most of my
+          work is the part users never see: who is allowed to do what, and making sure money
+          goes exactly where it was approved.
         </p>
         <div class="cta">
           <a href="#contact" class="btn btn-primary">Work with me</a>
@@ -84,49 +83,58 @@
           <li><a href="#project-masaar"><strong>26</strong><span>tax-authority validator checks passed by Masaar</span></a></li>
           <li><a href="#project-time"><strong>10+</strong><span>colleagues use Time, my work-hours tracker, every day</span></a></li>
         </ul>
+        <button type="button" class="btn btn-ghost demo-open" data-demo-open aria-expanded="false">Try a live demo ↓</button>
       </div>
 
       <div class="demo" aria-label="Interactive demos">
         <div class="demo-head">
           <span class="demo-title">Try it</span>
-          <span class="demo-note">Live in your browser · example data</span>
+          <button type="button" class="demo-tech-toggle" data-demo-tech aria-pressed="false">Show how it works</button>
         </div>
+        <p class="demo-note">Live in your browser, with made-up data. Pick a question and follow the steps.</p>
         <div class="demo-tabs" role="tablist" aria-label="Demo">
-          <button role="tab" id="tab-lock" aria-controls="panel-lock" aria-selected="true"><span class="t-long">Approval lock</span><span class="t-short">Approval</span></button>
-          <button role="tab" id="tab-chain" aria-controls="panel-chain" aria-selected="false" tabindex="-1"><span class="t-long">Tamper check</span><span class="t-short">Tampering</span></button>
-          <button role="tab" id="tab-access" aria-controls="panel-access" aria-selected="false" tabindex="-1"><span class="t-long">Who sees what</span><span class="t-short">Access</span></button>
+          <button role="tab" id="tab-lock" aria-controls="panel-lock" aria-selected="true"><span class="t-long">Redirect a payment?</span><span class="t-short">Redirect</span></button>
+          <button role="tab" id="tab-chain" aria-controls="panel-chain" aria-selected="false" tabindex="-1"><span class="t-long">Edit old records?</span><span class="t-short">Edit records</span></button>
+          <button role="tab" id="tab-access" aria-controls="panel-access" aria-selected="false" tabindex="-1"><span class="t-long">Who sees what?</span><span class="t-short">Access</span></button>
         </div>
 
         <div class="demo-panel" role="tabpanel" id="panel-lock" aria-labelledby="tab-lock">
-          <p class="demo-q">Once a payment is submitted, can it be sent somewhere else?</p>
+          <p class="demo-q">After a payment is approved, can someone send it to a different bank account?</p>
           <p class="demo-why"><strong>Why it matters:</strong> stops money quietly going to a different bank account after someone approved it.</p>
           <ol class="lock-steps" data-lock="steps" data-stage="draft" aria-label="Payment progress">
             <li data-step="submitted"><span class="lock-dot" aria-hidden="true"></span>Submitted</li>
             <li data-step="approved"><span class="lock-dot" aria-hidden="true"></span>Approved</li>
             <li data-step="sent"><span class="lock-dot" aria-hidden="true"></span><span data-lock="last-step">Sent</span></li>
           </ol>
+          <p class="demo-guide" data-lock="guide"></p>
           <div class="lock-form" data-lock="form">
             <label class="lock-field lock-wide">Pay<input type="text" data-lock-field="recipient" autocomplete="off" spellcheck="false"></label>
             <label class="lock-field">Amount ($)<input type="text" data-lock-field="amount" inputmode="numeric" autocomplete="off"></label>
-            <div class="lock-field">
+            <div class="lock-field plain-only">
+              <span>Bank account</span>
+              <strong class="lock-plain-acct" data-lock="plain-account"></strong>
+            </div>
+            <div class="lock-field tech-only">
               <span>Account type</span>
               <div class="lock-type" role="radiogroup" aria-label="Account type">
                 <label><input type="radio" name="lock-type" value="checking" data-lock-field="type"><span>Checking</span></label>
                 <label><input type="radio" name="lock-type" value="savings" data-lock-field="type"><span>Savings</span></label>
               </div>
             </div>
-            <label class="lock-field">Routing number<input type="text" data-lock-field="routing" inputmode="numeric" maxlength="9" autocomplete="off"></label>
-            <label class="lock-field">Account number<input type="text" data-lock-field="account" inputmode="numeric" maxlength="17" autocomplete="off"></label>
+            <label class="lock-field tech-only">Routing number<input type="text" data-lock-field="routing" inputmode="numeric" maxlength="9" autocomplete="off"></label>
+            <label class="lock-field tech-only">Account number<input type="text" data-lock-field="account" inputmode="numeric" maxlength="17" autocomplete="off"></label>
           </div>
           <div class="pay">
-            <div><span>Locked in at submission</span><strong class="mono" data-lock="fp">not yet</strong></div>
-            <div><span>Bank details right now</span><strong class="mono" data-lock="now">…</strong></div>
+            <div><span>Approved bank account</span><strong data-lock="approved">not locked yet</strong></div>
+            <div><span>Bank account right now</span><strong data-lock="now-plain">…</strong></div>
+            <div class="tech-only"><span>Fingerprint at submission</span><strong class="mono" data-lock="fp">not yet</strong></div>
+            <div class="tech-only"><span>Fingerprint right now</span><strong class="mono" data-lock="now">…</strong></div>
             <div><span>Status</span><strong data-lock="status">Draft</strong></div>
           </div>
           <div class="demo-actions">
             <button type="button" class="chip-btn chip-strong" data-lock-action="next">Submit for approval</button>
             <button type="button" class="chip-btn" data-lock-action="edit">Edit bank details</button>
-            <button type="button" class="chip-btn" data-lock-action="swap" aria-expanded="false">Change them another way</button>
+            <button type="button" class="chip-btn" data-lock-action="swap" aria-expanded="false">Change it another way</button>
             <button type="button" class="chip-btn chip-quiet" data-lock-action="reset">New example</button>
           </div>
           <div class="lock-swap" data-lock="swap-form" hidden>
@@ -142,14 +150,14 @@
         </div>
 
         <div class="demo-panel" role="tabpanel" id="panel-chain" aria-labelledby="tab-chain" hidden>
-          <p class="demo-q">Edit any past record or amount. Can the change go unnoticed?</p>
+          <p class="demo-q">Can someone quietly change an old invoice without anyone noticing?</p>
           <p class="demo-why"><strong>Why it matters:</strong> nobody can quietly rewrite past invoices; any change is caught.</p>
           <ol class="chain" data-chain="list"></ol>
           <div class="demo-actions">
             <button type="button" class="chip-btn" data-chain-action="add">Add a new record</button>
             <button type="button" class="chip-btn chip-quiet" data-chain-action="reset">New example</button>
           </div>
-          <p class="demo-result" data-chain="result" role="status" aria-live="polite">Each record's seal depends on the one before it. Change any line or amount.</p>
+          <p class="demo-result" data-chain="result" role="status" aria-live="polite">Each saved record is sealed together with the one before it. Change any description or amount and see what happens.</p>
           <a class="demo-link" href="#project-masaar">How this works in Masaar →</a>
         </div>
 
@@ -181,10 +189,17 @@
 
     <section id="work" class="section section-band container">
       <div class="section-head">
-        <p class="eyebrow">Experience · Zil Money</p>
-        <h2>Production backend engineering</h2>
-        <p class="section-sub">Software Engineer, Dec 2025 – present, at a US payments platform for checks, ACH and digital payments. Each card shows the problem and how I approached it.</p>
+        <p class="eyebrow">Experience</p>
+        <h2>Backend work, in production</h2>
       </div>
+
+      <div class="exp-tabs" role="tablist" aria-label="Employer">
+        <button type="button" role="tab" id="tab-zil" aria-controls="exp-zil" aria-selected="true">Zil Money <span>Dec 2025 – now</span></button>
+        <button type="button" role="tab" id="tab-netplex" aria-controls="netplex" aria-selected="false" tabindex="-1">Netplex <span>Jun – Nov 2025</span></button>
+      </div>
+
+      <div class="exp-panel" role="tabpanel" id="exp-zil" aria-labelledby="tab-zil">
+      <p class="section-sub exp-sub">Software Engineer at a US payments platform for checks, ACH and digital payments. Each card shows the problem and how I approached it.</p>
 
       <div class="work-filters" role="group" aria-label="Filter work by topic">
         <button type="button" class="chip-btn" data-filter="all" aria-pressed="true">All</button>
@@ -200,9 +215,12 @@
           <div class="featured-main">
             <span class="tag">Delegated access · Featured</span>
             <h3>Acting for customers, safely</h3>
-            <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>Payroll and bookkeeping providers needed to work inside their customers' accounts through the existing payment APIs, without sharing logins and without being able to sign off the customer's own payments.</span></p>
-            <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>An authorization layer on top of the existing APIs rather than a second API, so every rule exists once. Access is granted by the customer, every call is attributed and audited, and payments that need the customer's own approvers stay theirs.</span></p>
-            <div class="card-links"><a href="case-delegated-access.html">Read the case study →</a><a href="playground.html#delegated-access">Try the demo →</a></div>
+            <p class="card-outcome">Payroll and bookkeeping providers can work in their customers' accounts, without sharing logins and without approving their payments.</p>
+            <div class="card-more" id="more-1" hidden>
+              <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>Payroll and bookkeeping providers needed to work inside their customers' accounts through the existing payment APIs, without sharing logins and without being able to sign off the customer's own payments.</span></p>
+              <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>An authorization layer added to the existing APIs, so providers and customers go through the same rules. Access is granted by the customer, every call is attributed and audited, and payments that need the customer's own approvers stay theirs.</span></p>
+            </div>
+            <div class="card-links"><button type="button" class="card-more-toggle" aria-expanded="false" aria-controls="more-1">How I did it</button><a href="case-delegated-access.html">Read the case study →</a><a href="playground.html#delegated-access">Try the demo →</a></div>
           </div>
           <ul class="featured-facts">
             <li><strong>Key</strong><span>Access starts with a single-use, expiring key the customer creates</span></li>
@@ -213,30 +231,53 @@
         <article class="card" id="work-approvals" data-topics="payments security">
           <span class="tag">Payment approvals</span>
           <h3>Approved means unchanged</h3>
-          <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>In a multi-level approval flow, a recipient's bank details could change after a payment was submitted, so approvers could sign off one destination while the money went to another.</span></p>
-          <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>The details that decide where money lands are fingerprinted at submission and re-checked at release. Recipient and bank-account edits are blocked while a payment is pending, and every refused approval returns a specific reason instead of a generic failure.</span></p>
-          <div class="card-links"><a href="index.html#demo-lock">Try the demo →</a></div>
+          <p class="card-outcome">Money can't be sent to a different bank account once a payment is approved.</p>
+          <div class="card-more" id="more-2" hidden>
+            <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>In a multi-level approval flow, a recipient's bank details could change after a payment was submitted, so approvers could sign off one destination while the money went to another.</span></p>
+            <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>The details that decide where money lands are fingerprinted at submission and re-checked at release. Recipient and bank-account edits are blocked while a payment is pending, and every refused approval returns a specific reason instead of a generic failure.</span></p>
+          </div>
+          <div class="card-links"><button type="button" class="card-more-toggle" aria-expanded="false" aria-controls="more-2">How I did it</button><a href="index.html#demo-lock">Try the demo →</a></div>
         </article>
         <article class="card" id="work-recurring" data-topics="payments reliability">
           <span class="tag">Recurring payments</span>
           <h3>Schedules that stop when they should</h3>
-          <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>Deleting a recipient or bank account didn't stop the recurring payments tied to it, and cancelling several schedules at once left their upcoming payments queued.</span></p>
-          <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>Deleting now warns first, then cancels every linked schedule with an audit note, as one all-or-nothing change. Bulk deletes go through the same per-record path, and bulk cancel clears every selected schedule.</span></p>
-          <div class="card-links"><a href="case-recurring-safeguards.html">Read the case study →</a><a href="playground.html#recurring">Try the demo →</a></div>
+          <p class="card-outcome">Deleting a recipient or bank account now stops every payment scheduled to it.</p>
+          <div class="card-more" id="more-3" hidden>
+            <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>Deleting a recipient or bank account didn't stop the recurring payments tied to it, and cancelling several schedules at once left their upcoming payments queued.</span></p>
+            <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>Deleting now warns first, then cancels every linked schedule with an audit note, as one all-or-nothing change. Bulk deletes go through the same per-record path, and bulk cancel clears every selected schedule.</span></p>
+          </div>
+          <div class="card-links"><button type="button" class="card-more-toggle" aria-expanded="false" aria-controls="more-3">How I did it</button><a href="case-recurring-safeguards.html">Read the case study →</a><a href="playground.html#recurring">Try the demo →</a></div>
         </article>
-        <article class="card" data-topics="payments ai">
+        <article class="card is-extra" data-topics="payments ai">
           <span class="tag">Payment imports</span>
           <h3>Spreadsheets that map themselves</h3>
-          <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>Customers upload payment spreadsheets in any column order and naming, sometimes without a header row, and had to match every column by hand before importing.</span></p>
-          <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>Columns are matched in layers: header rules first, then the sample values themselves, then an AI model for whatever is still unmatched, with a position-based fallback. The user only reviews the result.</span></p>
+          <p class="card-outcome">Payment spreadsheets in any column layout import without matching every column by hand.</p>
+          <div class="card-more" id="more-4" hidden>
+            <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>Customers upload payment spreadsheets in any column order and naming, sometimes without a header row, and had to match every column by hand before importing.</span></p>
+            <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>Contributed to layered column matching: header rules first, then the sample values themselves, then an AI model for whatever is still unmatched, with a position-based fallback. The user only reviews the result.</span></p>
+          </div>
+          <div class="card-links"><button type="button" class="card-more-toggle" aria-expanded="false" aria-controls="more-4">How I did it</button></div>
+        </article>
+        <article class="card is-extra" data-topics="ai">
+          <span class="tag">AI + documents</span>
+          <h3>Payroll PDFs into checks</h3>
+          <p class="card-outcome">Payroll PDFs become ready-to-print checks, created only once the user confirms.</p>
+          <div class="card-more" id="more-5" hidden>
+            <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>Payroll arrives as PDFs, and each page had to be typed in as a check by hand.</span></p>
+            <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>Worked on payroll-PDF processing for a payroll-provider integration: splitting a merged PDF into one check per page, and creating the checks only after the user confirms them.</span></p>
+          </div>
+          <div class="card-links"><button type="button" class="card-more-toggle" aria-expanded="false" aria-controls="more-5">How I did it</button></div>
         </article>
         <article class="card card-featured" id="work-ai" data-topics="ai reliability">
           <div class="featured-main">
             <span class="tag">AI observability · Featured</span>
             <h3>Knowing what every AI call costs</h3>
-            <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>AI usage arrived as one provider bill. Nobody could see which feature or model the cost came from, how often calls failed, or how slow they were.</span></p>
-            <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>Tracking built into the shared AI client: one record per request, written even when the call fails, with feature, model, tokens, cost and response time. A dashboard breaks it down by feature, model and provider account, with a 24-hour health view.</span></p>
-            <div class="card-links"><a href="case-llm-observability.html">Read the case study →</a><a href="playground.html#ai-usage">Try the demo →</a></div>
+            <p class="card-outcome">Every AI call's cost, speed and failures are visible, per feature and per model.</p>
+            <div class="card-more" id="more-6" hidden>
+              <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>AI usage arrived as one provider bill. Nobody could see which feature or model the cost came from, how often calls failed, or how slow they were.</span></p>
+              <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>Tracking built into the shared AI client: one record per request, written even when the call fails, with feature, model, tokens, cost and response time. A dashboard breaks it down by feature, model and provider account, with a 24-hour health view.</span></p>
+            </div>
+            <div class="card-links"><button type="button" class="card-more-toggle" aria-expanded="false" aria-controls="more-6">How I did it</button><a href="case-llm-observability.html">Read the case study →</a><a href="playground.html#ai-usage">Try the demo →</a></div>
           </div>
           <ul class="featured-facts">
             <li><strong>Log</strong><span>Every AI request recorded, success or failure</span></li>
@@ -244,35 +285,45 @@
             <li><strong>Watch</strong><span>24-hour health per provider account: error rate and last success</span></li>
           </ul>
         </article>
-        <article class="card is-extra" data-topics="ai">
-          <span class="tag">AI + documents</span>
-          <h3>Payroll PDFs into checks</h3>
-          <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>Payroll arrives as PDFs, and each page had to be typed in as a check by hand.</span></p>
-          <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>Worked on a feature that reads each page with AI and turns it into a ready-to-print check, with one background job per page so printing stays instant.</span></p>
-        </article>
         <article class="card is-extra" data-topics="reliability">
           <span class="tag">Heavy exports</span>
           <h3>Large statements built in the background</h3>
-          <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>Large account statements were built while the customer waited on the page.</span></p>
-          <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>Big statements are now built by a background job and emailed as PDF, CSV or Excel, while small ones stay instant.</span></p>
+          <p class="card-outcome">Big account statements no longer keep the customer waiting.</p>
+          <div class="card-more" id="more-7" hidden>
+            <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>Large account statements were built while the customer waited on the page.</span></p>
+            <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>Big statements are now built by a background job and emailed as PDF, CSV or Excel, while small ones stay instant.</span></p>
+          </div>
+          <div class="card-links"><button type="button" class="card-more-toggle" aria-expanded="false" aria-controls="more-7">How I did it</button></div>
         </article>
         <article class="card is-extra" data-topics="security payments">
           <span class="tag">Bank verification</span>
           <h3>An embeddable verification widget</h3>
-          <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>Other websites needed to verify a visitor's bank account instantly, without building that flow themselves.</span></p>
-          <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>An embeddable widget with short-lived, single-use sessions. The visitor's network is checked at every step, so a hand-off gets flagged, and errors never reveal server details.</span></p>
+          <p class="card-outcome">Other websites can verify a bank account instantly with an embedded widget.</p>
+          <div class="card-more" id="more-8" hidden>
+            <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>Other websites needed to verify a visitor's bank account instantly, without building that flow themselves.</span></p>
+            <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>An embeddable widget with short-lived, single-use sessions. The visitor's network is checked at every step, so a hand-off gets flagged, and errors never reveal server details.</span></p>
+          </div>
+          <div class="card-links"><button type="button" class="card-more-toggle" aria-expanded="false" aria-controls="more-8">How I did it</button></div>
         </article>
         <article class="card is-extra" data-topics="reliability">
           <span class="tag">Production debugging</span>
           <h3>Finding the real cause</h3>
-          <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>Live failures across payment flows, background jobs and third-party integrations, often with misleading symptoms.</span></p>
-          <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>Trace each one to its root cause from logs and data, then ship a fix with evidence that it works.</span></p>
+          <p class="card-outcome">Live failures traced to their real cause and fixed with evidence.</p>
+          <div class="card-more" id="more-9" hidden>
+            <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>Live failures across payment flows, background jobs and third-party integrations, often with misleading symptoms.</span></p>
+            <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>Trace each one to its root cause from logs and data, then ship a fix with evidence that it works.</span></p>
+          </div>
+          <div class="card-links"><button type="button" class="card-more-toggle" aria-expanded="false" aria-controls="more-9">How I did it</button></div>
         </article>
         <article class="card is-extra" data-topics="reliability">
           <span class="tag">Testing tools</span>
           <h3>Testing what you can't click</h3>
-          <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>Scheduled payments and embedded widgets can't be tested by clicking through the normal app.</span></p>
-          <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>On-demand tools that run those flows end to end, so fixes are tested the way they run in production.</span></p>
+          <p class="card-outcome">Flows nobody can click through are now testable end to end.</p>
+          <div class="card-more" id="more-10" hidden>
+            <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>Scheduled payments and embedded widgets can't be tested by clicking through the normal app.</span></p>
+            <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>On-demand tools that run those flows end to end, so fixes are tested the way they run in production.</span></p>
+          </div>
+          <div class="card-links"><button type="button" class="card-more-toggle" aria-expanded="false" aria-controls="more-10">How I did it</button></div>
         </article>
       </div>
       <button type="button" class="btn btn-ghost work-more" data-work="more" aria-expanded="false">Show all 10</button>
@@ -316,40 +367,37 @@
           </article>
         </div>
       </details>
-    </section>
-
-    <section id="netplex" class="section container">
-      <div class="section-head">
-        <p class="eyebrow">Experience · Netplex Solutions</p>
-        <h2>Business platform &amp; ZATCA e-invoicing</h2>
-        <p class="section-sub">PHP Laravel Intern, Jun – Nov 2025, remote for a Dubai company. A business-management and e-invoicing product (Taxfly) used by customers in Qatar, Saudi Arabia and the UAE.</p>
       </div>
+
+      <div class="exp-panel" role="tabpanel" id="netplex" aria-labelledby="tab-netplex" hidden>
+      <p class="section-sub exp-sub">PHP Laravel Intern, remote for a Dubai company. I worked on <a href="https://taxfly.qa" target="_blank" rel="noopener">Taxfly ↗</a>, Netplex's billing, inventory and accounting platform with GCC e-invoicing compliance, used by customers in Qatar, Saudi Arabia and the UAE.</p>
       <div class="np-grid">
         <article class="card">
           <span class="tag">Legacy analysis</span>
           <h3>Understanding the system before changing it</h3>
-          <p>Mapped the existing Laravel and PostgreSQL application end to end: routes, controllers, models, Blade views, roles and the database structure. Then contributed to its redesign into modules on Inertia, Vue, TypeScript and Vite.</p>
+          <p>Mapped the existing Laravel and PostgreSQL app (routes, models, views, roles and data) before helping redesign it into modules on Inertia, Vue and TypeScript.</p>
         </article>
         <article class="card">
           <span class="tag">Clients &amp; accounting</span>
           <h3>From client requirements to workflows</h3>
-          <p>Gathered requirements from new clients across Qatar, Saudi Arabia and the UAE, and worked on the accounting workflows their businesses run on.</p>
+          <p>Gathered requirements from new clients in Qatar, Saudi Arabia and the UAE, and worked on their accounting workflows.</p>
         </article>
         <article class="card">
           <span class="tag">ZATCA e-invoicing</span>
           <h3>Saudi e-invoicing, up to handover</h3>
-          <p>Independently developed and investigated the ZATCA e-invoicing workflow: XML invoice generation, signing, hashing, TLV-encoded QR codes, certificate handling, validation, and tracing compliance errors to their cause. It was still in progress when I left, and I handed it over at that point.</p>
+          <p>Independently developed and investigated Taxfly's ZATCA workflow (invoice XML, signing, hashing, QR codes, certificates and validation) up to handover. It was still in progress when I left.</p>
           <div class="card-links"><a href="case-zatca-einvoicing.html">Read the case study →</a><a href="#project-masaar">See Masaar →</a></div>
         </article>
       </div>
       <p class="stack np-stack">Laravel · PHP · PostgreSQL · Inertia · Vue · TypeScript · Vite</p>
+      </div>
     </section>
 
     <section id="projects" class="section container">
       <div class="section-head">
         <p class="eyebrow">Projects</p>
         <h2>Things I've built</h2>
-        <p class="section-sub">Independent work across education, tax compliance, security, infrastructure and developer tools.</p>
+        <p class="section-sub">Things I build in my own time. Cert-Ed is live and Time is used daily at work; the others are still in progress.</p>
       </div>
 
       <div class="projects">
@@ -359,13 +407,14 @@
             <span class="status status-live">Live</span>
           </div>
           <p class="domain">Education</p>
-          <p>A live platform for an online tuition academy, across 5 user roles: classes, assignments, grading, per-session attendance, hours-based billing, receipts, payslips, messaging and scheduling.</p>
+          <p>A live platform for an online tuition academy with 5 user roles: classes, grading, attendance, billing, payslips and messaging.</p>
           <ul class="facts">
             <li><strong>50+</strong> database-level security policies, plus <strong>18</strong> app-level capabilities</li>
             <li>Every role's access tested against a real database in CI</li>
             <li>Billed hours locked by the database once invoiced</li>
             <li><strong>100+</strong> unit tests</li>
           </ul>
+          <button type="button" class="project-more" aria-expanded="false">More details</button>
           <p class="stack">Next.js · TypeScript · Supabase · PostgreSQL</p>
         </article>
 
@@ -374,15 +423,21 @@
             <h3>Masaar</h3>
             <span class="status">In development</span>
           </div>
-          <p class="domain">Tax compliance</p>
-          <p>An e-invoicing system for Saudi tax rules: digitally signed invoices, tamper-evident invoice chains, QR codes and certificate management.</p>
+          <p class="domain">Tax compliance &amp; ERP</p>
+          <p>A GCC e-invoicing compliance engine for ZATCA, and the multi-tenant ERP built on it: accounting, HR, inventory, sales and manufacturing.</p>
           <ul class="facts">
             <li>Invoices pass the tax authority's <strong>official validator</strong> (26 checks)</li>
             <li>Invoice chain stays correct under simultaneous requests</li>
             <li>Offline queue and circuit breaker for when the tax portal is down</li>
+            <li>ERP: <strong>30</strong> business areas, each company's data kept separate, <strong>3,800+</strong> automated tests</li>
           </ul>
-          <p class="stack">PHP · Laravel · MySQL · OpenSSL</p>
-          <a class="code-link" href="https://github.com/shamil3ilm/masaar" target="_blank" rel="noopener">View code on GitHub ↗</a>
+          <button type="button" class="project-more" aria-expanded="false">More details</button>
+          <p class="stack">PHP · Laravel · MySQL · React · TypeScript</p>
+          <div class="code-links">
+            <a class="code-link" href="https://github.com/shamil3ilm/masaar" target="_blank" rel="noopener">Compliance platform ↗</a>
+            <a class="code-link" href="https://github.com/shamil3ilm/masaar-erp-backend" target="_blank" rel="noopener">ERP backend ↗</a>
+            <a class="code-link" href="https://github.com/shamil3ilm/masaar-erp-frontend" target="_blank" rel="noopener">ERP front end ↗</a>
+          </div>
         </article>
 
 
@@ -398,6 +453,7 @@
             <li>Never breaks the host app: checks fail open within 5 ms</li>
             <li>Plugs into PHP and Laravel apps</li>
           </ul>
+          <button type="button" class="project-more" aria-expanded="false">More details</button>
           <p class="stack">Rust · Laravel · PHP · SQLite</p>
           <a class="code-link" href="https://github.com/shamil3ilm/athar" target="_blank" rel="noopener">View code on GitHub ↗</a>
         </article>
@@ -413,6 +469,7 @@
             <li>Used daily by <strong>10+</strong> colleagues</li>
             <li>Hourly sync, with a backup if the main schedule stalls</li>
           </ul>
+          <button type="button" class="project-more" aria-expanded="false">More details</button>
           <p class="stack">TypeScript · SQLite · REST APIs</p>
         </article>
       </div>
@@ -420,11 +477,10 @@
       <div class="more">
         <h3>Other experiments</h3>
         <ul>
-          <li><strong><a href="https://github.com/shamil3ilm/domain" target="_blank" rel="noopener">Private DNS server ↗</a></strong> — a single-binary DNS server in Go with an admin API and rate limiting, released for 7 platforms.</li>
-          <li><strong><a href="https://github.com/shamil3ilm/mail-service" target="_blank" rel="noopener">Mail server ↗</a></strong> — a single-binary mail server in Go that captures mail over SMTP, with a web dashboard and full-text search.</li>
-          <li><strong><a href="https://github.com/shamil3ilm/masaar-erp-backend" target="_blank" rel="noopener">ERP API ↗</a></strong> — a multi-company business API with automatic data isolation between companies (3,840 tests).</li>
-          <li><strong>Jira Dashboard</strong> — a command-line tool that fills in quality checklists from real code evidence and refuses to tick sign-offs.</li>
-          <li><strong><a href="https://github.com/shamil3ilm/lee" target="_blank" rel="noopener">Employ ↗</a></strong> — an AI tool that collects jobs from 9 sites, ranks them, and writes a tailored CV and cover letter for each (181 tests).</li>
+          <li><strong><a href="https://github.com/shamil3ilm/domain" target="_blank" rel="noopener">Private DNS server ↗</a></strong>: a single-binary DNS server in Go with an admin API and rate limiting, released for 7 platforms.</li>
+          <li><strong><a href="https://github.com/shamil3ilm/mail-service" target="_blank" rel="noopener">Mail server ↗</a></strong>: a single-binary mail server in Go that captures mail over SMTP, with a web dashboard and full-text search.</li>
+          <li><strong>Jira Dashboard</strong>: a command-line tool that fills in quality checklists from real code evidence and refuses to tick sign-offs.</li>
+          <li><strong><a href="https://github.com/shamil3ilm/lee" target="_blank" rel="noopener">Employ ↗</a></strong>: an AI tool that collects jobs from 9 sites, ranks them, and writes a tailored CV and cover letter for each (181 tests).</li>
         </ul>
       </div>
     </section>
@@ -440,7 +496,7 @@
         <article class="offer">
           <p class="offer-tag">01 · Integrations</p>
           <h3>Connect your product to the outside world</h3>
-          <p>Payment and banking providers, accounting tools, tax authorities and AI services, wired in so failures are retried, signed and visible instead of silent.</p>
+          <p>Payment and banking providers, accounting tools, tax authorities and AI services, wired in so a failed call is retried, and if it still fails, someone finds out.</p>
           <ul>
             <li>Signed webhooks and safe retries</li>
             <li>Accounting, payroll and tax-authority integrations</li>
@@ -473,13 +529,15 @@
       </div>
 
       <div class="process">
-        <h3 class="process-title">How a project runs</h3>
-        <ol class="process-steps">
-          <li><strong>A short call</strong><span>You explain the problem; I ask the questions that shape the scope.</span></li>
-          <li><strong>A written plan</strong><span>Scope, timeline and cost in writing before any work starts.</span></li>
-          <li><strong>Small, reviewed steps</strong><span>Work lands in small pieces you can see and check as it goes.</span></li>
-          <li><strong>A clean handover</strong><span>Tests, notes and a walkthrough, so your team can own it.</span></li>
-        </ol>
+        <details class="process-details" open data-fold-on-phone>
+          <summary class="process-title">How a project runs</summary>
+          <ol class="process-steps">
+            <li><strong>A short call</strong><span>You explain the problem; I ask the questions that shape the scope.</span></li>
+            <li><strong>A written plan</strong><span>Scope, timeline and cost in writing before any work starts.</span></li>
+            <li><strong>Small, reviewed steps</strong><span>Work lands in small pieces you can see and check as it goes.</span></li>
+            <li><strong>A clean handover</strong><span>Tests, notes and a walkthrough, so your team can own it.</span></li>
+          </ol>
+        </details>
         <div class="process-cta">
           <a href="#contact" class="btn btn-primary">Tell me about your project</a>
           <span>Fixed-scope projects, monthly support, or a one-off review.</span>
@@ -488,39 +546,53 @@
     </section>
 
     <section id="about" class="section section-band container">
+      <div class="section-head">
+        <p class="eyebrow">About</p>
+        <h2>About me</h2>
+      </div>
       <div class="about">
         <div>
-          <p class="eyebrow">About</p>
-          <h2>How I work</h2>
+          <div class="about-id">
+            <img src="photo-320.webp" srcset="photo-160.webp 160w, photo-320.webp 320w" sizes="88px" width="88" height="88" alt="Mohamed Shamil" loading="lazy" decoding="async">
+            <div>
+              <strong>Mohamed Shamil</strong>
+              <span>Software engineer · Backend systems</span>
+            </div>
+          </div>
+          <p class="about-label about-label-top">Background</p>
           <p class="about-text">
             I studied Computer Science at Adi Shankara Institute of Engineering and Technology (2021–2025),
-            worked on a Laravel business and e-invoicing platform at Netplex, and now build payment
-            backends full time. Outside work I build my own products in education, compliance and security.
+            worked on Taxfly, a Laravel billing and e-invoicing platform, at Netplex, and now build payment
+            backends full time. In my own time I build the projects shown above.
           </p>
+          <p class="about-label">Experience</p>
           <ol class="timeline">
             <li><span>Dec 2025 – present</span> Software Engineer, Zil Money</li>
             <li><span>Jun 2025 – Nov 2025</span> PHP Laravel Intern, Netplex Solutions (Dubai, remote)</li>
-            <li><span>Jun 2024 – Jul 2024</span> Web Developer Intern, Inker Robotics</li>
             <li><span>Jan 2024 – May 2025</span> Executive Manager, Cert-Ed Academia</li>
+            <li><span>Jun 2024 – Jul 2024</span> Web Developer Intern, Inker Robotics</li>
           </ol>
         </div>
 
-        <div class="principles">
-          <div class="principle">
-            <span class="num">01</span>
-            <div><h3>When in doubt, say no</h3><p>If an action can't be recorded, it doesn't happen. A provider's request is refused rather than going through unlogged.</p></div>
-          </div>
-          <div class="principle">
-            <span class="num">02</span>
-            <div><h3>Check again right before it counts</h3><p>Bank details are re-checked just before money moves, not only when the payment was approved.</p></div>
-          </div>
-          <div class="principle">
-            <span class="num">03</span>
-            <div><h3>Change only what's needed</h3><p>Small, focused changes that keep existing customers working.</p></div>
-          </div>
-          <div class="principle">
-            <span class="num">04</span>
-            <div><h3>Prove it before calling it done</h3><p>Nothing is "done" until it has been run and checked.</p></div>
+        <div>
+          <p class="about-label about-label-top">How I work</p>
+          <div class="principles">
+            <div class="principle">
+              <span class="num">1</span>
+              <div><h3>Every action leaves a record</h3><p>If the system can't record who did something, it doesn't let them do it.</p></div>
+            </div>
+            <div class="principle">
+              <span class="num">2</span>
+              <div><h3>Check again before money moves</h3><p>A payment is approved first and sent later. Bank details can change in between, so they're checked once more right before sending.</p></div>
+            </div>
+            <div class="principle">
+              <span class="num">3</span>
+              <div><h3>Small changes, nothing broken</h3><p>I change only what the task needs, so existing customers notice nothing except the fix.</p></div>
+            </div>
+            <div class="principle">
+              <span class="num">4</span>
+              <div><h3>Done means tested</h3><p>A fix is finished once I've run it and seen it work.</p></div>
+            </div>
           </div>
         </div>
       </div>
@@ -574,6 +646,8 @@
     </section>
 
   </main>
+
+  <a class="mobile-contact" href="#contact" data-mobile-contact hidden>Contact me</a>
 
   <!-- profile:quick-view:start (generated from profile.json by scripts/build-resume.mjs; edit the profile, not this block) -->
   <dialog class="quick" id="quick-view" aria-labelledby="quick-title">

@@ -2,10 +2,10 @@
   "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.2.1/schema.json",
   "basics": {
     "name": "Mohamed Shamil Abdul Salam",
-    "label": "Software Engineer | Backend Developer | Fintech",
+    "label": "Software Engineer | Backend Systems | Payments & Fintech",
     "email": "mhmdshamil03@gmail.com",
     "url": "https://mohamed3shamil.vercel.app/",
-    "summary": "Software Engineer focused on backend systems and financial workflows, with hands-on experience in Laravel, PHP, MySQL, REST APIs, asynchronous processing, webhooks, and third-party integrations. Experience working on payment, ACH, check, recurring transaction, payroll, banking, and accounting workflows in production, with emphasis on reliability, data integrity, security, and production debugging.",
+    "summary": "Software Engineer focused on backend systems and financial workflows, with hands-on experience in Laravel, PHP, MySQL, REST APIs, background processing, webhooks, and third-party integrations. Experienced in building and supporting payment, payroll, banking, and accounting workflows with a focus on reliability, data integrity, authorization, and production debugging.",
     "profiles": [
       {
         "network": "LinkedIn",
@@ -26,11 +26,12 @@
       "position": "Software Engineer",
       "startDate": "2025-12",
       "highlights": [
-        "Built a service-provider “act-as-customer” API layer bringing 450 existing endpoints under delegated access, spanning 7 payment services and 38 webhook event types with audit trails and controls preventing providers from approving their own payments.",
-        "Hardened multi-level payment approvals by recording a destination fingerprint at payment creation, re-checking 3 bank fields at release, locking 3 payee/bank edit paths while payments are pending, and enforcing refusal handling across 4 approval entry points.",
-        "Automated recurring-payment safeguards across 5 payment types and 4 deletion paths, preventing execution against deleted destinations and correcting bulk-cancellation behavior across selected schedules.",
-        "Instrumented 16 AI features across 18 call sites for cost, token, and latency observability, enabling feature-level tracking of LLM usage and spend.",
-        "Shifted wallet-statement exports exceeding 1,000 transactions to background processing with PDF, CSV, and XLSX delivery, while maintaining Positive Pay fraud-prevention processing across 17 banking integrations."
+        "Designed and implemented a service-provider access layer (delegated access) across 450 existing REST endpoints, 7 payment services, and 38 webhook event types, with audit trails and authorization controls preventing providers from approving their own payments.",
+        "Hardened multi-level payment approvals by recording a destination fingerprint at payment creation, re-validating 3 bank fields at release, restricting 3 payee/bank edit paths while payments were pending, and handling approval refusals across 4 entry points.",
+        "Strengthened recurring-payment safeguards across 5 payment types and 4 deletion paths, preventing execution against deleted destinations and correcting bulk-cancellation behavior across selected schedules.",
+        "Built per-call cost, token, and latency tracking for 16 AI features across 18 call sites, with a dashboard breaking down usage, spend, and failures by feature, model, and provider account.",
+        "Extended payroll-provider PDF processing to split merged payroll PDFs into per-check documents and defer check creation until user confirmation, and contributed to automated column mapping for bulk payment imports.",
+        "Built an import and background-printing pipeline for a customer’s SAP check files, and moved wallet-statement exports exceeding 1,000 transactions to background processing with PDF, CSV, and XLSX delivery."
       ]
     },
     {
@@ -40,9 +41,9 @@
       "startDate": "2025-06",
       "endDate": "2025-11",
       "highlights": [
-        "Analysed a legacy Laravel and PostgreSQL business-management and e-invoicing platform (routes, controllers, models, Blade views, roles and database structure) and contributed to its modular redesign on Inertia, Vue, TypeScript and Vite.",
-        "Gathered requirements from new clients across Qatar, Saudi Arabia and the UAE and worked on their accounting workflows.",
-        "Independently developed and investigated the ZATCA e-invoicing workflow up to handover: XML generation, signing, hashing, TLV QR codes, certificate handling, validation and compliance-error investigation."
+        "Analyzed and worked across a Laravel-based business management platform serving customers in Qatar, Saudi Arabia, and the UAE, tracing routes, controllers, models, Blade views, roles, database structures, and interconnected business modules.",
+        "Contributed to the redesign of the platform using Laravel, PHP, PostgreSQL, Inertia, Vue, TypeScript, and Vite, while gathering requirements from new clients and translating business needs into modular application workflows.",
+        "Independently developed and investigated the ZATCA e-invoicing workflow up to handover, covering invoice XML generation, signing, hashing, QR-code TLV generation, certificate handling, validation, and investigation of compliance failures."
       ]
     },
     {
@@ -52,7 +53,7 @@
       "startDate": "2024-06",
       "endDate": "2024-07",
       "highlights": [
-        "Supported web development, usability improvements, testing, documentation, and technology-focused educational initiatives."
+        "Supported web development, usability improvements, testing, documentation, and technical training programs, including session assistance, assessments, and documentation of outcomes."
       ]
     },
     {
@@ -62,7 +63,8 @@
       "startDate": "2024-01",
       "endDate": "2025-05",
       "highlights": [
-        "Managed financial and operational workflows while advising on technology and digital process improvements for an education-focused organization supporting 50+ learners."
+        "Managed internal documentation, digital assets, financial records, and operational materials while maintaining organized administrative workflows.",
+        "Calculated class and working hours and prepared salary and fee amounts, while coordinating business materials including letterheads, receipts, posters, and other organizational documents."
       ]
     }
   ],
@@ -82,7 +84,7 @@
       "description": "E-Invoicing System",
       "keywords": ["Laravel", "PHP", "MySQL"],
       "highlights": [
-        "Building an e-invoicing system with core functionality for electronic invoice generation, signing, QR processing, certificate management, and compliance-oriented workflows."
+        "Building an e-invoicing system for electronic invoice generation, signing, QR processing, and certificate management; generated invoices pass ZATCA’s official validator (26 checks)."
       ]
     },
     {
@@ -98,7 +100,7 @@
       "description": "Workplace Time & Attendance Tool",
       "keywords": ["TypeScript", "SQLite", "REST APIs"],
       "highlights": [
-        "Built a work-hours tracker used daily by 10+ colleagues and evolved it into a serverless multi-user service with scheduled data synchronization."
+        "Built a work-hours tracker used daily by 10+ colleagues and evolved it into a serverless multi-user service with hourly data synchronization."
       ]
     }
   ],
@@ -145,7 +147,7 @@
       "schemaVersion": 1,
       "displayName": "Mohamed Shamil",
       "order": {
-        "work": ["Zil Money", "Netplex Solutions", "Inker Robotics", "Cert-Ed Academia"],
+        "work": ["Zil Money", "Netplex Solutions", "Cert-Ed Academia", "Inker Robotics"],
         "projects": ["Cert-Ed Academia", "Masaar", "Athar", "Time"],
         "skills": ["Languages", "Backend", "Databases", "Frontend", "Engineering", "Tools"],
         "education": ["Adi Shankara Institute of Engineering and Technology"]

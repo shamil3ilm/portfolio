@@ -62,7 +62,8 @@
         }),
       });
 
-      if (!response.ok) throw new Error('Request failed');
+      const result = await response.json().catch(function () { return {}; });
+      if (!response.ok || result.success !== true) throw new Error(result.message || 'Request failed');
 
       form.reset();
       showStatus('Thanks, your message was sent. I will reply by email.');

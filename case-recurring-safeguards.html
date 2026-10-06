@@ -41,7 +41,7 @@
         <a href="index.html#contact">Contact</a>
         <a href="resume.html">Résumé</a>
       </nav>
-      <button class="icon-btn palette-open" type="button" data-palette-open aria-label="Search the site (Ctrl+K)">
+      <button class="icon-btn palette-open" type="button" data-palette-open aria-label="Search the site (Ctrl K)">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
         <kbd class="palette-kbd">Ctrl K</kbd>
       </button>
@@ -76,18 +76,31 @@
 
         <section>
           <h2>What I built</h2>
+          <figure class="flow" aria-label="What happens when a recipient or bank account is deleted">
+            <ol class="flow-steps" style="--steps: 4">
+            <li class="flow-step"><span class="flow-kicker">1 · User</span><strong>Deletes a recipient or bank account</strong><span>one at a time or in bulk</span></li>
+            <li class="flow-step"><span class="flow-kicker">2 · Platform</span><strong>Warns first</strong><span>if active schedules depend on it</span></li>
+            <li class="flow-step"><span class="flow-kicker">3 · User</span><strong>Confirms</strong><span>or keeps it, and nothing changes</span></li>
+            <li class="flow-step"><span class="flow-kicker">4 · Platform</span><strong>Deletes and cancels together</strong><span>every linked schedule, in one step</span></li>
+            </ol>
+            <div class="flow-outcomes">
+            <div class="flow-out" data-tone="ok"><strong>Done</strong><span>Schedules cancelled with an audit note; held checks released for reuse.</span></div>
+            <div class="flow-out" data-tone="bad"><strong>Something failed</strong><span>The whole step is undone, so no deleted recipient keeps live schedules.</span></div>
+            </div>
+            <figcaption>Bulk deletes take the same per-record path, so the safeguard can't be skipped.</figcaption>
+          </figure>
           <ol class="case-steps">
             <li><strong>A plain warning before the delete.</strong> If the recipient or bank account still has active schedules, the user sees: "This recipient has active recurring or scheduled payments. Proceeding will cancel them. Do you want to continue?"</li>
             <li><strong>On confirm, every schedule tied to it is cancelled</strong>, across every recurring payment type, from bank transfers to mailed checks. Deleting a bank account also stops payment-request forms that pay into it.</li>
             <li><strong>Each cancellation says why.</strong> The schedule's history gets a note like "Auto-canceled: associated recipient 'Harbor Realty' was deleted", so support and the customer can see exactly what happened.</li>
-            <li><strong>The delete and the cancellations succeed or fail together.</strong> On these paths, if a cancellation fails, the delete is undone too, rather than leaving a deleted recipient with live schedules.</li>
+            <li><strong>The delete and the cancellations succeed or fail together.</strong> On these paths, if a cancellation fails, the delete is undone too, so a deleted recipient never keeps live schedules.</li>
             <li><strong>Bulk actions got the same protection.</strong> Deleting many recipients at once used a shortcut that skipped the per-record safeguards, so I changed it to delete them one by one, only within the customer's own account. Bulk cancel now clears the upcoming payments of every selected schedule, and mailed checks that were held for a schedule are released for use again.</li>
           </ol>
         </section>
 
         <section>
           <h2>The lesson</h2>
-          <p class="case-note"><strong>Bulk operations are where safeguards go missing.</strong> Frameworks often skip per-record hooks when many records change in one statement. The single-item path was safe; the "select all and delete" path was not. I now check every bulk path whenever a safeguard lives in a per-record hook.</p>
+          <p class="case-note">Deleting one recipient was safe. Deleting several at once was not, because the bulk path skipped the code that runs for each record. Since then, whenever a safeguard runs per record, I check the bulk path too.</p>
           <p>The safeguard covers every way the web app deletes them: recipients and bank accounts, one at a time and in bulk.</p>
         </section>
 

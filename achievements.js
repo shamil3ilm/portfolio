@@ -69,7 +69,7 @@
 
   function renderFab() {
     fab.textContent = '🏆 ' + done.size + ' / ' + CHALLENGES.length;
-    fab.setAttribute('aria-label', 'Challenges: ' + done.size + ' of ' + CHALLENGES.length + ' done. Open the list.');
+    fab.setAttribute('aria-label', done.size + ' / ' + CHALLENGES.length + ' challenges done. Open the list.');
     fab.dataset.complete = String(done.size === CHALLENGES.length);
   }
 

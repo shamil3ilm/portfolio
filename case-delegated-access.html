@@ -41,7 +41,7 @@
         <a href="index.html#contact">Contact</a>
         <a href="resume.html">Résumé</a>
       </nav>
-      <button class="icon-btn palette-open" type="button" data-palette-open aria-label="Search the site (Ctrl+K)">
+      <button class="icon-btn palette-open" type="button" data-palette-open aria-label="Search the site (Ctrl K)">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
         <kbd class="palette-kbd">Ctrl K</kbd>
       </button>
@@ -74,6 +74,19 @@
 
         <section>
           <h2>What I built</h2>
+          <figure class="flow" aria-label="How a provider gets and uses access">
+            <ol class="flow-steps" style="--steps: 4">
+            <li class="flow-step"><span class="flow-kicker">1 · Customer</span><strong>Creates a connect key</strong><span>single-use, expires after a year</span></li>
+            <li class="flow-step"><span class="flow-kicker">2 · Provider</span><strong>Connects with the key</strong><span>refused if used, expired or already connected</span></li>
+            <li class="flow-step"><span class="flow-kicker">3 · Provider</span><strong>Calls the API as the customer</strong><span>the same endpoints the customer uses</span></li>
+            <li class="flow-step"><span class="flow-kicker">4 · Platform</span><strong>Checks every call</strong><span>connected? suspended? whose approval?</span></li>
+            </ol>
+            <div class="flow-outcomes">
+            <div class="flow-out" data-tone="ok"><strong>Allowed</strong><span>The call goes through and is logged against the provider.</span></div>
+            <div class="flow-out" data-tone="bad"><strong>Refused</strong><span>Always the same "Access denied". The real reason goes to the audit log.</span></div>
+            </div>
+            <figcaption>Every request takes this path. The customer stays in control of the connection and of their own approvals.</figcaption>
+          </figure>
           <ol class="case-steps">
             <li><strong>The customer creates a one-time connect key.</strong> It is valid for a year and works once. Asking again returns the same unused key, so spare keys never pile up.</li>
             <li><strong>The provider redeems the key to connect.</strong> A used, expired or unknown key is refused, and so is a customer who is already connected to another provider, or a provider trying to connect to itself.</li>
