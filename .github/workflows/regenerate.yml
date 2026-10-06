@@ -1,0 +1,88 @@
+# Regenerates resume.html and the 60-second view in index.html from profile.json,
+# and commits them back when they changed. lee commits only profile.json through the
+# GitHub API, so without this the committed pages lag behind until a local build.
+#
+# Loop prevention:
+#   - pushes made with GITHUB_TOKEN never start new workflow runs;
+#   - the commit message carries [skip ci];
+#   - the job is skipped when the bot itself triggered the run.
+# Vercel skips the bot commit too (ignoreCommand in vercel.json): its output is
+# identical to the deployment Vercel already built from the triggering commit.
+
+name: Regenerate pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - profile.json
+      - scripts/**
+      - .github/workflows/regenerate.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: regenerate-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  regenerate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    env:
+      BRANCH: ${{ github.ref_name }}
+      COMMIT_MESSAGE: "chore(build): regenerate pages from profile.json [skip ci]"
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: lts/*
+
+      - name: Test
+        run: node --test "scripts/test/*.test.mjs"
+
+      - name: Build (validates profile.json)
+        run: node scripts/build-resume.mjs
+
+      - name: Commit and push the regenerated pages
+        run: |
+          generated=(resume.html index.html)
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Returns 0 when there was nothing to commit or the push succeeded.
+          commit_and_push() {
+            if git diff --quiet -- "${generated[@]}"; then
+              echo "Generated pages are already up to date."
+              return 0
+            fi
+            # Chained with && because `set -e` is off inside an `if` condition.
+            git add -- "${generated[@]}" &&
+              git commit --quiet -m "$COMMIT_MESSAGE" &&
+              git push origin "HEAD:$BRANCH"
+          }
+
+          if commit_and_push; then exit 0; fi
+
+          # The branch moved since this run started. Rebuild on top of the new tip
+          # (no rebase of generated files, so no conflicts) and try once more.
+          echo "::warning::Push rejected; rebuilding on the latest $BRANCH and retrying once."
+          git fetch --depth=1 origin "$BRANCH"
+          git reset --hard FETCH_HEAD
+          node scripts/build-resume.mjs
+          commit_and_push
+
+      - name: Explain a failure
+        if: failure()
+        run: |
+          {
+            echo "### Pages were not regenerated"
+            echo "A test or the profile.json validation failed (see the step logs), or the push was rejected twice."
+            echo "Nothing was committed. Vercel's build fails on the same problem, so the previous deployment stays live."
+          } >> "$GITHUB_STEP_SUMMARY"

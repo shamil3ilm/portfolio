@@ -48,6 +48,19 @@ python -m http.server 8000
 chore(profile): sync from lee
 ```
 
+### Keeping the committed pages in sync
+
+lee commits only `profile.json`. The GitHub Actions workflow `.github/workflows/regenerate.yml` then rebuilds the pages and commits them back:
+
+- **Trigger:** a push to `main` that touches `profile.json`, `scripts/**` (which holds the templates) or the workflow itself. It can also be run by hand from the Actions tab (`workflow_dispatch`).
+- **Steps:** Node LTS, no install, `node --test "scripts/test/*.test.mjs"`, then `node scripts/build-resume.mjs`.
+- **Commit:** if `resume.html` or `index.html` changed, it commits them as `github-actions[bot]` with the message `chore(build): regenerate pages from profile.json [skip ci]`, using the built-in `GITHUB_TOKEN` (`contents: write`).
+- **No loops:** pushes made with `GITHUB_TOKEN` don't start workflows, the message carries `[skip ci]`, and the job is skipped when `github-actions[bot]` triggered it.
+- **No races:** runs are queued one at a time per branch (`concurrency`, no cancelling). If `main` moved during a run, the push is rejected. The job then rebuilds on the new tip and pushes once more (it doesn't rebase the generated files, so there are no conflicts).
+- **On failure:** if a test or the `profile.json` validation fails, the job fails and nothing is committed. Vercel's build fails on the same problem, so the previous deployment stays live.
+
+Vercel doesn't redeploy for the bot's commit. `ignoreCommand` in `vercel.json` skips the build when the latest commit's author is `github-actions[bot]` and it changes only `resume.html` and `index.html`. That output is identical to what Vercel already built from the triggering commit. Any other commit builds as usual.
+
 **Don't edit `profile.json` here directly**, except in an emergency. A manual edit is safe: before its next write, lee compares the file's sha with the one it last wrote, notices the change and asks me what to do.
 
 Don't edit `resume.html` or the marked 60-second view block in `index.html` by hand either. The next build overwrites them.
@@ -87,7 +100,7 @@ It needs Node 18+ and no packages. The build checks `profile.json` against `scri
 
 **Nothing is written unless every check passes.** Any problem exits non-zero and lists what's wrong, for example `/work/0/startDate: "soon" does not match ...`.
 
-After lee syncs, the committed `resume.html` lags behind `profile.json` until someone runs the build locally and commits the result. `--check` reports this. The live site is always rebuilt by Vercel.
+After lee syncs, the **Regenerate pages** workflow (see [Keeping the committed pages in sync](#keeping-the-committed-pages-in-sync)) commits the regenerated pages back, so the committed `resume.html` catches up shortly after. `--check` reports any lag. The live site is always rebuilt by Vercel.
 
 ## Deploy
 
@@ -96,8 +109,9 @@ Vercel serves the repository root as a static site. `vercel.json` sets:
 - `framework: null` ("Other") and `installCommand: ""`, because there is nothing to install.
 - `buildCommand: node scripts/build-resume.mjs`, which regenerates the pages from `profile.json` on every push.
 - `outputDirectory: "."`, which serves the whole repository root.
+- `ignoreCommand`, which skips the build for the Regenerate pages workflow's own commit (see [Keeping the committed pages in sync](#keeping-the-committed-pages-in-sync)). The command exits 0 to skip and non-zero to build, so if git fails for any reason, Vercel builds.
 - Headers for `/profile.json`: `Content-Type: application/json`, `Cache-Control: public, max-age=300` and CORS `*`. It's the same public information that's already on the site.
 
 If `profile.json` is invalid, the build fails and the deployment isn't promoted, so **the previous deployment stays live**. The failed build's log lists the problems.
 
-`.vercelignore` keeps this README, the tests and repo config files off the public site.
+`.vercelignore` keeps this README, the tests, the workflow and repo config files off the public site.

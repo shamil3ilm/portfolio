@@ -3,6 +3,7 @@
   "framework": null,
   "installCommand": "",
   "buildCommand": "node scripts/build-resume.mjs",
+  "ignoreCommand": "[ \"$(git log -1 --format=%ae)\" = \"41898282+github-actions[bot]@users.noreply.github.com\" ] && git diff --quiet HEAD^ HEAD -- . ':!resume.html' ':!index.html'",
   "outputDirectory": ".",
   "headers": [
     {
