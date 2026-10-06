@@ -100,12 +100,47 @@ function renderQuickProfiles(profiles) {
   );
 }
 
+/** The main résumé page: resume.html, generated from profile.json. */
+export function mainPage(profile) {
+  return { source: 'profile.json', url: `${new URL(profile.meta.canonical).origin}/resume.html`, slug: null };
+}
+
+/** A tailored résumé page: resume/<slug>.html, generated from variants/<slug>.json. */
+export function variantPage(profile, slug) {
+  return { source: `variants/${slug}.json`, url: `${new URL(profile.meta.canonical).origin}/resume/${slug}.html`, slug };
+}
+
+/**
+ * Per-page parts of the template. The main page keeps its original markup; a variant page
+ * lives one directory down, so it gets <base href="../"> (relative links, styles and scripts
+ * resolve from the site root), noindex, and a "Back to top" link that names its own path
+ * (a bare "#top" would resolve against the base, to the home page).
+ */
+function pageValues(page) {
+  if (!page.slug) {
+    return {
+      text: { source: page.source, pageUrl: page.url, topHref: '#top' },
+      blocks: { headExtra: '', navCurrent: ' aria-current="page"', tailoredLabel: '' },
+    };
+  }
+  return {
+    text: { source: page.source, pageUrl: page.url, topHref: `resume/${page.slug}.html#top` },
+    blocks: {
+      headExtra: '\n  <base href="../">\n  <meta name="robots" content="noindex">',
+      navCurrent: '',
+      tailoredLabel: '\n          <p class="eyebrow">Tailored résumé</p>',
+    },
+  };
+}
+
 /** Values for the résumé template. Keys in "blocks" are raw HTML, the rest are escaped text. */
-export function resumeValues(profile) {
+export function resumeValues(profile, page = mainPage(profile)) {
   const { basics } = profile;
   const x = profile.meta['x-portfolio'];
+  const own = pageValues(page);
   return {
     text: {
+      ...own.text,
       name: basics.name,
       displayName: x.displayName,
       label: basics.label,
@@ -115,6 +150,7 @@ export function resumeValues(profile) {
       linkedinUrl: findProfile(profile, 'LinkedIn').url,
     },
     blocks: {
+      ...own.blocks,
       contact: renderContact(basics),
       work: indent(ordered(profile, 'work').flatMap(renderWork), 8),
       projects: indent(ordered(profile, 'projects').flatMap(renderProject), 8),

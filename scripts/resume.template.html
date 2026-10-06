@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<!-- Generated from profile.json by scripts/build-resume.mjs. Edit the profile (via lee), not this file. -->
+<!-- Generated from {{source}} by scripts/build-resume.mjs. Edit the profile (via lee), not this file. -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">{{{headExtra}}}
   <title>Résumé — {{displayName}}</title>
   <meta name="description" content="Résumé of {{name}}, backend-focused software engineer in payments, access control and compliance.">
   <meta name="author" content="{{name}}">
-  <link rel="canonical" href="https://mohamed3shamil.vercel.app/resume.html">
+  <link rel="canonical" href="{{pageUrl}}">
   <meta property="og:type" content="article">
-  <meta property="og:url" content="https://mohamed3shamil.vercel.app/resume.html">
+  <meta property="og:url" content="{{pageUrl}}">
   <meta property="og:title" content="Résumé — {{displayName}}">
   <meta property="og:description" content="Résumé of {{name}}, backend-focused software engineer in payments, access control and compliance.">
   <meta property="og:image" content="https://mohamed3shamil.vercel.app/og-image.png">
@@ -40,7 +40,7 @@
         <a href="index.html#help">Services</a>
         <a href="playground.html">Playground</a>
         <a href="index.html#contact">Contact</a>
-        <a href="resume.html" aria-current="page">Résumé</a>
+        <a href="resume.html"{{{navCurrent}}}>Résumé</a>
       </nav>
       <button class="icon-btn palette-open" type="button" data-palette-open aria-label="Search the site (Ctrl K)">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
@@ -59,7 +59,7 @@
   <main id="top">
     <section class="page-hero container resume-head">
       <div class="resume-top">
-        <div>
+        <div>{{{tailoredLabel}}}
           <h1>{{name}}</h1>
           <p class="resume-role">{{label}}</p>
           <p class="resume-contact">{{{contact}}}</p>
@@ -106,7 +106,7 @@
         <a href="{{githubUrl}}" target="_blank" rel="noopener">GitHub</a>
         <a href="{{linkedinUrl}}" target="_blank" rel="noopener">LinkedIn</a>
         <a href="mailto:{{email}}">Email</a>
-        <a href="#top">Back to top ↑</a>
+        <a href="{{topHref}}">Back to top ↑</a>
       </nav>
     </div>
   </footer>

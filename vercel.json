@@ -3,7 +3,7 @@
   "framework": null,
   "installCommand": "",
   "buildCommand": "node scripts/build-resume.mjs",
-  "ignoreCommand": "[ \"$(git log -1 --format=%ae)\" = \"41898282+github-actions[bot]@users.noreply.github.com\" ] && git diff --quiet HEAD^ HEAD -- . ':!resume.html' ':!index.html'",
+  "ignoreCommand": "[ \"$(git log -1 --format=%ae)\" = \"41898282+github-actions[bot]@users.noreply.github.com\" ] && git diff --quiet HEAD^ HEAD -- . ':!resume.html' ':!index.html' ':!resume'",
   "outputDirectory": ".",
   "headers": [
     {
@@ -14,6 +14,20 @@
         { "key": "Access-Control-Allow-Origin", "value": "*" },
         { "key": "X-Content-Type-Options", "value": "nosniff" }
       ]
+    },
+    {
+      "source": "/variants/(.*)",
+      "headers": [
+        { "key": "Content-Type", "value": "application/json; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=300, must-revalidate" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Robots-Tag", "value": "noindex" }
+      ]
+    },
+    {
+      "source": "/resume/(.*)",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
     }
   ]
 }

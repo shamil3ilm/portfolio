@@ -11,7 +11,9 @@ A static site: plain HTML, CSS and JavaScript. Every page is committed ready to 
 - `404.html` — page shown for unknown addresses (Vercel serves it automatically)
 - `profile.json` — **the source of truth for my public profile details** (JSON Resume format), served at `/profile.json`
 - `resume.html` — résumé page, **generated from `profile.json`**; "Save as PDF" prints a one-page résumé
-- `scripts/build-resume.mjs` — validates `profile.json`, then renders `resume.html` and the 60-second view in `index.html`. `scripts/lib/` holds the validator and the renderer, `scripts/*.template.html` the page templates, `scripts/profile.schema.json` the schema and `scripts/test/` the tests
+- `variants/<slug>.json` — tailored résumés published from lee (optional; same format as `profile.json`), served at `/variants/<slug>.json`
+- `resume/<slug>.html` — one tailored résumé page per variant, **generated from `variants/<slug>.json`**; not indexed by search engines
+- `scripts/build-resume.mjs` — validates `profile.json` and `variants/*.json`, then renders `resume.html`, the 60-second view in `index.html` and the `resume/<slug>.html` pages. `scripts/lib/` holds the validator and the renderer, `scripts/*.template.html` the page templates, `scripts/profile.schema.json` the schema and `scripts/test/` the tests
 - `styles.css` — layout, light/dark themes, responsive rules
 - `script.js` — theme toggle and contact form (Web3Forms)
 - `patrol.js` — Risk Review Desk, the game at the top of the Playground (review ten items, release or hold each with a reason, get a shift report)
@@ -52,18 +54,27 @@ chore(profile): sync from lee
 
 lee commits only `profile.json`. The GitHub Actions workflow `.github/workflows/regenerate.yml` then rebuilds the pages and commits them back:
 
-- **Trigger:** a push to `main` that touches `profile.json`, `scripts/**` (which holds the templates) or the workflow itself. It can also be run by hand from the Actions tab (`workflow_dispatch`).
+- **Trigger:** a push to `main` that touches `profile.json`, `variants/**`, `scripts/**` (which holds the templates) or the workflow itself. It can also be run by hand from the Actions tab (`workflow_dispatch`).
 - **Steps:** Node LTS, no install, `node --test "scripts/test/*.test.mjs"`, then `node scripts/build-resume.mjs`.
-- **Commit:** if `resume.html` or `index.html` changed, it commits them as `github-actions[bot]` with the message `chore(build): regenerate pages from profile.json [skip ci]`, using the built-in `GITHUB_TOKEN` (`contents: write`).
+- **Commit:** if `resume.html`, `index.html` or anything in `resume/` changed (including new and deleted variant pages), it commits them as `github-actions[bot]` with the message `chore(build): regenerate pages from profile.json and variants [skip ci]`, using the built-in `GITHUB_TOKEN` (`contents: write`).
 - **No loops:** pushes made with `GITHUB_TOKEN` don't start workflows, the message carries `[skip ci]`, and the job is skipped when `github-actions[bot]` triggered it.
 - **No races:** runs are queued one at a time per branch (`concurrency`, no cancelling). If `main` moved during a run, the push is rejected. The job then rebuilds on the new tip and pushes once more (it doesn't rebase the generated files, so there are no conflicts).
-- **On failure:** if a test or the `profile.json` validation fails, the job fails and nothing is committed. Vercel's build fails on the same problem, so the previous deployment stays live.
+- **On failure:** if a test or the `profile.json` or variant validation fails, the job fails and nothing is committed. Vercel's build fails on the same problem, so the previous deployment stays live.
 
-Vercel doesn't redeploy for the bot's commit. `ignoreCommand` in `vercel.json` skips the build when the latest commit's author is `github-actions[bot]` and it changes only `resume.html` and `index.html`. That output is identical to what Vercel already built from the triggering commit. Any other commit builds as usual.
+Vercel doesn't redeploy for the bot's commit. `ignoreCommand` in `vercel.json` skips the build when the latest commit's author is `github-actions[bot]` and it changes only `resume.html`, `index.html` and `resume/`. That output is identical to what Vercel already built from the triggering commit. Any other commit builds as usual.
 
 **Don't edit `profile.json` here directly**, except in an emergency. A manual edit is safe: before its next write, lee compares the file's sha with the one it last wrote, notices the change and asks me what to do.
 
 Don't edit `resume.html` or the marked 60-second view block in `index.html` by hand either. The next build overwrites them.
+
+### Tailored résumés (`variants/`)
+
+lee can also publish a résumé variant (a version tailored to a region or role) when its "publish to portfolio" toggle is on. It commits `variants/<slug>.json` with `chore(profile): sync variant <slug> from lee`, using the same sha check as `profile.json`. Unpublishing deletes the file with `chore(profile): remove variant <slug> (lee)`.
+
+- **Format:** the same as `profile.json`, checked against the same schema and cross-checks. It holds only the variant's items and highlights; `basics.label` is the variant's headline and `basics.summary` its summary. `meta.canonical` must be the file's own address, `https://<site>/variants/<slug>.json`.
+- **Slug:** lowercase letters, digits and `-`, up to 60 characters. Any other file in `variants/` fails the build.
+- **Page:** the build renders `resume/<slug>.html` from the same template and stylesheet as `resume.html`, with a "Tailored résumé" label, a canonical link to `https://<site>/resume/<slug>.html` and `noindex`. The page sits one folder down, so it sets `<base href="../">` and its "Back to top" link names its own path.
+- **Removal:** when `variants/<slug>.json` is gone, the build deletes `resume/<slug>.html`. It only deletes pages it generated (they start with the "Generated from" comment). Any other file in `resume/` fails the build instead of being deleted.
 
 ### Format
 
@@ -91,12 +102,12 @@ Site-specific data lives in `meta.x-portfolio`. JSON Resume allows extra `meta` 
 ## Build
 
 ```bash
-node scripts/build-resume.mjs           # validate profile.json, then write resume.html and the 60-second view
-node scripts/build-resume.mjs --check   # validate, and fail if the committed pages don't match profile.json
+node scripts/build-resume.mjs           # validate profile.json and variants/, then write resume.html, the 60-second view and resume/<slug>.html
+node scripts/build-resume.mjs --check   # validate, and fail if a generated page is stale, missing or has no variant left
 node --test "scripts/test/*.test.mjs"  # unit and CLI tests
 ```
 
-It needs Node 18+ and no packages. The build checks `profile.json` against `scripts/profile.schema.json` with a small hand-written JSON Schema validator (`scripts/lib/validate.mjs`). Then it cross-checks that keys in `order` and `caseStudies` exist, names are unique, and no end date comes before its start date.
+It needs Node 18+ and no packages. The build checks `profile.json` and every `variants/*.json` against `scripts/profile.schema.json` with a small hand-written JSON Schema validator (`scripts/lib/validate.mjs`). Then it cross-checks that keys in `order` and `caseStudies` exist, names are unique, and no end date comes before its start date.
 
 **Nothing is written unless every check passes.** Any problem exits non-zero and lists what's wrong, for example `/work/0/startDate: "soon" does not match ...`.
 
@@ -110,8 +121,8 @@ Vercel serves the repository root as a static site. `vercel.json` sets:
 - `buildCommand: node scripts/build-resume.mjs`, which regenerates the pages from `profile.json` on every push.
 - `outputDirectory: "."`, which serves the whole repository root.
 - `ignoreCommand`, which skips the build for the Regenerate pages workflow's own commit (see [Keeping the committed pages in sync](#keeping-the-committed-pages-in-sync)). The command exits 0 to skip and non-zero to build, so if git fails for any reason, Vercel builds.
-- Headers for `/profile.json`: `Content-Type: application/json`, `Cache-Control: public, max-age=300` and CORS `*`. It's the same public information that's already on the site.
+- Headers for `/profile.json` and `/variants/*`: `Content-Type: application/json`, `Cache-Control: public, max-age=300` and CORS `*`. It's the same public information that's already on the site. `/variants/*` and `/resume/*` also send `X-Robots-Tag: noindex`.
 
-If `profile.json` is invalid, the build fails and the deployment isn't promoted, so **the previous deployment stays live**. The failed build's log lists the problems.
+If `profile.json` or a variant is invalid, the build fails and the deployment isn't promoted, so **the previous deployment stays live**. The failed build's log lists the problems.
 
 `.vercelignore` keeps this README, the tests, the workflow and repo config files off the public site.

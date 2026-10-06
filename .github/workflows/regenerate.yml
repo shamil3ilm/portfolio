@@ -1,6 +1,8 @@
-# Regenerates resume.html and the 60-second view in index.html from profile.json,
-# and commits them back when they changed. lee commits only profile.json through the
-# GitHub API, so without this the committed pages lag behind until a local build.
+# Regenerates resume.html and the 60-second view in index.html from profile.json, and
+# the tailored résumé pages resume/<slug>.html from variants/*.json (deleting pages whose
+# variant was removed), and commits them back when they changed. lee commits only the
+# JSON files through the GitHub API, so without this the committed pages lag behind until
+# a local build.
 #
 # Loop prevention:
 #   - pushes made with GITHUB_TOKEN never start new workflow runs;
@@ -16,6 +18,7 @@ on:
     branches: [main]
     paths:
       - profile.json
+      - variants/**
       - scripts/**
       - .github/workflows/regenerate.yml
   workflow_dispatch:
@@ -36,7 +39,7 @@ jobs:
       contents: write
     env:
       BRANCH: ${{ github.ref_name }}
-      COMMIT_MESSAGE: "chore(build): regenerate pages from profile.json [skip ci]"
+      COMMIT_MESSAGE: "chore(build): regenerate pages from profile.json and variants [skip ci]"
     steps:
       - uses: actions/checkout@v7
 
@@ -47,23 +50,28 @@ jobs:
       - name: Test
         run: node --test "scripts/test/*.test.mjs"
 
-      - name: Build (validates profile.json)
+      - name: Build (validates profile.json and variants)
         run: node scripts/build-resume.mjs
 
       - name: Commit and push the regenerated pages
         run: |
-          generated=(resume.html index.html)
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           # Returns 0 when there was nothing to commit or the push succeeded.
           commit_and_push() {
-            if git diff --quiet -- "${generated[@]}"; then
+            # resume/ holds the variant pages: new (untracked) and deleted ones count too.
+            if [ -z "$(git status --porcelain -- resume.html index.html resume)" ]; then
               echo "Generated pages are already up to date."
               return 0
             fi
+            generated=(resume.html index.html)
+            # Only name resume/ when git knows something there (an unmatched pathspec is an error).
+            if [ -n "$(git ls-files --cached --others --exclude-standard -- resume)" ]; then
+              generated+=(resume)
+            fi
             # Chained with && because `set -e` is off inside an `if` condition.
-            git add -- "${generated[@]}" &&
+            git add -A -- "${generated[@]}" &&
               git commit --quiet -m "$COMMIT_MESSAGE" &&
               git push origin "HEAD:$BRANCH"
           }
@@ -83,6 +91,6 @@ jobs:
         run: |
           {
             echo "### Pages were not regenerated"
-            echo "A test or the profile.json validation failed (see the step logs), or the push was rejected twice."
+            echo "A test or the profile.json / variants validation failed (see the step logs), or the push was rejected twice."
             echo "Nothing was committed. Vercel's build fails on the same problem, so the previous deployment stays live."
           } >> "$GITHUB_STEP_SUMMARY"
