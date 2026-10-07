@@ -330,7 +330,7 @@
 
       <details class="more more-fixes" id="work-also">
         <summary>
-          <span><strong>Also in this role</strong><span class="more-sum">5 smaller fixes, each shown before and after</span></span>
+          <span><strong>Also in this role</strong><span class="more-sum">6 smaller fixes, each shown before and after</span></span>
           <span class="more-chev" aria-hidden="true"></span>
         </summary>
         <p class="more-sub">Each one a real problem that customers or the operations team ran into.</p>
@@ -365,6 +365,12 @@
             <p class="fix-row"><span class="fix-k" data-k="before">Before</span><span>Imports from third-party accounting software finished silently, and checks from a third-party payroll tool were created before the user had confirmed them.</span></p>
             <p class="fix-row"><span class="fix-k" data-k="after">After</span><span>Imports of bills, expenses, refund receipts and checks now <strong>email the user when done</strong> and record who ran them; payroll checks are created <strong>only on confirmation</strong>.</span></p>
           </article>
+          <article class="fix">
+            <p class="fix-tag">Incident recovery</p>
+            <h4>A storage outage that failed whole mailing batches</h4>
+            <p class="fix-row"><span class="fix-k" data-k="before">Before</span><span>When stored check PDFs became unreadable, checks sent in batches failed together: one missing file failed <strong>every check in its batch</strong>, so most of the failures were collateral. Nothing had been mailed.</span></p>
+            <p class="fix-row"><span class="fix-k" data-k="after">After</span><span>Every PDF was regenerated and checked for the right payee and amount, then <strong>each check was re-sent on its own</strong>. A status check plus the mailing provider's unique transaction ID meant no check could be mailed twice or with the wrong file.</span></p>
+          </article>
         </div>
       </details>
       </div>
@@ -375,7 +381,7 @@
         <article class="card">
           <span class="tag">Legacy analysis</span>
           <h3>Understanding the system before changing it</h3>
-          <p>Mapped the existing Laravel and PostgreSQL app (routes, models, views, roles and data) before helping redesign it into modules on Inertia, Vue and TypeScript.</p>
+          <p>Mapped the existing Laravel and MySQL app (routes, models, views, roles and data) before helping redesign it into modules on PostgreSQL, Inertia, Vue and TypeScript.</p>
         </article>
         <article class="card">
           <span class="tag">Clients &amp; accounting</span>
@@ -389,7 +395,7 @@
           <div class="card-links"><a href="case-zatca-einvoicing.html">Read the case study →</a><a href="#project-masaar">See Masaar →</a></div>
         </article>
       </div>
-      <p class="stack np-stack">Laravel · PHP · PostgreSQL · Inertia · Vue · TypeScript · Vite</p>
+      <p class="stack np-stack">Laravel · PHP · MySQL · PostgreSQL · Inertia · Vue · TypeScript · Vite</p>
       </div>
     </section>
 
@@ -464,7 +470,7 @@
             <span class="status status-live">In daily use</span>
           </div>
           <p class="domain">Workplace time &amp; attendance</p>
-          <p>A work-hours tracker that calculates working time, shows weekly and monthly pace, and warns about long sessions. Later rebuilt as a hosted multi-user service.</p>
+          <p>A work-hours tracker that calculates working time, shows weekly and monthly pace, and warns about long sessions. Now a hosted multi-user service, so colleagues use it without installing anything.</p>
           <ul class="facts">
             <li>Used daily by <strong>10+</strong> colleagues</li>
             <li>Hourly sync, with a backup if the main schedule stalls</li>
