@@ -9,6 +9,7 @@ A static site: plain HTML, CSS and JavaScript. Every page is committed ready to 
 - `index.html` — home page (hero, game, work, projects, contact) and the 60-second view
 - `case-delegated-access.html`, `case-recurring-safeguards.html`, `case-llm-observability.html`, `case-zatca-einvoicing.html` — case studies
 - `404.html` — page shown for unknown addresses (Vercel serves it automatically)
+- `robots.txt`, `sitemap.xml` — let search engines find the public pages (the tailored `/resume/` pages stay unindexed)
 - `profile.json` — **the source of truth for my public profile details** (JSON Resume format), served at `/profile.json`
 - `resume.html` — résumé page, **generated from `profile.json`**; "Save as PDF" prints a one-page résumé
 - `variants/<slug>.json` — tailored résumés published from lee (optional; same format as `profile.json`), served at `/variants/<slug>.json`
