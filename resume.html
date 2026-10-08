@@ -83,12 +83,12 @@
           <p class="resume-line"><span class="resume-what"><strong>Software Engineer</strong></span><span class="resume-when">Dec 2025 – Present</span></p>
           <p class="resume-org">Zil Money, Kerala, India</p>
           <ul>
-            <li>Designed and implemented a service-provider access layer (delegated access) across 450 existing REST endpoints, 7 payment services, and 38 webhook event types, with audit trails and authorization controls preventing providers from approving their own payments.</li>
+            <li>Designed and implemented a service-provider access layer (delegated access) across 450 existing REST endpoints, 7 payment services, and 38 webhook event types, with every call audited and payments assigned to the customer’s own approvers kept out of providers’ reach.</li>
             <li>Hardened multi-level payment approvals by recording a destination fingerprint at payment creation, re-validating 3 bank fields at release, restricting 3 payee/bank edit paths while payments were pending, and handling approval refusals across 4 entry points.</li>
             <li>Strengthened recurring-payment safeguards across 5 payment types and 4 deletion paths, preventing execution against deleted destinations and correcting bulk-cancellation behavior across selected schedules.</li>
             <li>Built per-call cost, token, and latency tracking for 16 AI features across 18 call sites, with a dashboard breaking down usage, spend, and failures by feature, model, and provider account.</li>
             <li>Extended payroll-provider PDF processing to split merged payroll PDFs into per-check documents and defer check creation until user confirmation, and contributed to automated column mapping for bulk payment imports.</li>
-            <li>Built an import and background-printing pipeline for a customer’s SAP check files, and moved wallet-statement exports exceeding 1,000 transactions to background processing with PDF, CSV, and XLSX delivery.</li>
+            <li>Analyzed a customer’s SAP check-file format and built the full flow around it: parsing, import, background printing, and a custom two-up legal check layout aligned to their pre-printed stock; also moved wallet-statement exports over 1,000 transactions to background processing with PDF, CSV, and XLSX delivery.</li>
             <li>Maintained Positive Pay fraud-prevention file generation for 17 banks across CSV, XLSX, and TXT formats, and fixed a time-zone bug that silently skipped file runs scheduled after about 8 PM US Eastern.</li>
             <li>Supported the company’s SOC 1 audit by tracing application-side controls, including identity verification, access control, payment validation, and account closure, to their evidence in the system and writing read-only queries to produce populations and samples for the auditors.</li>
           </ul>

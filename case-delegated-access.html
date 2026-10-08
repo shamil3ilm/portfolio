@@ -90,7 +90,7 @@
           <ol class="case-steps">
             <li><strong>The customer creates a one-time connect key.</strong> It is valid for a year and works once. Asking again returns the same unused key, so spare keys never pile up.</li>
             <li><strong>The provider redeems the key to connect.</strong> A used, expired or unknown key is refused, and so is a customer who is already connected to another provider, or a provider trying to connect to itself.</li>
-            <li><strong>The provider then uses the same API the customer's own software uses</strong>, on the customer's behalf. Instead of building a second, separate API, I added an "acting for this customer" layer to <strong>the existing endpoints</strong> across the payment services, so providers get the same features and the same checks.</li>
+            <li><strong>The provider then uses the same API the customer's own software uses</strong>, on the customer's behalf. Instead of building a second, separate API, I added an "acting for this customer" layer to <strong>the existing endpoints</strong> across the payment services, so providers get the same features and the same checks. It sits on the route group those endpoints already share, and each call then runs as the customer, so the existing services needed no changes.</li>
             <li><strong>Every call is checked and recorded.</strong> Allowed calls are logged. Refused calls all get the same short reply, "Access denied", whatever the reason, while the real reason is written to the log.</li>
             <li><strong>Payment updates are copied to the provider only if it subscribes.</strong> Updates such as "payment created" can be mirrored to the provider as well as the customer.</li>
           </ol>
@@ -103,6 +103,7 @@
             <li><strong>No record, no action.</strong> If a call can't be attributed and logged, it is refused rather than allowed through unrecorded.</li>
             <li><strong>One answer for every refusal.</strong> Several different reasons sit behind the same reply, so nobody can probe which customers exist or why they were turned away. The log keeps the detail.</li>
             <li><strong>Suspension works both ways.</strong> Suspending a customer's connection, or the provider itself, stops its requests straight away.</li>
+            <li><strong>The customer's limits stay the customer's.</strong> Most account settings follow the provider while it acts, but the customer's card payment limit always applies.</li>
           </ul>
           <p class="case-note"><strong>Why reuse the existing API?</strong> A separate provider API would drift from the main one: new features would arrive late, and every rule would exist twice. Layering access on top keeps one set of rules for everyone.</p>
         </section>
