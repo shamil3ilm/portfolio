@@ -61,7 +61,7 @@
       <div class="resume-top">
         <div>
           <h1>Mohamed Shamil Abdul Salam</h1>
-          <p class="resume-role">Software Engineer | Backend Systems | Payments &amp; Fintech</p>
+          <p class="resume-role">Software Engineer | Backend Systems | Payments &amp; E-Invoicing</p>
           <p class="resume-contact"><a href="mailto:mhmdshamil03@gmail.com">mhmdshamil03@gmail.com</a> | <a href="https://linkedin.com/in/mohamed3shamil">LinkedIn</a> | <a href="https://github.com/shamil3ilm">GitHub</a> | <a href="https://mohamed3shamil.vercel.app/">mohamed3shamil.vercel.app</a></p>
         </div>
         <div class="resume-actions no-print">
@@ -74,7 +74,7 @@
     <div class="container resume">
       <section>
         <h2>Professional summary</h2>
-        <p>Software Engineer focused on backend systems and financial workflows, with hands-on experience in Laravel, PHP, MySQL, REST APIs, background processing, webhooks, and third-party integrations. Experienced in building and supporting payment, payroll, banking, and accounting workflows with a focus on reliability, data integrity, authorization, and production debugging.</p>
+        <p>Backend engineer building payment, accounting, and e-invoicing systems in Laravel, PHP, and MySQL, specializing in the controls around money movement: approval workflows, authorization, audit trails, and fraud prevention. Built ZATCA e-invoicing for Taxfly, a cloud accounting and POS platform, through to handover, and an independent compliance engine that passes ZATCA’s SDK validator.</p>
       </section>
 
       <section>
@@ -83,38 +83,39 @@
           <p class="resume-line"><span class="resume-what"><strong>Software Engineer</strong></span><span class="resume-when">Dec 2025 – Present</span></p>
           <p class="resume-org">Zil Money, Kerala, India</p>
           <ul>
-            <li>Designed and implemented a service-provider access layer (delegated access) across 450 existing REST endpoints, 7 payment services, and 38 webhook event types, with every call audited and payments assigned to the customer’s own approvers kept out of providers’ reach.</li>
-            <li>Hardened multi-level payment approvals by recording a destination fingerprint at payment creation, re-validating 3 bank fields at release, restricting 3 payee/bank edit paths while payments were pending, and handling approval refusals across 4 entry points.</li>
-            <li>Strengthened recurring-payment safeguards across 5 payment types and 4 deletion paths, preventing execution against deleted destinations and correcting bulk-cancellation behavior across selected schedules.</li>
+            <li>Designed and built a middleware-based service-provider access layer that lets payroll and bookkeeping providers act in customer accounts without sharing API keys, covering 450 existing REST endpoints, 7 payment services, and 38 webhook event types without per-endpoint changes.</li>
+            <li>Made provider access fail closed: every call is audited (refused if the audit write fails), refusals return a uniform 403 so customers can’t be enumerated, and payments assigned to the customer’s own approvers stay out of providers’ reach.</li>
+            <li>Prevented post-approval changes to payee bank details: fingerprinted the destination at creation, re-validated 3 bank fields at release, locked 3 payee/bank edit paths while payments were pending, and returned clear refusal reasons across 4 approval entry points.</li>
+            <li>Fixed recurring payments running against deleted payees or bank accounts across 5 payment types and 4 deletion paths, using model observers with bulk deletes routed through the same per-record path, and fixed a bulk-cancel bug that cancelled only the last of the selected schedules.</li>
+            <li>Maintained Positive Pay file generation for 17 banks across CSV, XLSX, and TXT formats, and fixed a server vs. US Eastern time zone mismatch that silently skipped runs scheduled after 8 PM.</li>
+            <li>Traced backend controls for identity verification, access control, payment validation, and account closure to their implementation in code and database records for the SOC 1 audit, and wrote read-only SQL queries that produced the auditors’ populations and samples.</li>
+            <li>Built check-import and printing flows: split merged payroll PDFs into per-check documents, creating checks only after user confirmation, and built the import for a custom SAP check-export format with background printing and a two-up legal check layout.</li>
             <li>Built per-call cost, token, and latency tracking for 16 AI features across 18 call sites, with a dashboard breaking down usage, spend, and failures by feature, model, and provider account.</li>
-            <li>Extended payroll-provider PDF processing to split merged payroll PDFs into per-check documents and defer check creation until user confirmation, and contributed to automated column mapping for bulk payment imports.</li>
-            <li>Analyzed a customer’s SAP check-file format and built the full flow around it: parsing, import, background printing, and a custom two-up legal check layout aligned to their pre-printed stock; also moved wallet-statement exports over 1,000 transactions to background processing with PDF, CSV, and XLSX delivery.</li>
-            <li>Maintained Positive Pay fraud-prevention file generation for 17 banks across CSV, XLSX, and TXT formats, and fixed a time-zone bug that silently skipped file runs scheduled after about 8 PM US Eastern.</li>
-            <li>Supported the company’s SOC 1 audit by tracing application-side controls, including identity verification, access control, payment validation, and account closure, to their evidence in the system and writing read-only queries to produce populations and samples for the auditors.</li>
           </ul>
         </div>
         <div class="resume-job">
           <p class="resume-line"><span class="resume-what"><strong>PHP Laravel Intern</strong></span><span class="resume-when">Jun 2025 – Nov 2025</span></p>
           <p class="resume-org">Netplex Solutions, Dubai, UAE (Remote)</p>
           <ul>
-            <li>Analyzed and worked across a Laravel and MySQL business management platform serving customers in Qatar, Saudi Arabia, and the UAE, tracing routes, controllers, models, Blade views, roles, database structures, and interconnected business modules.</li>
-            <li>Contributed to the redesign of the platform using Laravel, PHP, PostgreSQL, Inertia, Vue, TypeScript, and Vite, while gathering requirements from new clients and translating business needs into modular application workflows.</li>
-            <li>Independently developed and investigated the ZATCA e-invoicing workflow up to handover, covering invoice XML generation, signing, hashing, QR-code TLV generation, certificate handling, validation, and investigation of compliance failures.</li>
+            <li>Independently built ZATCA e-invoicing for Taxfly, a cloud accounting and POS product, through to handover: XML generation, signing, hashing, TLV QR codes, and certificate creation. Investigated compliance failures.</li>
+            <li>Built parts of Taxfly’s accounting module, including general ledger and trial balance reports and related accounting features.</li>
+            <li>Documented an existing Laravel and MySQL business platform end to end, from routes, controllers, models, and Blade views to roles and data, to scope its modular redesign for customers in Qatar, Saudi Arabia, and the UAE.</li>
+            <li>Developed parts of the platform redesign using Laravel, PHP, PostgreSQL, Inertia, Vue, and TypeScript, turning clients’ requirements into modular application workflows.</li>
           </ul>
         </div>
         <div class="resume-job">
           <p class="resume-line"><span class="resume-what"><strong>Executive Manager</strong></span><span class="resume-when">Jan 2024 – May 2025</span></p>
           <p class="resume-org">Cert-Ed Academia, Kerala, India</p>
           <ul>
-            <li>Managed internal documentation, digital assets, financial records, and operational materials while maintaining organized administrative workflows.</li>
-            <li>Calculated class and working hours and prepared salary and fee amounts, while coordinating business materials including letterheads, receipts, posters, and other organizational documents.</li>
+            <li>Managed documentation, digital assets, and financial records, calculated working hours and prepared salary and fee amounts, and produced receipts, letterheads, and other business materials.</li>
+            <li>Later built the academy’s live education platform (see Projects).</li>
           </ul>
         </div>
         <div class="resume-job">
           <p class="resume-line"><span class="resume-what"><strong>Web Developer Intern</strong></span><span class="resume-when">Jun 2024 – Jul 2024</span></p>
           <p class="resume-org">Inker Robotics, Thrissur, India</p>
           <ul>
-            <li>Supported web development, usability improvements, testing, documentation, and technical training programs, including session assistance, assessments, and documentation of outcomes.</li>
+            <li>Supported web development, testing, and documentation, and assisted technical training sessions and assessments.</li>
           </ul>
         </div>
       </section>
@@ -124,14 +125,14 @@
         <div class="resume-job">
           <p class="resume-line"><span class="resume-what"><strong>Cert-Ed Academia – Education Management Platform</strong></span><span class="resume-when resume-stack">Next.js, TypeScript, Supabase, PostgreSQL</span></p>
           <ul>
-            <li>Developed a 5-role education platform covering classes, assignments, grading, per-session attendance, hours-based billing, receipts, payslips, messaging, and scheduling.</li>
+            <li>Developed a live 5-role education platform covering classes, assignments, grading, per-session attendance, hours-based billing, receipts, payslips, messaging, and scheduling.</li>
             <li>Enforced access through 18 application-level capabilities and 50+ PostgreSQL row-level security policies, supported by 100+ unit tests and per-role database checks in CI.</li>
           </ul>
         </div>
         <div class="resume-job">
-          <p class="resume-line"><span class="resume-what"><strong>Masaar – E-Invoicing System</strong></span><span class="resume-when resume-stack">Laravel, PHP, MySQL</span></p>
+          <p class="resume-line"><span class="resume-what"><strong>Masaar – ZATCA E-Invoicing System</strong></span><span class="resume-when resume-stack">Laravel, PHP, MySQL</span></p>
           <ul>
-            <li>Building an e-invoicing system for electronic invoice generation, signing, QR processing, and certificate management; generated invoices pass ZATCA’s official validator (26 checks).</li>
+            <li>Building a ZATCA Phase 2 compliance engine with UBL invoice XML, cryptographic signing, hash chaining, and TLV QR codes; generated invoices pass ZATCA’s official SDK validator (26 checks), with certificate checks and live Fatoora submission next.</li>
           </ul>
         </div>
         <div class="resume-job">
@@ -150,12 +151,12 @@
 
       <section class="resume-skills">
         <h2>Technical skills</h2>
-        <p><strong>Languages:</strong> PHP, TypeScript, JavaScript, Python, SQL</p>
-        <p><strong>Backend:</strong> Laravel, REST APIs, Eloquent, Queues, Jobs, Events, Webhooks, Middleware, LLM APIs</p>
-        <p><strong>Databases:</strong> MySQL, PostgreSQL, SQLite, Supabase</p>
-        <p><strong>Frontend:</strong> React, Next.js, Angular, Blade, Tailwind CSS</p>
-        <p><strong>Engineering:</strong> Transactions, Authorization, Background Processing, API Integration, Audit Trails, Production Debugging</p>
-        <p><strong>Tools:</strong> Git, Composer, Node.js, Vite, CI/CD</p>
+        <p><strong>Domain:</strong> ZATCA E-Invoicing, Accounting Systems, Payments, Bank Integrations, Audit Trails</p>
+        <p><strong>Languages:</strong> PHP, TypeScript, SQL, Python, Rust</p>
+        <p><strong>Backend:</strong> Laravel, REST APIs, Webhooks, Queues, Middleware, Events and Observers</p>
+        <p><strong>Databases:</strong> MySQL, PostgreSQL (incl. RLS), SQLite</p>
+        <p><strong>Frontend:</strong> Vue, Inertia, Next.js</p>
+        <p><strong>Testing and Tools:</strong> PHPUnit, Vitest, CI test pipelines</p>
       </section>
 
       <section>

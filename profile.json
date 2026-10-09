@@ -2,10 +2,10 @@
   "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.2.1/schema.json",
   "basics": {
     "name": "Mohamed Shamil Abdul Salam",
-    "label": "Software Engineer | Backend Systems | Payments & Fintech",
+    "label": "Software Engineer | Backend Systems | Payments & E-Invoicing",
     "email": "mhmdshamil03@gmail.com",
     "url": "https://mohamed3shamil.vercel.app/",
-    "summary": "Software Engineer focused on backend systems and financial workflows, with hands-on experience in Laravel, PHP, MySQL, REST APIs, background processing, webhooks, and third-party integrations. Experienced in building and supporting payment, payroll, banking, and accounting workflows with a focus on reliability, data integrity, authorization, and production debugging.",
+    "summary": "Backend engineer building payment, accounting, and e-invoicing systems in Laravel, PHP, and MySQL, specializing in the controls around money movement: approval workflows, authorization, audit trails, and fraud prevention. Built ZATCA e-invoicing for Taxfly, a cloud accounting and POS platform, through to handover, and an independent compliance engine that passes ZATCA’s SDK validator.",
     "profiles": [
       {
         "network": "LinkedIn",
@@ -26,14 +26,14 @@
       "position": "Software Engineer",
       "startDate": "2025-12",
       "highlights": [
-        "Designed and implemented a service-provider access layer (delegated access) across 450 existing REST endpoints, 7 payment services, and 38 webhook event types, with every call audited and payments assigned to the customer’s own approvers kept out of providers’ reach.",
-        "Hardened multi-level payment approvals by recording a destination fingerprint at payment creation, re-validating 3 bank fields at release, restricting 3 payee/bank edit paths while payments were pending, and handling approval refusals across 4 entry points.",
-        "Strengthened recurring-payment safeguards across 5 payment types and 4 deletion paths, preventing execution against deleted destinations and correcting bulk-cancellation behavior across selected schedules.",
-        "Built per-call cost, token, and latency tracking for 16 AI features across 18 call sites, with a dashboard breaking down usage, spend, and failures by feature, model, and provider account.",
-        "Extended payroll-provider PDF processing to split merged payroll PDFs into per-check documents and defer check creation until user confirmation, and contributed to automated column mapping for bulk payment imports.",
-        "Analyzed a customer’s SAP check-file format and built the full flow around it: parsing, import, background printing, and a custom two-up legal check layout aligned to their pre-printed stock; also moved wallet-statement exports over 1,000 transactions to background processing with PDF, CSV, and XLSX delivery.",
-        "Maintained Positive Pay fraud-prevention file generation for 17 banks across CSV, XLSX, and TXT formats, and fixed a time-zone bug that silently skipped file runs scheduled after about 8 PM US Eastern.",
-        "Supported the company’s SOC 1 audit by tracing application-side controls, including identity verification, access control, payment validation, and account closure, to their evidence in the system and writing read-only queries to produce populations and samples for the auditors."
+        "Designed and built a middleware-based service-provider access layer that lets payroll and bookkeeping providers act in customer accounts without sharing API keys, covering 450 existing REST endpoints, 7 payment services, and 38 webhook event types without per-endpoint changes.",
+        "Made provider access fail closed: every call is audited (refused if the audit write fails), refusals return a uniform 403 so customers can’t be enumerated, and payments assigned to the customer’s own approvers stay out of providers’ reach.",
+        "Prevented post-approval changes to payee bank details: fingerprinted the destination at creation, re-validated 3 bank fields at release, locked 3 payee/bank edit paths while payments were pending, and returned clear refusal reasons across 4 approval entry points.",
+        "Fixed recurring payments running against deleted payees or bank accounts across 5 payment types and 4 deletion paths, using model observers with bulk deletes routed through the same per-record path, and fixed a bulk-cancel bug that cancelled only the last of the selected schedules.",
+        "Maintained Positive Pay file generation for 17 banks across CSV, XLSX, and TXT formats, and fixed a server vs. US Eastern time zone mismatch that silently skipped runs scheduled after 8 PM.",
+        "Traced backend controls for identity verification, access control, payment validation, and account closure to their implementation in code and database records for the SOC 1 audit, and wrote read-only SQL queries that produced the auditors’ populations and samples.",
+        "Built check-import and printing flows: split merged payroll PDFs into per-check documents, creating checks only after user confirmation, and built the import for a custom SAP check-export format with background printing and a two-up legal check layout.",
+        "Built per-call cost, token, and latency tracking for 16 AI features across 18 call sites, with a dashboard breaking down usage, spend, and failures by feature, model, and provider account."
       ]
     },
     {
@@ -43,9 +43,10 @@
       "startDate": "2025-06",
       "endDate": "2025-11",
       "highlights": [
-        "Analyzed and worked across a Laravel and MySQL business management platform serving customers in Qatar, Saudi Arabia, and the UAE, tracing routes, controllers, models, Blade views, roles, database structures, and interconnected business modules.",
-        "Contributed to the redesign of the platform using Laravel, PHP, PostgreSQL, Inertia, Vue, TypeScript, and Vite, while gathering requirements from new clients and translating business needs into modular application workflows.",
-        "Independently developed and investigated the ZATCA e-invoicing workflow up to handover, covering invoice XML generation, signing, hashing, QR-code TLV generation, certificate handling, validation, and investigation of compliance failures."
+        "Independently built ZATCA e-invoicing for Taxfly, a cloud accounting and POS product, through to handover: XML generation, signing, hashing, TLV QR codes, and certificate creation. Investigated compliance failures.",
+        "Built parts of Taxfly’s accounting module, including general ledger and trial balance reports and related accounting features.",
+        "Documented an existing Laravel and MySQL business platform end to end, from routes, controllers, models, and Blade views to roles and data, to scope its modular redesign for customers in Qatar, Saudi Arabia, and the UAE.",
+        "Developed parts of the platform redesign using Laravel, PHP, PostgreSQL, Inertia, Vue, and TypeScript, turning clients’ requirements into modular application workflows."
       ]
     },
     {
@@ -55,7 +56,7 @@
       "startDate": "2024-06",
       "endDate": "2024-07",
       "highlights": [
-        "Supported web development, usability improvements, testing, documentation, and technical training programs, including session assistance, assessments, and documentation of outcomes."
+        "Supported web development, testing, and documentation, and assisted technical training sessions and assessments."
       ]
     },
     {
@@ -65,8 +66,8 @@
       "startDate": "2024-01",
       "endDate": "2025-05",
       "highlights": [
-        "Managed internal documentation, digital assets, financial records, and operational materials while maintaining organized administrative workflows.",
-        "Calculated class and working hours and prepared salary and fee amounts, while coordinating business materials including letterheads, receipts, posters, and other organizational documents."
+        "Managed documentation, digital assets, and financial records, calculated working hours and prepared salary and fee amounts, and produced receipts, letterheads, and other business materials.",
+        "Later built the academy’s live education platform (see Projects)."
       ]
     }
   ],
@@ -77,16 +78,16 @@
       "url": "https://www.certedacademia.com",
       "keywords": ["Next.js", "TypeScript", "Supabase", "PostgreSQL"],
       "highlights": [
-        "Developed a 5-role education platform covering classes, assignments, grading, per-session attendance, hours-based billing, receipts, payslips, messaging, and scheduling.",
+        "Developed a live 5-role education platform covering classes, assignments, grading, per-session attendance, hours-based billing, receipts, payslips, messaging, and scheduling.",
         "Enforced access through 18 application-level capabilities and 50+ PostgreSQL row-level security policies, supported by 100+ unit tests and per-role database checks in CI."
       ]
     },
     {
       "name": "Masaar",
-      "description": "E-Invoicing System",
+      "description": "ZATCA E-Invoicing System",
       "keywords": ["Laravel", "PHP", "MySQL"],
       "highlights": [
-        "Building an e-invoicing system for electronic invoice generation, signing, QR processing, and certificate management; generated invoices pass ZATCA’s official validator (26 checks)."
+        "Building a ZATCA Phase 2 compliance engine with UBL invoice XML, cryptographic signing, hash chaining, and TLV QR codes; generated invoices pass ZATCA’s official SDK validator (26 checks), with certificate checks and live Fatoora submission next."
       ]
     },
     {
@@ -109,27 +110,27 @@
   "skills": [
     {
       "name": "Languages",
-      "keywords": ["PHP", "TypeScript", "JavaScript", "Python", "SQL"]
+      "keywords": ["PHP", "TypeScript", "SQL", "Python", "Rust"]
+    },
+    {
+      "name": "Domain",
+      "keywords": ["ZATCA E-Invoicing", "Accounting Systems", "Payments", "Bank Integrations", "Audit Trails"]
     },
     {
       "name": "Backend",
-      "keywords": ["Laravel", "REST APIs", "Eloquent", "Queues", "Jobs", "Events", "Webhooks", "Middleware", "LLM APIs"]
+      "keywords": ["Laravel", "REST APIs", "Webhooks", "Queues", "Middleware", "Events and Observers"]
     },
     {
       "name": "Databases",
-      "keywords": ["MySQL", "PostgreSQL", "SQLite", "Supabase"]
+      "keywords": ["MySQL", "PostgreSQL (incl. RLS)", "SQLite"]
     },
     {
       "name": "Frontend",
-      "keywords": ["React", "Next.js", "Angular", "Blade", "Tailwind CSS"]
+      "keywords": ["Vue", "Inertia", "Next.js"]
     },
     {
-      "name": "Engineering",
-      "keywords": ["Transactions", "Authorization", "Background Processing", "API Integration", "Audit Trails", "Production Debugging"]
-    },
-    {
-      "name": "Tools",
-      "keywords": ["Git", "Composer", "Node.js", "Vite", "CI/CD"]
+      "name": "Testing and Tools",
+      "keywords": ["PHPUnit", "Vitest", "CI test pipelines"]
     }
   ],
   "education": [
@@ -151,7 +152,7 @@
       "order": {
         "work": ["Zil Money", "Netplex Solutions", "Cert-Ed Academia", "Inker Robotics"],
         "projects": ["Cert-Ed Academia", "Masaar", "Athar", "Time"],
-        "skills": ["Languages", "Backend", "Databases", "Frontend", "Engineering", "Tools"],
+        "skills": ["Domain", "Languages", "Backend", "Databases", "Frontend", "Testing and Tools"],
         "education": ["Adi Shankara Institute of Engineering and Technology"]
       },
       "caseStudies": [
@@ -167,21 +168,21 @@
           "title": "Making scheduled payments stop when they should",
           "url": "https://mohamed3shamil.vercel.app/case-recurring-safeguards.html",
           "work": "Zil Money",
-          "highlight": 2
+          "highlight": 3
         },
         {
           "id": "llm-observability",
           "title": "Seeing what every AI call costs, and when it fails",
           "url": "https://mohamed3shamil.vercel.app/case-llm-observability.html",
           "work": "Zil Money",
-          "highlight": 3
+          "highlight": 7
         },
         {
           "id": "zatca-einvoicing",
           "title": "Saudi e-invoicing on an existing business platform",
           "url": "https://mohamed3shamil.vercel.app/case-zatca-einvoicing.html",
           "work": "Netplex Solutions",
-          "highlight": 2
+          "highlight": 0
         }
       ],
       "quickView": {
