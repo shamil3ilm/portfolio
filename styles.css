@@ -3954,6 +3954,11 @@ button.btn {
   background: var(--accent);
 }
 
+.timeline-earlier li:first-child::before {
+  border-color: var(--muted);
+  background: var(--surface);
+}
+
 .timeline span {
   display: block;
   min-width: 0;
