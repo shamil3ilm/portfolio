@@ -65,6 +65,14 @@
       const result = await response.json().catch(function () { return {}; });
       if (!response.ok || result.success !== true) throw new Error(result.message || 'Request failed');
 
+      // WhatsApp alert to the owner (api/alert.js); fire-and-forget so it can never affect the form.
+      fetch('/api/alert', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'message', name: name, email: email, message: message, botcheck: !!data.get('botcheck') }),
+        keepalive: true,
+      }).catch(function () {});
+
       form.reset();
       showStatus('Thanks, your message was sent. I will reply by email.');
     } catch (e) {

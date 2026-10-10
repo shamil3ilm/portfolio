@@ -28,6 +28,15 @@
   if (TAG.test(fresh)) write('sessionStorage', 'visit-ref', fresh);
   const ref = TAG.test(fresh) ? fresh : read('sessionStorage', 'visit-ref');
 
+  // WhatsApp alert (api/alert.js) the first time a tagged link is opened in this tab; never for the owner.
+  if (TAG.test(fresh) && !read('localStorage', 'va-disable') && read('sessionStorage', 'visit-alerted') !== fresh) {
+    write('sessionStorage', 'visit-alerted', fresh);
+    try {
+      const payload = JSON.stringify({ type: 'visit', ref: fresh, page: location.pathname });
+      navigator.sendBeacon('/api/alert', new Blob([payload], { type: 'application/json' }));
+    } catch (e) { /* alerts are best effort */ }
+  }
+
   if (params.has('ref') || params.has('owner')) {
     params.delete('ref');
     params.delete('owner');

@@ -11,6 +11,7 @@ A static site: plain HTML, CSS and JavaScript. Every page is committed ready to 
 - `404.html` — page shown for unknown addresses (Vercel serves it automatically)
 - `robots.txt`, `sitemap.xml` — let search engines find the public pages (the tailored `/resume/` pages stay unindexed)
 - `analytics.js` — visit counts through Vercel Web Analytics (enable it under the project's **Analytics** tab). No cookies. Share `?ref=<tag>` links (one tag per application, e.g. `?ref=acme`) and visits through them show up as `/ref/<tag>/<page>` in the Pages panel. Open the site once with `?owner=1` to stop counting your own browser (`?owner=0` undoes it).
+- `api/alert.js` — Vercel function that sends a WhatsApp alert (Meta Cloud API, one approved template) when a contact-form message is sent or a `?ref=<tag>` link is first opened in a tab. It sends nothing until the `WA_*` environment variables listed at the top of the file are set in Vercel.
 - `profile.json` — **the source of truth for my public profile details** (JSON Resume format), served at `/profile.json`
 - `resume.html` — résumé page, **generated from `profile.json`**; "Save as PDF" prints a one-page résumé
 - `variants/<slug>.json` — tailored résumés published from lee (optional; same format as `profile.json`), served at `/variants/<slug>.json`
