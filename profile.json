@@ -5,7 +5,7 @@
     "label": "Software Engineer | Backend Systems | Payments & E-Invoicing",
     "email": "mhmdshamil03@gmail.com",
     "url": "https://mohamed3shamil.vercel.app/",
-    "summary": "Backend engineer building payment, accounting, and e-invoicing systems in Laravel, PHP, and MySQL, specializing in the controls around money movement: approval workflows, authorization, audit trails, and fraud prevention. Built ZATCA e-invoicing for Taxfly, a cloud accounting and POS platform, through to handover, and an independent compliance engine that passes ZATCA’s SDK validator.",
+    "summary": "Backend engineer building payment, accounting, and e-invoicing systems in Laravel, PHP, and MySQL, specializing in the controls around money movement: approval workflows, authorization, audit trails, and fraud prevention. Built ZATCA e-invoicing for Taxfly, a cloud ERP for billing, accounting, and POS, through to handover, and an independent compliance engine that passes ZATCA’s SDK validator.",
     "profiles": [
       {
         "network": "LinkedIn",
@@ -43,7 +43,7 @@
       "startDate": "2025-06",
       "endDate": "2025-11",
       "highlights": [
-        "Independently built ZATCA e-invoicing for Taxfly, a cloud accounting and POS product, through to handover: XML generation, signing, hashing, TLV QR codes, and certificate creation. Investigated compliance failures.",
+        "Independently built ZATCA e-invoicing for Taxfly, a cloud ERP for billing, accounting, and POS, through to handover: XML generation, signing, hashing, TLV QR codes, and certificate creation. Investigated compliance failures.",
         "Built parts of Taxfly’s accounting module, including general ledger and trial balance reports and related accounting features.",
         "Documented an existing Laravel and MySQL business platform end to end, from routes, controllers, models, and Blade views to roles and data, to scope its modular redesign for customers in Qatar, Saudi Arabia, and the UAE.",
         "Developed parts of the platform redesign using Laravel, PHP, PostgreSQL, Inertia, Vue, and TypeScript, turning clients’ requirements into modular application workflows."
