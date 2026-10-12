@@ -368,9 +368,9 @@
           </article>
           <article class="fix">
             <p class="fix-tag">Incident recovery</p>
-            <h4>A storage outage that failed whole mailing batches</h4>
-            <p class="fix-row"><span class="fix-k" data-k="before">Before</span><span>When stored check PDFs became unreadable, checks sent in batches failed together: one missing file failed <strong>every check in its batch</strong>, so most of the failures were collateral. Nothing had been mailed.</span></p>
-            <p class="fix-row"><span class="fix-k" data-k="after">After</span><span>Every PDF was regenerated and checked for the right payee and amount, then <strong>each check was re-sent on its own</strong>. A status check plus the mailing provider's unique transaction ID meant no check could be mailed twice or with the wrong file.</span></p>
+            <h4>A PDF failure that stopped a run of check mailings</h4>
+            <p class="fix-row"><span class="fix-k" data-k="before">Before</span><span>A PDF generation issue left the checks in a mailing run without usable PDFs, so <strong>every check in the run failed</strong> before anything was mailed.</span></p>
+            <p class="fix-row"><span class="fix-k" data-k="after">After</span><span>Every PDF was regenerated and checked for the right payee and amount, then <strong>each check was re-sent on its own</strong>, and all of them were recovered. A status check plus the mailing provider's unique transaction ID meant no check could be mailed twice or with the wrong file.</span></p>
           </article>
         </div>
       </details>
@@ -433,10 +433,11 @@
           <p class="domain">Tax compliance &amp; ERP</p>
           <p>A GCC e-invoicing compliance engine for ZATCA, and the multi-tenant ERP built on it: accounting, HR, inventory, sales and manufacturing.</p>
           <ul class="facts">
-            <li>Invoices pass the tax authority's <strong>official validator</strong> (26 checks)</li>
+            <li>Invoices pass the tax authority's <strong>official validator</strong> (26 checks) on every build</li>
+            <li>Completed the tax authority's <strong>sandbox onboarding</strong>: all 6 compliance documents accepted</li>
             <li>Invoice chain stays correct under simultaneous requests</li>
             <li>Offline queue and circuit breaker for when the tax portal is down</li>
-            <li>ERP: <strong>30</strong> business areas, each company's data kept separate, <strong>3,800+</strong> automated tests</li>
+            <li>ERP: <strong>30</strong> business areas, each company's data kept separate, <strong>4,000+</strong> automated tests</li>
           </ul>
           <button type="button" class="project-more" aria-expanded="false">More details</button>
           <p class="stack">PHP · Laravel · MySQL · React · TypeScript</p>
@@ -683,7 +684,7 @@
         <li><strong>Delegated access for service providers.</strong> Providers work through the existing payment APIs with single-use keys, every call audited and every refusal identical. <a href="case-delegated-access.html">Case study</a></li>
         <li><strong>Approved means unchanged.</strong> Bank details are locked in at submission and re-checked before money moves. <a href="index.html#demo-lock" data-quick-close>Demo</a></li>
         <li><strong>ZATCA e-invoicing at Netplex.</strong> XML generation, signing, hashing, QR codes and compliance-error investigation, developed up to handover. <a href="index.html#netplex" data-quick-close>Details</a></li>
-        <li><strong>Cert-Ed, a live education platform I built.</strong> 18 app-level capabilities, 50+ database security policies and 100+ unit tests. <a href="https://www.certedacademia.com" target="_blank" rel="noopener">Visit ↗</a></li>
+        <li><strong>Cert-Ed, a live education platform I built.</strong> 18 app-level capabilities, 80+ database security policies and 1,800+ unit tests. <a href="https://www.certedacademia.com" target="_blank" rel="noopener">Visit ↗</a></li>
       </ol>
       <h3>Works with</h3>
       <p class="quick-skills"><span>PHP · Laravel</span><span>TypeScript · Next.js</span><span>MySQL · PostgreSQL</span><span>Queues · webhooks</span><span>Authorization · audit trails</span></p>

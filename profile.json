@@ -79,7 +79,7 @@
       "keywords": ["Next.js", "TypeScript", "Supabase", "PostgreSQL"],
       "highlights": [
         "Developed a live 5-role education platform covering classes, assignments, grading, per-session attendance, hours-based billing, receipts, payslips, messaging, and scheduling.",
-        "Enforced access through 18 application-level capabilities and 50+ PostgreSQL row-level security policies, supported by 100+ unit tests and per-role database checks in CI."
+        "Enforced access through 18 application-level capabilities and 80+ PostgreSQL row-level security policies, supported by 1,800+ unit tests, end-to-end tests, and per-role database checks in CI."
       ]
     },
     {
@@ -87,7 +87,7 @@
       "description": "ZATCA E-Invoicing System",
       "keywords": ["Laravel", "PHP", "MySQL"],
       "highlights": [
-        "Building a ZATCA Phase 2 compliance engine with UBL invoice XML, cryptographic signing, hash chaining, and TLV QR codes; generated invoices pass ZATCA’s official SDK validator (26 checks), with certificate checks and live Fatoora submission next."
+        "Building a ZATCA Phase 2 compliance engine with UBL invoice XML, cryptographic signing, hash chaining, and TLV QR codes; invoices pass ZATCA’s official SDK validator (26 checks) in CI, and it has completed ZATCA’s sandbox onboarding, with all 6 compliance documents accepted and a production certificate issued."
       ]
     },
     {
@@ -206,7 +206,7 @@
           },
           {
             "lead": "Cert-Ed, a live education platform I built.",
-            "text": "18 app-level capabilities, 50+ database security policies and 100+ unit tests.",
+            "text": "18 app-level capabilities, 80+ database security policies and 1,800+ unit tests.",
             "link": { "label": "Visit ↗", "href": "https://www.certedacademia.com" }
           }
         ],
