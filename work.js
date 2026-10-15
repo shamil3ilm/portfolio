@@ -43,7 +43,7 @@
       }
     });
     fillRows();
-    countOut.textContent = 'Showing ' + shown + ' of ' + cards.length;
+    if (countOut) countOut.textContent = 'Showing ' + shown + ' of ' + cards.length;
     moreButton.hidden = filter !== 'all';
     moreButton.textContent = expanded ? 'Show fewer' : 'Show all ' + cards.length;
     moreButton.setAttribute('aria-expanded', String(expanded));
@@ -142,14 +142,8 @@
   });
 })();
 
-/* Phones and tablets: fold "How a project runs" and trim project facts behind "More details". */
+/* Phones: project cards show their first two facts; "More details" reveals the rest. */
 (function () {
-  const phone = window.matchMedia('(max-width: 860px)');
-
-  document.querySelectorAll('[data-fold-on-phone]').forEach(function (details) {
-    details.open = !phone.matches;
-  });
-
   document.querySelectorAll('.project-more').forEach(function (button) {
     const project = button.closest('.project');
     if (project.querySelectorAll('.facts li').length <= 2) {

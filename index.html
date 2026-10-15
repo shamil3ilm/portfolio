@@ -44,7 +44,6 @@
       <nav class="nav" id="site-nav" aria-label="Sections">
         <a href="#work">Work</a>
         <a href="#projects">Projects</a>
-        <a href="#help">Services</a>
         <a href="playground.html">Playground</a>
         <a href="#contact">Contact</a>
         <a href="resume.html">Résumé</a>
@@ -74,13 +73,11 @@
           goes exactly where it was approved.
         </p>
         <div class="cta">
-          <a href="#contact" class="btn btn-primary">Work with me</a>
-          <button type="button" class="btn btn-ghost" data-quick-open>60-second view</button>
-          <a href="resume.html" class="btn btn-ghost">Résumé</a>
+          <a href="#work" class="btn btn-primary">See my work</a>
+          <a href="#contact" class="btn btn-ghost">Contact me</a>
         </div>
         <ul class="proof" aria-label="At a glance">
-          <li><a href="#netplex"><strong>3</strong><span>GCC countries served by the e-invoicing platform I worked on</span></a></li>
-          <li><a href="#project-certed"><strong>50+</strong><span>database security policies in Cert-Ed, a live platform I built</span></a></li>
+          <li><a href="#project-certed"><strong>80+</strong><span>database security policies in Cert-Ed, a live platform I built</span></a></li>
           <li><a href="#project-masaar"><strong>26</strong><span>tax-authority validator checks passed by Masaar</span></a></li>
           <li><a href="#project-time"><strong>10+</strong><span>colleagues use Time, my work-hours tracker, every day</span></a></li>
         </ul>
@@ -180,14 +177,6 @@
       </div>
     </section>
 
-    <section class="container play-teaser">
-      <a class="play-teaser-link" href="playground.html#play">
-        <span class="play-teaser-tag">Play</span>
-        <span><strong>Risk Review Desk:</strong> take a 2½-minute shift as a payments reviewer and try to catch what my systems catch.</span>
-        <span class="play-teaser-go" aria-hidden="true">→</span>
-      </a>
-    </section>
-
     <section id="work" class="section section-band container">
       <div class="section-head">
         <p class="eyebrow">Experience</p>
@@ -202,15 +191,6 @@
       <div class="exp-panel" role="tabpanel" id="exp-zil" aria-labelledby="tab-zil">
       <p class="section-sub exp-sub">Software Engineer at a US payments platform for checks, ACH and digital payments. Each card shows the problem and how I approached it.</p>
 
-      <div class="work-filters" role="group" aria-label="Filter work by topic">
-        <button type="button" class="chip-btn" data-filter="all" aria-pressed="true">All</button>
-        <button type="button" class="chip-btn" data-filter="payments" aria-pressed="false">Payments</button>
-        <button type="button" class="chip-btn" data-filter="security" aria-pressed="false">Security</button>
-        <button type="button" class="chip-btn" data-filter="ai" aria-pressed="false">AI</button>
-        <button type="button" class="chip-btn" data-filter="reliability" aria-pressed="false">Reliability</button>
-        <span class="work-count" data-work="count" aria-live="polite"></span>
-      </div>
-
       <div class="grid-2 work-grid" data-work="grid">
         <article class="card card-featured" id="work-delegated" data-topics="payments security">
           <div class="featured-main">
@@ -221,7 +201,7 @@
               <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>Payroll and bookkeeping providers needed to work inside their customers' accounts through the existing payment APIs, without sharing logins and without being able to sign off the customer's own payments.</span></p>
               <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>An authorization layer added to the existing APIs, so providers and customers go through the same rules. Access is granted by the customer, every call is attributed and audited, and payments that need the customer's own approvers stay theirs.</span></p>
             </div>
-            <div class="card-links"><button type="button" class="card-more-toggle" aria-expanded="false" aria-controls="more-1">How I did it</button><a href="case-delegated-access.html">Read the case study →</a><a href="playground.html#delegated-access">Try the demo →</a></div>
+            <div class="card-links"><a href="case-delegated-access.html">Read the case study →</a><button type="button" class="card-more-toggle" aria-expanded="false" aria-controls="more-1">How I did it</button><a href="playground.html#delegated-access">Try the demo →</a></div>
           </div>
           <ul class="featured-facts">
             <li><strong>Key</strong><span>Access starts with a single-use, expiring key the customer creates</span></li>
@@ -247,7 +227,7 @@
             <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>Deleting a recipient or bank account didn't stop the recurring payments tied to it, and cancelling several schedules at once left their upcoming payments queued.</span></p>
             <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>Deleting now warns first, then cancels every linked schedule with an audit note, as one all-or-nothing change. Bulk deletes go through the same per-record path, and bulk cancel clears every selected schedule.</span></p>
           </div>
-          <div class="card-links"><button type="button" class="card-more-toggle" aria-expanded="false" aria-controls="more-3">How I did it</button><a href="case-recurring-safeguards.html">Read the case study →</a><a href="playground.html#recurring">Try the demo →</a></div>
+          <div class="card-links"><a href="case-recurring-safeguards.html">Read the case study →</a><button type="button" class="card-more-toggle" aria-expanded="false" aria-controls="more-3">How I did it</button><a href="playground.html#recurring">Try the demo →</a></div>
         </article>
         <article class="card is-extra" data-topics="payments ai">
           <span class="tag">Payment imports</span>
@@ -278,7 +258,7 @@
               <p class="fix-row"><span class="fix-k" data-k="problem">Problem</span><span>AI usage arrived as one provider bill. Nobody could see which feature or model the cost came from, how often calls failed, or how slow they were.</span></p>
               <p class="fix-row"><span class="fix-k" data-k="approach">Approach</span><span>Tracking built into the shared AI client: one record per request, written even when the call fails, with feature, model, tokens, cost and response time. A dashboard breaks it down by feature, model and provider account, with a 24-hour health view.</span></p>
             </div>
-            <div class="card-links"><button type="button" class="card-more-toggle" aria-expanded="false" aria-controls="more-6">How I did it</button><a href="case-llm-observability.html">Read the case study →</a><a href="playground.html#ai-usage">Try the demo →</a></div>
+            <div class="card-links"><a href="case-llm-observability.html">Read the case study →</a><button type="button" class="card-more-toggle" aria-expanded="false" aria-controls="more-6">How I did it</button><a href="playground.html#ai-usage">Try the demo →</a></div>
           </div>
           <ul class="featured-facts">
             <li><strong>Log</strong><span>Every AI request recorded, success or failure</span></li>
@@ -416,10 +396,10 @@
           <p class="domain">Education</p>
           <p>A live platform for an online tuition academy with 5 user roles: classes, grading, attendance, billing, payslips and messaging.</p>
           <ul class="facts">
-            <li><strong>50+</strong> database-level security policies, plus <strong>18</strong> app-level capabilities</li>
+            <li><strong>80+</strong> database-level security policies, plus <strong>18</strong> app-level capabilities</li>
             <li>Every role's access tested against a real database in CI</li>
             <li>Billed hours locked by the database once invoiced</li>
-            <li><strong>100+</strong> unit tests</li>
+            <li>Unit and end-to-end tests run on every change</li>
           </ul>
           <button type="button" class="project-more" aria-expanded="false">More details</button>
           <p class="stack">Next.js · TypeScript · Supabase · PostgreSQL</p>
@@ -437,7 +417,7 @@
             <li>Completed the tax authority's <strong>sandbox onboarding</strong>: all 6 compliance documents accepted</li>
             <li>Invoice chain stays correct under simultaneous requests</li>
             <li>Offline queue and circuit breaker for when the tax portal is down</li>
-            <li>ERP: <strong>30</strong> business areas, each company's data kept separate, <strong>4,000+</strong> automated tests</li>
+            <li>ERP: <strong>30</strong> business areas, each company's data kept separate and covered by automated tests</li>
           </ul>
           <button type="button" class="project-more" aria-expanded="false">More details</button>
           <p class="stack">PHP · Laravel · MySQL · React · TypeScript</p>
@@ -494,66 +474,6 @@
       </div>
     </section>
 
-    <section id="help" class="section container">
-      <div class="section-head">
-        <p class="eyebrow">Work with me</p>
-        <h2>How I can help your product</h2>
-        <p class="section-sub">Freelance and contract work on backends that handle money, access or compliance. Each offer below is something I already do, with the proof one click away.</p>
-      </div>
-
-      <div class="offers">
-        <article class="offer">
-          <p class="offer-tag">01 · Integrations</p>
-          <h3>Connect your product to the outside world</h3>
-          <p>Payment and banking providers, accounting tools, tax authorities and AI services, wired in so a failed call is retried, and if it still fails, someone finds out.</p>
-          <ul>
-            <li>Signed webhooks and safe retries</li>
-            <li>Accounting, payroll and tax-authority integrations</li>
-            <li>Clear errors your support team can act on</li>
-          </ul>
-          <a class="offer-proof" href="playground.html#webhook">See a signed-update demo →</a>
-        </article>
-        <article class="offer">
-          <p class="offer-tag">02 · Hardening</p>
-          <h3>Fix the parts that fail quietly</h3>
-          <p>A review and fix of a Laravel or PHP backend where mistakes cost money or trust: who can access what, approvals, scheduled jobs and audit trails.</p>
-          <ul>
-            <li>Access control and approval flows that can't be bypassed</li>
-            <li>Scheduled jobs that run on time and stop when they should</li>
-            <li>Production bugs traced to the real cause, with proof</li>
-          </ul>
-          <a class="offer-proof" href="case-recurring-safeguards.html">Read a case study →</a>
-        </article>
-        <article class="offer">
-          <p class="offer-tag">03 · AI features</p>
-          <h3>Add AI you can afford to run</h3>
-          <p>AI added to a real workflow, like reading documents, drafting replies or classifying records, with cost, tokens and speed tracked per feature from day one.</p>
-          <ul>
-            <li>Document reading and drafting features</li>
-            <li>Per-feature cost and latency dashboard</li>
-            <li>Failures logged, never hidden</li>
-          </ul>
-          <a class="offer-proof" href="playground.html#ai-usage">See the cost-tracking demo →</a>
-        </article>
-      </div>
-
-      <div class="process">
-        <details class="process-details" open data-fold-on-phone>
-          <summary class="process-title">How a project runs</summary>
-          <ol class="process-steps">
-            <li><strong>A short call</strong><span>You explain the problem; I ask the questions that shape the scope.</span></li>
-            <li><strong>A written plan</strong><span>Scope, timeline and cost in writing before any work starts.</span></li>
-            <li><strong>Small, reviewed steps</strong><span>Work lands in small pieces you can see and check as it goes.</span></li>
-            <li><strong>A clean handover</strong><span>Tests, notes and a walkthrough, so your team can own it.</span></li>
-          </ol>
-        </details>
-        <div class="process-cta">
-          <a href="#contact" class="btn btn-primary">Tell me about your project</a>
-          <span>Fixed-scope projects, monthly support, or a one-off review.</span>
-        </div>
-      </div>
-    </section>
-
     <section id="about" class="section section-band container">
       <div class="section-head">
         <p class="eyebrow">About</p>
@@ -606,6 +526,10 @@
             <div class="principle">
               <span class="num">4</span>
               <div><h3>Done means tested</h3><p>A fix is finished once I've run it and seen it work.</p></div>
+            </div>
+            <div class="principle">
+              <span class="num">5</span>
+              <div><h3>Spec first, agents type, I own it</h3><p>I write the design and plan, AI coding agents (Claude Code) build it test-first, and I review every change. I've built my own agent skills and hooks, and connected agents to MCP servers and the command line so they run tests and real flows themselves.</p></div>
             </div>
           </div>
         </div>
@@ -685,7 +609,7 @@
         <li><strong>Delegated access for service providers.</strong> Providers work through the existing payment APIs with single-use keys, every call audited and every refusal identical. <a href="case-delegated-access.html">Case study</a></li>
         <li><strong>Approved means unchanged.</strong> Bank details are locked in at submission and re-checked before money moves. <a href="index.html#demo-lock" data-quick-close>Demo</a></li>
         <li><strong>ZATCA e-invoicing at Netplex.</strong> XML generation, signing, hashing, QR codes and compliance-error investigation, developed up to handover. <a href="index.html#netplex" data-quick-close>Details</a></li>
-        <li><strong>Cert-Ed, a live education platform I built.</strong> 18 app-level capabilities, 80+ database security policies and 1,800+ unit tests. <a href="https://www.certedacademia.com" target="_blank" rel="noopener">Visit ↗</a></li>
+        <li><strong>Cert-Ed, a live education platform I built.</strong> 18 app-level capabilities and 80+ database security policies, all tested in CI. <a href="https://www.certedacademia.com" target="_blank" rel="noopener">Visit ↗</a></li>
       </ol>
       <h3>Works with</h3>
       <p class="quick-skills"><span>PHP · Laravel</span><span>TypeScript · Next.js</span><span>MySQL · PostgreSQL</span><span>Queues · webhooks</span><span>Authorization · audit trails</span></p>

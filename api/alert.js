@@ -4,6 +4,8 @@
    Triggers (from the site's own pages):
      { type: 'message', name, email, message, botcheck }  after a contact-form message is sent
      { type: 'visit', ref, page }                          when a ?ref=<tag> link is opened
+     { type: 'interest', page, from }                      when an untagged visitor opens a case
+                                                           study or résumé page (bots rarely do)
 
    Configuration (Vercel project > Settings > Environment Variables). Until WA_TOKEN,
    WA_PHONE_NUMBER_ID and WA_TO are all set, the function accepts requests and sends nothing.
@@ -15,9 +17,12 @@
      WA_API_VERSION      Graph API version (default: v25.0)
    The template body must take exactly two variables: {{1}} = what happened, {{2}} = details. */
 
-const SITE_ORIGINS = ['https://mohamed3shamil.vercel.app'];
+// The old vercel.app address redirects to the new domain; both stay allowed so shared links keep alerting.
+const SITE_ORIGINS = ['https://mohamed3shamil.justletmeknow.app', 'https://mohamed3shamil.vercel.app'];
 const TAG = /^[a-z0-9][a-z0-9-]{0,39}$/;
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const KEY_PAGE = /^\/(case-[a-z0-9-]+|resume|resume\/[a-z0-9-]+)\.html$/;
+const HOST = /^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+$/;
 const WINDOW_MS = 10 * 60 * 1000;
 const MAX_PER_WINDOW = 5;
 const recent = new Map(); // best effort per warm instance: ip -> [timestamps]
@@ -50,6 +55,12 @@ function describe(body) {
     const page = clean(body.page, 80);
     if (!TAG.test(ref) || !page.startsWith('/')) return null;
     return [`Tagged link opened: ${ref}`, `Page ${page}`];
+  }
+  if (body.type === 'interest') {
+    const page = clean(body.page, 80);
+    const from = clean(body.from, 80).toLowerCase();
+    if (!KEY_PAGE.test(page) || (from && !HOST.test(from))) return null;
+    return ['Untagged visitor on a key page', `Page ${page}, ${from ? `from ${from}` : 'direct'}`];
   }
   return null;
 }

@@ -40,6 +40,16 @@
 
   const done = load();
 
+  // The counter, list and celebrations live on the Playground; elsewhere progress is recorded quietly.
+  if (!/\/playground(\.html)?$/.test(location.pathname)) {
+    window.achieve = function (id) {
+      if (!KNOWN.has(id) || done.has(id)) return;
+      done.add(id);
+      save();
+    };
+    return;
+  }
+
   function el(tag, className, text) {
     const node = document.createElement(tag);
     if (className) node.className = className;

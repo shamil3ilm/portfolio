@@ -11,7 +11,6 @@
 
   const ITEMS = [
     { group: 'Home', title: 'Top of the page', url: 'index.html#top', keys: 'start hero intro' },
-    { group: 'Home', title: 'Work with me (services)', url: 'index.html#help', keys: 'services hire freelance offers process skills help' },
     { group: 'Home', title: 'Work at Zil Money', url: 'index.html#work', keys: 'experience job role payments' },
     { group: 'Home', title: 'Netplex: Taxfly platform & ZATCA e-invoicing', url: 'index.html#netplex', keys: 'netplex zatca e-invoicing taxfly laravel vue inertia gcc' },
     { group: 'Home', title: 'Smaller fixes, before and after', url: 'index.html#work-also', keys: 'fixes bugs positive pay statements accounting payroll imports' },

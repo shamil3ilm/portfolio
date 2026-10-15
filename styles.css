@@ -3751,26 +3751,6 @@ button.btn {
 
 /* Work: filters, featured card, show all */
 
-.work-filters {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 18px;
-}
-
-.work-filters .chip-btn[aria-pressed="true"] {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--on-accent);
-}
-
-.work-count {
-  margin-left: auto;
-  font-size: 0.82rem;
-  color: var(--muted);
-}
-
 .work-grid:not(.show-all) .is-extra,
 .work-grid .is-filtered-out {
   display: none;
@@ -4392,11 +4372,6 @@ dialog.palette[open] {
     font-size: 1.35rem;
   }
 
-  .work-count {
-    width: 100%;
-    margin-left: 0;
-  }
-
   .project-featured .facts {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -4952,131 +4927,6 @@ dialog.palette[open] {
   }
 }
 
-/* Work with me: offers, process, call to action */
-
-.offers {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-}
-
-.offer {
-  display: flex;
-  flex-direction: column;
-  padding: 24px;
-  border-radius: 16px;
-  border: 1px solid var(--line);
-  border-top: 3px solid var(--accent);
-  background: var(--surface);
-  box-shadow: var(--shadow);
-}
-
-.offer-tag {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.offer h3 {
-  margin-top: 8px;
-  font-size: 1.15rem;
-}
-
-.offer > p {
-  margin-top: 8px;
-  color: var(--text-soft);
-  font-size: 0.95rem;
-}
-
-.offer ul {
-  list-style: none;
-  display: grid;
-  gap: 6px;
-  margin: 14px 0 18px;
-  font-size: 0.9rem;
-  color: var(--text-soft);
-}
-
-.offer li {
-  position: relative;
-  padding-left: 22px;
-}
-
-.offer li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  color: var(--ok);
-  font-weight: 700;
-}
-
-.offer-proof {
-  margin-top: auto;
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-.process {
-  margin-top: 28px;
-  padding: 24px;
-  border-radius: 16px;
-  border: 1px dashed var(--line);
-}
-
-.process-title {
-  font-size: 0.8rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.process-steps {
-  list-style: none;
-  counter-reset: step;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px;
-  margin-top: 14px;
-}
-
-.process-steps li {
-  counter-increment: step;
-  display: grid;
-  gap: 4px;
-  font-size: 0.9rem;
-  color: var(--text-soft);
-}
-
-.process-steps li::before {
-  content: counter(step);
-  display: grid;
-  place-items: center;
-  width: 28px;
-  height: 28px;
-  margin-bottom: 4px;
-  border-radius: 50%;
-  font-size: 0.82rem;
-  font-weight: 600;
-  background: var(--accent-soft);
-  color: var(--accent);
-}
-
-.process-steps strong {
-  color: var(--text);
-}
-
-.process-cta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px 18px;
-  margin-top: 22px;
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-
 .code-link {
   display: inline-block;
   margin-top: 12px;
@@ -5090,77 +4940,6 @@ dialog.palette[open] {
 
 .more li a:hover {
   color: var(--accent);
-}
-
-@media (max-width: 860px) {
-  .offers {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .process-steps {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 400px) {
-  .process-steps {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
-.offer .offer-tag {
-  color: var(--accent);
-}
-
-/* Home: one-line teaser for the game, which now lives on the Playground */
-
-.play-teaser {
-  padding-top: 40px;
-}
-
-.play-teaser-link {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 14px 18px;
-  border-radius: 14px;
-  border: 1px solid var(--line);
-  background: var(--surface);
-  color: var(--text-soft);
-  font-size: 0.95rem;
-  transition: border-color 0.15s ease, transform 0.15s ease;
-}
-
-.play-teaser-link:hover {
-  text-decoration: none;
-  border-color: var(--accent);
-  transform: translateY(-2px);
-}
-
-.play-teaser-link strong {
-  color: var(--text);
-}
-
-.play-teaser-tag {
-  flex: 0 0 auto;
-  padding: 3px 10px;
-  border-radius: 999px;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--accent);
-  background: var(--accent-soft);
-}
-
-.play-teaser-go {
-  margin-left: auto;
-  color: var(--accent);
-  font-size: 1.1rem;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .play-teaser-link:hover {
-    transform: none;
-  }
 }
 
 /* Work cards: problem, then approach */
@@ -5618,16 +5397,6 @@ p.demo-note {
   border-color: var(--line);
 }
 
-/* Work with me: an open strip instead of boxed cards */
-.offer {
-  padding: 18px 0 0;
-  border: 0;
-  border-top: 2px solid var(--accent);
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-}
-
 /* Rhythm: shorter lines */
 .section-sub {
   max-width: 62ch;
@@ -5646,13 +5415,6 @@ p.demo-note {
 }
 
 @media (max-width: 600px) {
-  .offer ul {
-    display: none;
-  }
-
-  .offer > p {
-    margin-bottom: 12px;
-  }
 
   .project .facts li:nth-child(n + 4) {
     display: none;
@@ -5877,34 +5639,6 @@ p.demo-note {
   margin-bottom: 20px;
 }
 
-/* "How a project runs" as a disclosure (folded on phones by work.js) */
-
-.process-details > summary {
-  cursor: pointer;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.process-details > summary::-webkit-details-marker {
-  display: none;
-}
-
-.process-details > summary::after {
-  content: "+";
-  font-size: 1rem;
-  line-height: 1;
-}
-
-.process-details[open] > summary::after {
-  content: "−";
-}
-
-.process-details:not([open]) + .process-cta {
-  margin-top: 16px;
-}
-
 /* Project "More details": phones and tablets */
 
 .project-more {
@@ -6008,12 +5742,6 @@ p.demo-note {
   }
 }
 
-@media (max-width: 600px) {
-  .process {
-    padding: 18px;
-  }
-}
-
 /* About: photo and name above the background text */
 
 .about-id {
@@ -6062,4 +5790,34 @@ p.demo-note {
 
 .hero h1 .hero-tagline {
   display: block;
+}
+
+/* ============ Minimal home: one-column hero; the demo opens on request on every screen ============ */
+.hero {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.demo-open:not([hidden]) {
+  display: flex;
+  width: fit-content;
+  margin-top: 24px;
+}
+
+.demo:not(.is-open) {
+  display: none;
+}
+
+.demo {
+  max-width: 760px;
+}
+
+.proof {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 720px;
+}
+
+@media (max-width: 600px) {
+  .proof {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
