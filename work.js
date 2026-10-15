@@ -157,3 +157,15 @@
     });
   });
 })();
+
+/* Phones: "Show highlights" expands the collapsed part of the hero. */
+(function () {
+  const button = document.querySelector('[data-hero-more]');
+  if (!button) return;
+  const hero = button.closest('.hero-text');
+  button.addEventListener('click', function () {
+    const open = hero.classList.toggle('is-expanded');
+    button.setAttribute('aria-expanded', String(open));
+    button.textContent = open ? 'Show less ↑' : 'Show highlights ↓';
+  });
+})();

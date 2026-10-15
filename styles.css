@@ -5821,3 +5821,43 @@ p.demo-note {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* Projects are borderless rows: when linked to, tint the row with breathing room instead of a tight ring */
+.project:target {
+  box-shadow: none;
+  background: var(--accent-soft);
+  border-radius: 12px;
+  padding-inline: 16px;
+  margin-inline: -16px;
+}
+
+@media (max-width: 600px) {
+  .project:target {
+    margin-inline: 0;
+    padding-inline: 14px;
+  }
+}
+
+/* Phones: the hero shows the essentials; "Show highlights" expands the rest of the intro, the stats and the demo button */
+.hero-more {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .hero-more {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 6px 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--accent);
+    cursor: pointer;
+  }
+
+  .hero-text:not(.is-expanded) .hero-extra {
+    display: none;
+  }
+}

@@ -68,20 +68,21 @@
       <div class="hero-text">
         <h1><span class="eyebrow hero-eyebrow">Mohamed Shamil Abdul Salam · Software Engineer · Fintech &amp; ZATCA</span> <span class="hero-tagline">I build software that has to be right.</span></h1>
         <p class="lead">
-          Software engineer working on backend systems for payments and finance. Most of my
+          Software engineer working on backend systems for payments and finance. <span class="hero-extra">Most of my
           work is the part users never see: who is allowed to do what, and making sure money
-          goes exactly where it was approved.
+          goes exactly where it was approved.</span>
         </p>
         <div class="cta">
           <a href="#work" class="btn btn-primary">See my work</a>
           <a href="#contact" class="btn btn-ghost">Contact me</a>
         </div>
-        <ul class="proof" aria-label="At a glance">
+        <button type="button" class="hero-more" data-hero-more aria-expanded="false" aria-controls="hero-proof">Show highlights ↓</button>
+        <ul class="proof hero-extra" id="hero-proof" aria-label="At a glance">
           <li><a href="#project-certed"><strong>80+</strong><span>database security policies in Cert-Ed, a live platform I built</span></a></li>
           <li><a href="#project-masaar"><strong>26</strong><span>tax-authority validator checks passed by Masaar</span></a></li>
           <li><a href="#project-time"><strong>10+</strong><span>colleagues use Time, my work-hours tracker, every day</span></a></li>
         </ul>
-        <button type="button" class="btn btn-ghost demo-open" data-demo-open aria-expanded="false">Try a live demo ↓</button>
+        <button type="button" class="btn btn-ghost demo-open hero-extra" data-demo-open aria-expanded="false">Try a live demo ↓</button>
       </div>
 
       <div class="demo" aria-label="Interactive demos">
@@ -646,5 +647,7 @@
   <script src="palette.js"></script>
   <script src="/analytics.js"></script>
   <script defer src="/_vercel/insights/script.js"></script>
+  <script>window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };</script>
+  <script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>
