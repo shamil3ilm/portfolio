@@ -506,10 +506,16 @@ h3 {
   font-weight: 500;
 }
 
-.card:target,
-.project:target {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-soft);
+.card:target {
+  animation: target-ring 2.4s ease-out 0.2s backwards;
+}
+
+/* A linked-to section lights up briefly, then fades back to its normal look */
+@keyframes target-ring {
+  from {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
 }
 
 .chain {
@@ -5822,19 +5828,25 @@ p.demo-note {
   }
 }
 
-/* Projects are borderless rows: when linked to, tint the row with breathing room instead of a tight ring */
+/* Projects are borderless rows: when linked to, the row flashes a tint with breathing room around the text.
+   The padding and negative margin cancel out, so the text never moves. */
 .project:target {
-  box-shadow: none;
-  background: var(--accent-soft);
   border-radius: 12px;
   padding-inline: 16px;
   margin-inline: -16px;
+  animation: target-tint 2.4s ease-out 0.2s backwards;
+}
+
+@keyframes target-tint {
+  from {
+    background-color: var(--accent-soft);
+  }
 }
 
 @media (max-width: 600px) {
   .project:target {
-    margin-inline: 0;
-    padding-inline: 14px;
+    padding-inline: 8px;
+    margin-inline: -8px;
   }
 }
 
