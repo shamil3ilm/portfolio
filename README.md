@@ -6,12 +6,11 @@ A static site: plain HTML, CSS and JavaScript. Every page is committed ready to 
 
 ## Files
 
-- `index.html` — home page (hero, game, work, projects, contact) and the 60-second view
+- `index.html` — home page (hero with the three live demos behind "Try a live demo", work, projects, about, contact) and the 60-second view (opened from the command palette or `?view=quick`)
 - `case-delegated-access.html`, `case-recurring-safeguards.html`, `case-llm-observability.html`, `case-zatca-einvoicing.html` — case studies
 - `404.html` — page shown for unknown addresses (Vercel serves it automatically)
 - `robots.txt`, `sitemap.xml` — let search engines find the public pages (the tailored `/resume/` pages stay unindexed)
 - `analytics.js` — visit counts through Vercel Web Analytics (enable it under the project's **Analytics** tab). No cookies. Share `?ref=<tag>` links (one tag per application, e.g. `?ref=acme`) and visits through them show up as `/ref/<tag>/<page>` in the Pages panel. Open the site once with `?owner=1` to stop counting your own browser (`?owner=0` undoes it).
-- `api/alert.js` — Vercel function that sends a WhatsApp alert (Meta Cloud API, one approved template) when a contact-form message is sent or a `?ref=<tag>` link is first opened in a tab. It sends nothing until the `WA_*` environment variables listed at the top of the file are set in Vercel.
 - `profile.json` — **the source of truth for my public profile details** (JSON Resume format), served at `/profile.json`
 - `resume.html` — résumé page, **generated from `profile.json`**; "Save as PDF" prints a one-page résumé
 - `variants/<slug>.json` — tailored résumés published from lee (optional; same format as `profile.json`), served at `/variants/<slug>.json`
@@ -31,10 +30,10 @@ A static site: plain HTML, CSS and JavaScript. Every page is committed ready to 
 - `select.js` — custom dropdowns for the playground (the hidden native select keeps the value)
 - `crypto-tool.js` — Lock & unlock text (password lock with AES-256, Base64, hex, URL, SHA-256, Caesar/ROT13)
 - `ui.js` — scroll reveal, active-section highlighting, header shadow, result pulses, mobile menu and local time
-- `work.js` — Work section topic filters, "show all" and the collapsible list of smaller fixes
+- `work.js` — Work section "show all" and the collapsible list of smaller fixes, the "More details" toggle on project cards, and the phone hero's "Show highlights" toggle
 - `quick-view.js` — opens and closes the 60-second summary dialog (also opens from `index.html?view=quick`). The dialog's content is generated into `index.html` from `profile.json`
 - `palette.js` — command palette (Ctrl+K or /) to jump to any section, demo, tool or action
-- `achievements.js` — the 17 challenges and the 🏆 progress counter (progress is stored only in the visitor's browser)
+- `achievements.js` — the 17 challenges and the 🏆 progress counter, shown on the Playground only; the home page demos still record their 5 challenges quietly (progress is stored only in the visitor's browser)
 - `favicon.svg`, `og-image.png` — icon and link-preview image
 
 ## Run locally
@@ -58,7 +57,7 @@ chore(profile): sync from lee
 lee commits only `profile.json`. The GitHub Actions workflow `.github/workflows/regenerate.yml` then rebuilds the pages and commits them back:
 
 - **Trigger:** a push to `main` that touches `profile.json`, `variants/**`, `scripts/**` (which holds the templates) or the workflow itself. It can also be run by hand from the Actions tab (`workflow_dispatch`).
-- **Steps:** Node LTS, no install, `node --test "scripts/test/*.test.mjs"`, then `node scripts/build-resume.mjs`.
+- **Steps:** Node LTS, no install, `node --test "scripts/test/*.test.mjs"` (résumé build, tailored variants and the WhatsApp alert function), then `node scripts/build-resume.mjs`.
 - **Commit:** if `resume.html`, `index.html` or anything in `resume/` changed (including new and deleted variant pages), it commits them as `github-actions[bot]` with the message `chore(build): regenerate pages from profile.json and variants [skip ci]`, using the built-in `GITHUB_TOKEN` (`contents: write`).
 - **No loops:** pushes made with `GITHUB_TOKEN` don't start workflows, the message carries `[skip ci]`, and the job is skipped when `github-actions[bot]` triggered it.
 - **No races:** runs are queued one at a time per branch (`concurrency`, no cancelling). If `main` moved during a run, the push is rejected. The job then rebuilds on the new tip and pushes once more (it doesn't rebase the generated files, so there are no conflicts).
