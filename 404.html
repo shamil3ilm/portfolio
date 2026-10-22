@@ -21,7 +21,7 @@
   <script>
     try {
       var saved = localStorage.getItem('theme');
-      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+      document.documentElement.dataset.theme = saved === 'light' ? 'light' : 'dark';
     } catch (e) {}
   </script>
 </head>
@@ -36,7 +36,7 @@
       <nav class="nav" id="site-nav" aria-label="Sections">
         <a href="/index.html#work">Work</a>
         <a href="/index.html#projects">Projects</a>
-        <a href="/playground.html">Playground</a>
+        <a href="/playground.html">Lab</a>
         <a href="/index.html#contact">Contact</a>
         <a href="/resume.html">Résumé</a>
       </nav>
@@ -61,7 +61,7 @@
       <p class="lead">The link may be old or mistyped. Here are the places most people are looking for:</p>
       <div class="cta">
         <a class="btn btn-primary" href="/index.html">Home</a>
-        <a class="btn btn-ghost" href="/playground.html">Playground</a>
+        <a class="btn btn-ghost" href="/playground.html">Lab</a>
         <a class="btn btn-ghost" href="/resume.html">Résumé</a>
         <button type="button" class="btn btn-ghost" data-palette-open>Search the site</button>
       </div>

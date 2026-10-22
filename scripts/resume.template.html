@@ -5,13 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">{{{headExtra}}}
   <title>Résumé — {{name}}</title>
-  <meta name="description" content="Résumé of {{name}}, backend-focused software engineer in payments, access control and compliance.">
+  <meta name="description" content="Résumé of {{name}}, software engineer in payments, access control and compliance.">
   <meta name="author" content="{{name}}">
   <link rel="canonical" href="{{pageUrl}}">
   <meta property="og:type" content="article">
   <meta property="og:url" content="{{pageUrl}}">
   <meta property="og:title" content="Résumé — {{name}}">
-  <meta property="og:description" content="Résumé of {{name}}, backend-focused software engineer in payments, access control and compliance.">
+  <meta property="og:description" content="Résumé of {{name}}, software engineer in payments, access control and compliance.">
   <meta property="og:image" content="https://mohamed3shamil.vercel.app/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -22,7 +22,7 @@
   <script>
     try {
       var saved = localStorage.getItem('theme');
-      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+      document.documentElement.dataset.theme = saved === 'light' ? 'light' : 'dark';
     } catch (e) {}
   </script>
 </head>
@@ -37,7 +37,7 @@
       <nav class="nav" id="site-nav" aria-label="Sections">
         <a href="index.html#work">Work</a>
         <a href="index.html#projects">Projects</a>
-        <a href="playground.html">Playground</a>
+        <a href="playground.html">Lab</a>
         <a href="index.html#contact">Contact</a>
         <a href="resume.html"{{{navCurrent}}}>Résumé</a>
       </nav>

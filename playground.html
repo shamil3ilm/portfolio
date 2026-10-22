@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Playground: fintech and e-invoicing demos — Mohamed Shamil Abdul Salam</title>
+  <title>Lab: working fintech and e-invoicing demos — Mohamed Shamil Abdul Salam</title>
   <meta name="description" content="Working demos of systems I have built: delegated account access, recurring payment safeguards, AI cost tracking, e-invoice QR codes, signed webhooks and scheduling.">
   <meta name="author" content="Mohamed Shamil Abdul Salam">
   <link rel="canonical" href="https://mohamed3shamil.vercel.app/playground.html">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mohamed3shamil.vercel.app/playground.html">
-  <meta property="og:title" content="Playground — Mohamed Shamil">
+  <meta property="og:title" content="Lab — Mohamed Shamil">
   <meta property="og:description" content="Working demos of systems I have built: delegated account access, recurring payment safeguards, AI cost tracking and more.">
   <meta property="og:image" content="https://mohamed3shamil.vercel.app/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -24,7 +24,7 @@
   <script>
     try {
       var saved = localStorage.getItem('theme');
-      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+      document.documentElement.dataset.theme = saved === 'light' ? 'light' : 'dark';
     } catch (e) {}
   </script>
 </head>
@@ -39,7 +39,7 @@
       <nav class="nav" id="site-nav" aria-label="Sections">
         <a href="index.html#work">Work</a>
         <a href="index.html#projects">Projects</a>
-        <a href="playground.html" aria-current="page">Playground</a>
+        <a href="playground.html" aria-current="page">Lab</a>
         <a href="index.html#contact">Contact</a>
         <a href="resume.html">Résumé</a>
       </nav>
@@ -59,8 +59,8 @@
 
   <main id="top">
     <section class="container pg-intro">
-      <p class="eyebrow">Playground</p>
-      <h1>Working demos of things I've built.</h1>
+      <p class="eyebrow">Lab</p>
+      <h1>Working demos of what I've built.</h1>
       <p class="lead">
         Simplified, working models of real systems from my job and my own projects. Everything runs
         in your browser: nothing is sent anywhere, and all names and data are made up.
@@ -75,7 +75,7 @@
         <a href="#schedule">Scheduling</a>
         <a href="#qr-maker">QR code maker</a>
         <a href="#crypto">Lock &amp; unlock</a>
-        <a href="#tools">Handy tools</a>
+        <a href="#tools">Free tools</a>
       </nav>
     </section>
 
@@ -374,8 +374,8 @@
     </div>
 
     <section class="container pg-tools" id="tools">
-      <p class="eyebrow">Handy tools</p>
-      <h2>Small free tools</h2>
+      <p class="eyebrow">Utilities</p>
+      <h2>Free tools you can use now</h2>
       <p class="section-sub">Useful on their own. They run in your browser and nothing is saved.</p>
       <div class="pg-grid pg-grid-tools">
         <article class="pg-card pg-wide" id="qr-maker">

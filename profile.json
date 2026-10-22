@@ -87,7 +87,7 @@
       "description": "ZATCA E-Invoicing System",
       "keywords": ["Laravel", "PHP", "MySQL"],
       "highlights": [
-        "Building a ZATCA Phase 2 compliance engine with UBL invoice XML, cryptographic signing, hash chaining, and TLV QR codes; invoices pass ZATCA’s official SDK validator (26 checks) in CI, and it has completed ZATCA’s sandbox onboarding, with all 6 compliance documents accepted and a production certificate issued."
+        "Building e-invoicing compliance for Saudi Arabia (ZATCA Phase 2) and the UAE (Peppol PINT AE): UBL invoice XML, cryptographic signing, hash chaining, TLV QR codes and PDF/A-3b output. Invoices pass ZATCA’s official SDK validator (26 checks) and the PINT AE rules in CI, and the platform has completed ZATCA’s sandbox onboarding, with all 6 compliance documents accepted."
       ]
     },
     {
@@ -158,7 +158,7 @@
       "caseStudies": [
         {
           "id": "delegated-access",
-          "title": "Letting providers act for their customers, without handing over the keys",
+          "title": "Controlled access to other people's money, without handing over the keys",
           "url": "https://mohamed3shamil.vercel.app/case-delegated-access.html",
           "work": "Zil Money",
           "highlight": 0
@@ -186,8 +186,8 @@
         }
       ],
       "quickView": {
-        "role": "Software Engineer · Backend systems · Financial workflows",
-        "line": "I build backend systems for financial workflows, where a mistake costs money or trust: who can act on an account, payments that must go where they were approved, and compliance. Laravel and TypeScript, with tests and logs to prove it works.",
+        "role": "Software Engineer · Secure Financial Systems · Compliance",
+        "line": "I build secure systems for financial workflows, where a mistake costs money or trust: who can act on an account, payments that must go where they were approved, and compliance. Laravel and TypeScript, with tests and logs to prove it works.",
         "results": [
           {
             "lead": "Delegated access for service providers.",

@@ -5,13 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Résumé — Mohamed Shamil Abdul Salam</title>
-  <meta name="description" content="Résumé of Mohamed Shamil Abdul Salam, backend-focused software engineer in payments, access control and compliance.">
+  <meta name="description" content="Résumé of Mohamed Shamil Abdul Salam, software engineer in payments, access control and compliance.">
   <meta name="author" content="Mohamed Shamil Abdul Salam">
   <link rel="canonical" href="https://mohamed3shamil.vercel.app/resume.html">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://mohamed3shamil.vercel.app/resume.html">
   <meta property="og:title" content="Résumé — Mohamed Shamil Abdul Salam">
-  <meta property="og:description" content="Résumé of Mohamed Shamil Abdul Salam, backend-focused software engineer in payments, access control and compliance.">
+  <meta property="og:description" content="Résumé of Mohamed Shamil Abdul Salam, software engineer in payments, access control and compliance.">
   <meta property="og:image" content="https://mohamed3shamil.vercel.app/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -22,7 +22,7 @@
   <script>
     try {
       var saved = localStorage.getItem('theme');
-      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+      document.documentElement.dataset.theme = saved === 'light' ? 'light' : 'dark';
     } catch (e) {}
   </script>
 </head>
@@ -37,7 +37,7 @@
       <nav class="nav" id="site-nav" aria-label="Sections">
         <a href="index.html#work">Work</a>
         <a href="index.html#projects">Projects</a>
-        <a href="playground.html">Playground</a>
+        <a href="playground.html">Lab</a>
         <a href="index.html#contact">Contact</a>
         <a href="resume.html" aria-current="page">Résumé</a>
       </nav>
@@ -131,7 +131,7 @@
         <div class="resume-job">
           <p class="resume-line"><span class="resume-what"><strong>Masaar – ZATCA E-Invoicing System</strong></span><span class="resume-when resume-stack">Laravel, PHP, MySQL</span></p>
           <ul>
-            <li>Building a ZATCA Phase 2 compliance engine with UBL invoice XML, cryptographic signing, hash chaining, and TLV QR codes; invoices pass ZATCA’s official SDK validator (26 checks) in CI, and it has completed ZATCA’s sandbox onboarding, with all 6 compliance documents accepted and a production certificate issued.</li>
+            <li>Building e-invoicing compliance for Saudi Arabia (ZATCA Phase 2) and the UAE (Peppol PINT AE): UBL invoice XML, cryptographic signing, hash chaining, TLV QR codes and PDF/A-3b output. Invoices pass ZATCA’s official SDK validator (26 checks) and the PINT AE rules in CI, and the platform has completed ZATCA’s sandbox onboarding, with all 6 compliance documents accepted.</li>
           </ul>
         </div>
         <div class="resume-job">

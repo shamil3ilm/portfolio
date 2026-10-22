@@ -10,7 +10,7 @@ A static site: plain HTML, CSS and JavaScript. Every page is committed ready to 
 - `case-delegated-access.html`, `case-recurring-safeguards.html`, `case-llm-observability.html`, `case-zatca-einvoicing.html` — case studies
 - `404.html` — page shown for unknown addresses (Vercel serves it automatically)
 - `robots.txt`, `sitemap.xml` — let search engines find the public pages (the tailored `/resume/` pages stay unindexed)
-- `analytics.js` — visit counts through Vercel Web Analytics (enable it under the project's **Analytics** tab). No cookies. Share `?ref=<tag>` links (one tag per application, e.g. `?ref=acme`) and visits through them show up as `/ref/<tag>/<page>` in the Pages panel. Open the site once with `?owner=1` to stop counting your own browser (`?owner=0` undoes it).
+- `analytics.js` — privacy-friendly page-view counting. No cookies.
 - `profile.json` — **the source of truth for my public profile details** (JSON Resume format), served at `/profile.json`
 - `resume.html` — résumé page, **generated from `profile.json`**; "Save as PDF" prints a one-page résumé
 - `variants/<slug>.json` — tailored résumés published from lee (optional; same format as `profile.json`), served at `/variants/<slug>.json`
@@ -18,22 +18,24 @@ A static site: plain HTML, CSS and JavaScript. Every page is committed ready to 
 - `scripts/build-resume.mjs` — validates `profile.json` and `variants/*.json`, then renders `resume.html`, the 60-second view in `index.html` and the `resume/<slug>.html` pages. `scripts/lib/` holds the validator and the renderer, `scripts/*.template.html` the page templates, `scripts/profile.schema.json` the schema and `scripts/test/` the tests
 - `styles.css` — layout, light/dark themes, responsive rules
 - `script.js` — theme toggle and contact form (Web3Forms)
-- `patrol.js` — Risk Review Desk, the game at the top of the Playground (review ten items, release or hold each with a reason, get a shift report)
+- `patrol.js` — Risk Review Desk, the game at the top of the Lab page (review ten items, release or hold each with a reason, get a shift report)
 - `demos.js` — the three interactive "Try it" demos on the home page
 - `sample-data.js` — fresh example data on every visit (businesses, providers, amounts, valid routing numbers, dates), shared by all demos
-- `playground.html` — six working demos of my work; everything runs in the browser
+- `playground.html` — the Lab page: six working demos of my work; everything runs in the browser
 - `playground-work.js` — delegated account access, recurring payment safeguards, AI usage tracking
 - `playground.js` — e-invoice QR (with the QR library loaded from cdnjs, integrity-checked), webhook signatures, scheduling
-- `tools.js` — handy tools (routing number checker, check amount in words)
+- `tools.js` — free tools (routing number checker, check amount in words)
 - `qr-maker.js` — QR code maker (link, text, Wi-Fi, contact card, WhatsApp, email, phone, SMS; optional logo; PNG/SVG download)
 - `picker.js` — custom date and time pickers (replace the browser's built-in ones)
-- `select.js` — custom dropdowns for the playground (the hidden native select keeps the value)
+- `select.js` — custom dropdowns for the lab page (the hidden native select keeps the value)
 - `crypto-tool.js` — Lock & unlock text (password lock with AES-256, Base64, hex, URL, SHA-256, Caesar/ROT13)
 - `ui.js` — scroll reveal, active-section highlighting, header shadow, result pulses, mobile menu and local time
-- `work.js` — Work section "show all" and the collapsible list of smaller fixes, the "More details" toggle on project cards, and the phone hero's "Show highlights" toggle
+- `work.js` — Work section "show all" and the collapsible list of further problems solved, the "More details" toggle on project cards, and the phone hero's "Show highlights" toggle
 - `quick-view.js` — opens and closes the 60-second summary dialog (also opens from `index.html?view=quick`). The dialog's content is generated into `index.html` from `profile.json`
 - `palette.js` — command palette (Ctrl+K or /) to jump to any section, demo, tool or action
-- `achievements.js` — the 17 challenges and the 🏆 progress counter, shown on the Playground only; the home page demos still record their 5 challenges quietly (progress is stored only in the visitor's browser)
+- `achievements.js` — the 17 challenges and the 🏆 progress counter, shown on the Lab page only; the home page demos still record their 5 challenges quietly (progress is stored only in the visitor's browser)
+- `egg.js` — a small hidden note about the site's name
+- `hero-portrait.webp` — the home page portrait (shown from tablet width up); `photo-160.webp` and `photo-320.webp` — the About photo
 - `favicon.svg`, `og-image.png` — icon and link-preview image
 
 ## Run locally
@@ -57,7 +59,7 @@ chore(profile): sync from lee
 lee commits only `profile.json`. The GitHub Actions workflow `.github/workflows/regenerate.yml` then rebuilds the pages and commits them back:
 
 - **Trigger:** a push to `main` that touches `profile.json`, `variants/**`, `scripts/**` (which holds the templates) or the workflow itself. It can also be run by hand from the Actions tab (`workflow_dispatch`).
-- **Steps:** Node LTS, no install, `node --test "scripts/test/*.test.mjs"` (résumé build, tailored variants and the WhatsApp alert function), then `node scripts/build-resume.mjs`.
+- **Steps:** Node LTS, no install, `node --test "scripts/test/*.test.mjs"` (résumé build and tailored variants), then `node scripts/build-resume.mjs`.
 - **Commit:** if `resume.html`, `index.html` or anything in `resume/` changed (including new and deleted variant pages), it commits them as `github-actions[bot]` with the message `chore(build): regenerate pages from profile.json and variants [skip ci]`, using the built-in `GITHUB_TOKEN` (`contents: write`).
 - **No loops:** pushes made with `GITHUB_TOKEN` don't start workflows, the message carries `[skip ci]`, and the job is skipped when `github-actions[bot]` triggered it.
 - **No races:** runs are queued one at a time per branch (`concurrency`, no cancelling). If `main` moved during a run, the push is rejected. The job then rebuilds on the new tip and pushes once more (it doesn't rebase the generated files, so there are no conflicts).

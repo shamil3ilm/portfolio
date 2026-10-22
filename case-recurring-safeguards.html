@@ -21,7 +21,7 @@
   <script>
     try {
       var saved = localStorage.getItem('theme');
-      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+      document.documentElement.dataset.theme = saved === 'light' ? 'light' : 'dark';
     } catch (e) {}
   </script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Making scheduled payments stop when a recipient or bank account is deleted","description":"How I made scheduled payments stop when a recipient or bank account is deleted, and fixed bulk cancel.","url":"https://mohamed3shamil.vercel.app/case-recurring-safeguards.html","mainEntityOfPage":"https://mohamed3shamil.vercel.app/case-recurring-safeguards.html","inLanguage":"en","author":{"@type":"Person","name":"Mohamed Shamil Abdul Salam","url":"https://mohamed3shamil.vercel.app/"},"publisher":{"@type":"Person","name":"Mohamed Shamil Abdul Salam","url":"https://mohamed3shamil.vercel.app/"}}</script>
@@ -37,7 +37,7 @@
       <nav class="nav" id="site-nav" aria-label="Sections">
         <a href="index.html#work">Work</a>
         <a href="index.html#projects">Projects</a>
-        <a href="playground.html">Playground</a>
+        <a href="playground.html">Lab</a>
         <a href="index.html#contact">Contact</a>
         <a href="resume.html">Résumé</a>
       </nav>

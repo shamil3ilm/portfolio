@@ -1,5 +1,5 @@
 (function () {
-  /* Work section: topic filters, "show all", and the collapsible list of smaller fixes */
+  /* Work section: topic filters, "show all", and the collapsible list of further problems solved */
 
   const grid = document.querySelector('[data-work="grid"]');
   if (!grid) return;

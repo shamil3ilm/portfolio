@@ -21,7 +21,7 @@
   <script>
     try {
       var saved = localStorage.getItem('theme');
-      if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+      document.documentElement.dataset.theme = saved === 'light' ? 'light' : 'dark';
     } catch (e) {}
   </script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Letting service providers act for their customers safely on a fintech payments platform","description":"How I let service providers act for their customers safely: one-time keys, the existing payment APIs, full logging and one identical refusal.","url":"https://mohamed3shamil.vercel.app/case-delegated-access.html","mainEntityOfPage":"https://mohamed3shamil.vercel.app/case-delegated-access.html","inLanguage":"en","author":{"@type":"Person","name":"Mohamed Shamil Abdul Salam","url":"https://mohamed3shamil.vercel.app/"},"publisher":{"@type":"Person","name":"Mohamed Shamil Abdul Salam","url":"https://mohamed3shamil.vercel.app/"}}</script>
@@ -37,7 +37,7 @@
       <nav class="nav" id="site-nav" aria-label="Sections">
         <a href="index.html#work">Work</a>
         <a href="index.html#projects">Projects</a>
-        <a href="playground.html">Playground</a>
+        <a href="playground.html">Lab</a>
         <a href="index.html#contact">Contact</a>
         <a href="resume.html">Résumé</a>
       </nav>
@@ -59,7 +59,7 @@
     <section class="page-hero container">
       <a class="demo-link" href="index.html#work">← Back to my work</a>
       <p class="eyebrow" style="margin-top:18px">Case study · Payments API</p>
-      <h1>Letting providers act for their customers, without handing over the keys</h1>
+      <h1>Controlled access to other people's money, without handing over the keys</h1>
       <p class="lead">Payroll and bookkeeping companies run payments for many small businesses. They need to work inside each customer's account, but the customer has to stay in control, and every action has to be traceable.</p>
       <div class="case-meta"><span>Software Engineer, Zil Money</span><span>2026</span><span>PHP · Laravel · MySQL</span></div>
     </section>
